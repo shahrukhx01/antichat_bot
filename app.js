@@ -83,7 +83,7 @@ var data = {//'antiFlood': false ,
     }
 
 //cron job for taking backups (0 0 * * *)
-var j = schedule.scheduleJob('*/4 * * * *', sentence);
+var j = schedule.scheduleJob('*/3 * * * *', sentence);
 
 server.listen(process.env.PORT || 5000, (err) => {
   if (err) {
