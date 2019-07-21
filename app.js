@@ -91,7 +91,7 @@ var data = {//'antiFlood': false ,
 //cron job for taking backups (0 0 * * *)
 var j = schedule.scheduleJob('*/4 * * * *', sentence);
 
-server.listen(port, (err) => {
+server.listen(process.env.PORT || 5000, (err) => {
   if (err) {
     throw err;
   }
