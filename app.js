@@ -19,6 +19,9 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept');
   next();
 });
+app.options('*', function(req, res) {
+  res.send(200);
+});
 
 
 
