@@ -91,5 +91,11 @@ var data = {//'antiFlood': false ,
 //cron job for taking backups (0 0 * * *)
 var j = schedule.scheduleJob('*/4 * * * *', sentence);
 
-
+server.listen(port, (err) => {
+  if (err) {
+    throw err;
+  }
+  /* eslint-disable no-console */
+  console.log('Node Endpoints working :)');
+});
 module.exports = server;
