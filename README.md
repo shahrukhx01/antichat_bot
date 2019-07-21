@@ -1,2 +1,2 @@
-# antichat_bot
-A karma mining bot for antichat.me app!
+#  !(antichat_bot)[https://nodeappx01.herokuapp.com]
+A karma mining bot for antichat.me app! 
