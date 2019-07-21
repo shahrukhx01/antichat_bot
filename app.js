@@ -43,53 +43,74 @@ return Math.floor(Math.random() * 5);
 }
 */
 function sentence() {
-let sentence = txtgen.sentence();
-console.log(sentence);
-sendText(sentence);
+  let sentence = txtgen.sentence();
+  console.log(sentence);
+  sendText(sentence);
 };//1.8*60000
 
 
 function sendText(message){
-var data = {//'antiFlood': false ,
-'dialogue': "wKxPAGANdi",
-'message': message,
-'receiver': "public",
-'_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-'_ClientVersion': "js1.11.1",
-'_InstallationId': "a5cb12f0-557e-2688-b504-2b7a69734811",
-'_SessionToken': "r:9728f21c4aa7b5d1c363e555cc33e8b2"};
-  /*$.ajax({
-      xhrFields: {
-        withCredentials: false
-      },
-      dataType    : 'json',
-      type        : 'POST',
-      url         : "https://mobile-elb.antich.at/classes/Messages",
-      data : data,
-      success     : function(res) {
-      console.log(res);
-      }
-    }); */
+  var data = {//'antiFlood': false ,
+  'dialogue': "wKxPAGANdi",
+  'message': message,
+  'receiver': "public",
+  '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+  '_ClientVersion': "js1.11.1",
+  '_InstallationId': "a5cb12f0-557e-2688-b504-2b7a69734811",
+  '_SessionToken': "r:9728f21c4aa7b5d1c363e555cc33e8b2"};
+
+  request.post({
+    headers: {'content-type' : 'application/json'},
+    url:     "https://mobile-elb.antich.at/classes/Messages",
+    body:    JSON.stringify(data)
+  }, function(error, response, body){
+    console.log(JSON.stringify(body));
+  });
+
+
+}
+
+
+function getDailyBonus(){
+  var data = {
+    'dialogue': "wKxPAGANdi",
+    'message': "/bonus",
+    'receiver': "public",
+    '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    '_ClientVersion': "js1.11.1",
+    '_InstallationId': "a5cb12f0-557e-2688-b504-2b7a69734811",
+    '_SessionToken': "r:9728f21c4aa7b5d1c363e555cc33e8b2"};
 
     request.post({
-  headers: {'content-type' : 'application/json'},
-  url:     "https://mobile-elb.antich.at/classes/Messages",
-  body:    JSON.stringify(data)
-}, function(error, response, body){
-  console.log(JSON.stringify(body));
-});
+      headers: {'content-type' : 'application/json'},
+      url:     "https://mobile-elb.antich.at/classes/Messages",
+      body:    JSON.stringify(data)
+    }, function(error, response, body){
+      ///console.log(JSON.stringify(body));
 
 
-    }
+      // appendFile function with filename, content and callback function
+      var date = new Date();
+      var timestamp = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
 
-//cron job for taking backups (0 0 * * *)
-var j = schedule.scheduleJob('*/3 * * * *', sentence);
+      fs.appendFile('bonus.log', JSON.parse(body).message+","+timestamp+"\n", function (err) {
+        if (err) throw err;
+        console.log('Bonus log written successfully.');
+      });
+    });
 
-server.listen(process.env.PORT || 5000, (err) => {
-  if (err) {
-    throw err;
+
   }
-  /* eslint-disable no-console */
-  console.log('Node Endpoints working :)');
-});
-module.exports = server;
+
+  //cron job for taking backups (0 0 * * *)
+  var j = schedule.scheduleJob('*/3 * * * *', sentence);
+  var k = schedule.scheduleJob('0 5 * * *', getDailyBonus);
+
+  server.listen(process.env.PORT || 5000, (err) => {
+    if (err) {
+      throw err;
+    }
+    /* eslint-disable no-console */
+    console.log('Node Endpoints working :)');
+  });
+  module.exports = server;
