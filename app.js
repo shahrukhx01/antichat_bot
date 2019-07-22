@@ -84,25 +84,86 @@ function getDailyBonus(){
 
   }
 
-  //cron job for taking backups (0 0 * * *)
-  schedule.scheduleJob('*/3 * * * *', function(fireDate){
-    //NEWBIES
-    sendText("wKxPAGANdi");
-    console.log("sent to group 1.");
-  });
-  schedule.scheduleJob('*/4 * * * *', function(fireDate){
-    //IND
-    sendText("M7xQglSsRN");
-    console.log("sent to group 2.");
-  });
-  schedule.scheduleJob('*/5 * * * *', function(fireDate){
-    //LFINDER.
-    sendText("Hf8AVUJw0p");
-    console.log("sent to group 3.");
-  });
 
-  schedule.scheduleJob('0 5 * * *', getDailyBonus);
+  function getUsersList(){
+    var data = {
+      "dialogue":"wKxPAGANdi",
+      "v":10001,
+      "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+      "_ClientVersion":"js1.11.1",
+      "_InstallationId":"a5cb12f0-557e-2688-b504-2b7a69734811",
+      "_SessionToken":"r:9728f21c4aa7b5d1c363e555cc33e8b2"
+    };
 
+    request.post({
+      headers: {'content-type' : 'application/json'},
+      url:     "https://mobile-elb.antich.at/functions/getActiveUsers",
+      body:    JSON.stringify(data)
+    }, function(error, response, body){
+
+      // appendFile function with filename, content and callback function
+      var date = new Date();
+      var timestamp = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+      var usersDict = {};
+      JSON.parse(body).result.forEach(element => {
+        usersDict[element.objectId] = element.profileName;
+      });
+      getRecentMessages(usersDict);
+    });
+  }
+
+  function getRecentMessages(users){
+    var d = new Date();
+    // d = Mon Feb 29 2016 08:00:09 GMT+0100 (W. Europe Standard Time)
+    var milliseconds = Date.parse(d);
+    // 1456729209000
+    milliseconds = milliseconds - (1 * 60 * 1000);
+    // - 5 minutes
+    var d_ = new Date(milliseconds).toISOString();
+    var data = {
+      "laterThan": {"iso": d_, "__type": "Date"},
+      "dialogueId": "wKxPAGANdi",
+      "v": 10001,
+      "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+      "_ClientVersion": "js1.11.1",
+      "_InstallationId": "a5cb12f0-557e-2688-b504-2b7a69734811",
+      "_SessionToken": "r:9728f21c4aa7b5d1c363e555cc33e8b2"
+    };
+
+    request.post({
+      headers: {'content-type' : 'application/json'},
+      url:     "https://mobile-elb.antich.at/functions/getMessages",
+      body:    JSON.stringify(data)
+    }, function(error, response, body){
+
+      // appendFile function with filename, content and callback function
+      var userTexts = [];
+      JSON.parse(body).result.forEach(element => {
+        if (users[element.senderId] != undefined)
+        userTexts.push({name: users[element.senderId].trim(), text: element.message});
+      });
+      userTexts = userTexts.filter(obj => Object.keys(obj).includes("name"));
+      getBotReply(JSON.stringify(userTexts[Math.floor(Math.random()*userTexts.length)]));
+    });
+  }
+
+
+  function getBotReply(userText){
+
+    request.post({
+      headers: {'content-type' : 'application/json'},
+      url:     "https://anti-botx01.herokuapp.com/get_reply",
+      body:    JSON.stringify({	text: userText.text})
+    }, function(error, response, body){
+
+      console.log(body);
+
+    });
+  }
+
+
+  getUsersList();
   server.listen(process.env.PORT || 5000, (err) => {
     if (err) {
       throw err;
