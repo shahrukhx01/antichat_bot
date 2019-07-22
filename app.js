@@ -84,7 +84,7 @@ function getDailyBonus(){
   }
 
 
-  function getUsersList(){
+  function getUsersList(diag){
     var data = {
       "dialogue":"wKxPAGANdi",
       "v":10001,
@@ -108,11 +108,11 @@ function getDailyBonus(){
       JSON.parse(body).result.forEach(element => {
         usersDict[element.objectId] = element.profileName;
       });
-      getRecentMessages(usersDict);
+      getRecentMessages(usersDict,diag);
     });
   }
 
-  function getRecentMessages(users){
+  function getRecentMessages(users,diag){
     var d = new Date();
     // d = Mon Feb 29 2016 08:00:09 GMT+0100 (W. Europe Standard Time)
     var milliseconds = Date.parse(d);
@@ -145,12 +145,12 @@ function getDailyBonus(){
 
       userTexts = userTexts.filter(obj => Object.keys(obj).includes("name"));
       console.log(JSON.stringify(userTexts));
-      getBotReply(userTexts[Math.floor(Math.random()*userTexts.length)]);
+      getBotReply(userTexts[Math.floor(Math.random()*userTexts.length)],diag);
     });
   }
 
 
-  function getBotReply(userText){
+  function getBotReply(userText,diag){
     var text = JSON.stringify({	text: userText.text});
     console.log(text);
     request.post({
@@ -161,26 +161,24 @@ function getDailyBonus(){
       var text = "@"+userText.name+", "+JSON.parse(body).reply;
       console.log("*** resp generated ***");
       console.log(text);
-      sendText("wKxPAGANdi",text);
+      sendText(diag,text,diag);
 
     });
   }
   //cron job for taking backups (0 0 * * *)
   schedule.scheduleJob('*/1 * * * *', function(fireDate){
     //NEWBIES
-    getUsersList();
+    getUsersList("wKxPAGANdi");
     console.log("sent to group Newbies.");
   });
-  schedule.scheduleJob('*/3 * * * *', function(fireDate){
+  schedule.scheduleJob('*/2 * * * *', function(fireDate){
     //IND
-    let sentence = txtgen.sentence();
-    sendText("M7xQglSsRN",sentence);
+    getUsersList("wKxPAGANdi");
     console.log("sent to group IND.");
   });
-  schedule.scheduleJob('*/4 * * * *', function(fireDate){
+  schedule.scheduleJob('*/3 * * * *', function(fireDate){
     //LFINDER.
-    let sentence = txtgen.sentence();
-    sendText("Hf8AVUJw0p",sentence);
+    getUsersList("wKxPAGANdi");
     console.log("sent to group LFINDER.");
   });
 
