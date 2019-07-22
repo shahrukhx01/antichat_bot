@@ -86,12 +86,15 @@ function getDailyBonus(){
 
   //cron job for taking backups (0 0 * * *)
   schedule.scheduleJob('*/3 * * * *', function(fireDate){
+    //NEWBIES
     sendText("wKxPAGANdi");
   });
   schedule.scheduleJob('*/4 * * * *', function(fireDate){
-    sendText("tcO1iFGUAQ");
+    //IND
+    sendText("M7xQglSsRN");
   });
   schedule.scheduleJob('*/5 * * * *', function(fireDate){
+    //LFINDER.
     sendText("Hf8AVUJw0p");
   });
 
