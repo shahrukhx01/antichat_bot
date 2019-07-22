@@ -3,9 +3,11 @@ from flask_cors import CORS
 from flask_restful import Resource, Api, reqparse
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
+from os import environ
 
 
 app = Flask(__name__)
+app.run(environ.get('PORT'))
 app.config['CORS_HEADERS'] = 'Content-Type'
 cors = CORS(app, resorces={r'/give_me_data': {"origins": '*'}})
 api = Api(app)
