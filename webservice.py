@@ -56,4 +56,4 @@ class getBotReply(Resource):
 api.add_resource(getBotReply, '/get_reply')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
