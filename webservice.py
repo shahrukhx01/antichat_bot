@@ -5,7 +5,7 @@ from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
 from os import environ
 
-
+# gunicorn webservice:app -b 0.0.0.0:5000
 app = Flask(__name__)
 #app.run(environ.get('PORT'))
 app.config['CORS_HEADERS'] = 'Content-Type'
