@@ -12,6 +12,10 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 cors = CORS(app, resorces={r'/give_me_data': {"origins": '*'}})
 api = Api(app)
 
+f = open("demofile2.txt", "a")
+f.write("Now the file has more content!")
+f.close()
+
 parser = reqparse.RequestParser()
 parser.add_argument('text', type=str)
 
