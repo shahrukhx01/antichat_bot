@@ -31,12 +31,11 @@ app.get('/', function(req, res) {
 });
 
 
-function sendText(dialogue){
-  let sentence = txtgen.sentence();
-  console.log(sentence);
+function sendText(dialogue,text){
+
   var data = {//'antiFlood': false ,
   'dialogue': dialogue,
-  'message': sentence,
+  'message': text,
   'receiver': "public",
   '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
   '_ClientVersion': "js1.11.1",
@@ -143,27 +142,51 @@ function getDailyBonus(){
         if (users[element.senderId] != undefined)
         userTexts.push({name: users[element.senderId].trim(), text: element.message});
       });
+
       userTexts = userTexts.filter(obj => Object.keys(obj).includes("name"));
-      getBotReply(JSON.stringify(userTexts[Math.floor(Math.random()*userTexts.length)]));
+      console.log(JSON.stringify(userTexts));
+      getBotReply(userTexts[Math.floor(Math.random()*userTexts.length)]);
     });
   }
 
 
   function getBotReply(userText){
-
+    var text = JSON.stringify({	text: userText.text});
+    console.log(text);
     request.post({
       headers: {'content-type' : 'application/json'},
       url:     "https://anti-botx01.herokuapp.com/get_reply",
-      body:    JSON.stringify({	text: userText.text})
+      body: text
     }, function(error, response, body){
-
-      console.log(body);
+      var text = "@"+userText.name+", "+JSON.parse(body).reply;
+      console.log("*** resp generated ***");
+      console.log(text);
+      sendText("wKxPAGANdi",text);
 
     });
   }
+  //cron job for taking backups (0 0 * * *)
+  schedule.scheduleJob('*/1 * * * *', function(fireDate){
+    //NEWBIES
+    getUsersList();
+    console.log("sent to group Newbies.");
+  });
+  schedule.scheduleJob('*/3 * * * *', function(fireDate){
+    //IND
+    let sentence = txtgen.sentence();
+    sendText("M7xQglSsRN",sentence);
+    console.log("sent to group IND.");
+  });
+  schedule.scheduleJob('*/4 * * * *', function(fireDate){
+    //LFINDER.
+    let sentence = txtgen.sentence();
+    sendText("Hf8AVUJw0p",sentence);
+    console.log("sent to group LFINDER.");
+  });
+
+  schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 
-  getUsersList();
   server.listen(process.env.PORT || 5000, (err) => {
     if (err) {
       throw err;
