@@ -180,9 +180,9 @@ function getDailyBonus(){
     console.log("sent to group IND.");
   });
   schedule.scheduleJob('*/3 * * * *', function(fireDate){
-    //LFINDER.
-    getUsersList("Hf8AVUJw0p");
-    console.log("sent to group LFINDER.");
+    //ANTISTRESS.
+    getUsersList("fkoulukUIg");
+    console.log("sent to group ANTISTRESS.");
   });
 
   schedule.scheduleJob('0 5 * * *', getDailyBonus);
