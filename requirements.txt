@@ -1,4 +1,4 @@
-nltk==3.3
+nltk==3.2.5
 flask
 flask_cors
 flask_restful
