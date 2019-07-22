@@ -7,14 +7,10 @@ from os import environ
 
 
 app = Flask(__name__)
-app.run(environ.get('PORT'))
+#app.run(environ.get('PORT'))
 app.config['CORS_HEADERS'] = 'Content-Type'
-cors = CORS(app, resorces={r'/give_me_data': {"origins": '*'}})
+cors = CORS(app, resorces={r'/get_reply': {"origins": '*'}})
 api = Api(app)
-
-f = open("demofile2.txt", "a")
-f.write("Now the file has more content!")
-f.close()
 
 parser = reqparse.RequestParser()
 parser.add_argument('text', type=str)
