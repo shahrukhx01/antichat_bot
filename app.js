@@ -175,12 +175,12 @@ function getDailyBonus(){
   });
   schedule.scheduleJob('*/2 * * * *', function(fireDate){
     //IND
-    getUsersList("wKxPAGANdi");
+    getUsersList("M7xQglSsRN");
     console.log("sent to group IND.");
   });
   schedule.scheduleJob('*/3 * * * *', function(fireDate){
     //LFINDER.
-    getUsersList("wKxPAGANdi");
+    getUsersList("Hf8AVUJw0p");
     console.log("sent to group LFINDER.");
   });
 
