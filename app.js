@@ -88,14 +88,17 @@ function getDailyBonus(){
   schedule.scheduleJob('*/3 * * * *', function(fireDate){
     //NEWBIES
     sendText("wKxPAGANdi");
+    console.log("sent to group 1.");
   });
   schedule.scheduleJob('*/4 * * * *', function(fireDate){
     //IND
     sendText("M7xQglSsRN");
+    console.log("sent to group 2.");
   });
   schedule.scheduleJob('*/5 * * * *', function(fireDate){
     //LFINDER.
     sendText("Hf8AVUJw0p");
+    console.log("sent to group 3.");
   });
 
   schedule.scheduleJob('0 5 * * *', getDailyBonus);
