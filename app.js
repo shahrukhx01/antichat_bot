@@ -31,28 +31,12 @@ app.get('/', function(req, res) {
 });
 
 
-/*var verbs, nouns, adjectives, adverbs, preposition;
-nouns = ["bird", "clock", "boy", "plastic", "duck", "teacher", "old lady", "professor", "hamster", "dog"];
-verbs = ["kicked", "ran", "flew", "dodged", "sliced", "rolled", "died", "breathed", "slept", "killed"];
-adjectives = ["beautiful", "lazy", "professional", "lovely", "dumb", "rough", "soft", "hot", "vibrating", "slimy"];
-adverbs = ["slowly", "elegantly", "precisely", "quickly", "sadly", "humbly", "proudly", "shockingly", "calmly", "passionately"];
-preposition = ["down", "into", "up", "on", "upon", "below", "above", "through", "across", "towards"];
-
-function randGen() {
-return Math.floor(Math.random() * 5);
-}
-*/
-function sentence() {
+function sendText(dialogue){
   let sentence = txtgen.sentence();
   console.log(sentence);
-  sendText(sentence);
-};//1.8*60000
-
-
-function sendText(message){
   var data = {//'antiFlood': false ,
-  'dialogue': "wKxPAGANdi",
-  'message': message,
+  'dialogue': dialogue,
+  'message': sentence,
   'receiver': "public",
   '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
   '_ClientVersion': "js1.11.1",
@@ -86,8 +70,6 @@ function getDailyBonus(){
       url:     "https://mobile-elb.antich.at/classes/Messages",
       body:    JSON.stringify(data)
     }, function(error, response, body){
-      ///console.log(JSON.stringify(body));
-
 
       // appendFile function with filename, content and callback function
       var date = new Date();
@@ -103,8 +85,17 @@ function getDailyBonus(){
   }
 
   //cron job for taking backups (0 0 * * *)
-  var j = schedule.scheduleJob('*/3 * * * *', sentence);
-  var k = schedule.scheduleJob('0 5 * * *', getDailyBonus);
+  schedule.scheduleJob('*/3 * * * *', function(fireDate){
+    sendText("wKxPAGANdi");
+  });
+  schedule.scheduleJob('*/4 * * * *', function(fireDate){
+    sendText("tcO1iFGUAQ");
+  });
+  schedule.scheduleJob('*/5 * * * *', function(fireDate){
+    sendText("Hf8AVUJw0p");
+  });
+
+  schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
   server.listen(process.env.PORT || 5000, (err) => {
     if (err) {
