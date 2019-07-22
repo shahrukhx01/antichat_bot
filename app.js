@@ -144,6 +144,8 @@ function getDailyBonus(){
       });
 
       userTexts = userTexts.filter(obj => Object.keys(obj).includes("name"));
+      const toSearch = new Set(["Jake"]);
+      userTexts = userTexts.filter(obj => toSearch.has(obj.name));
       console.log(JSON.stringify(userTexts));
       getBotReply(userTexts[Math.floor(Math.random()*userTexts.length)],diag);
     });
