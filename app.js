@@ -161,7 +161,7 @@ function getDailyBonus(){
       var text = "@"+userText.name+", "+JSON.parse(body).reply;
       console.log("*** resp generated ***");
       console.log(text);
-      sendText(diag,text,diag);
+      sendText(diag,text);
 
     });
   }
