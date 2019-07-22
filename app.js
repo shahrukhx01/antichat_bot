@@ -86,7 +86,7 @@ function getDailyBonus(){
 
   function getUsersList(diag){
     var data = {
-      "dialogue":"wKxPAGANdi",
+      "dialogue":diag,
       "v":10001,
       "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
       "_ClientVersion":"js1.11.1",
@@ -122,7 +122,7 @@ function getDailyBonus(){
     var d_ = new Date(milliseconds).toISOString();
     var data = {
       "laterThan": {"iso": d_, "__type": "Date"},
-      "dialogueId": "wKxPAGANdi",
+      "dialogueId": diag,
       "v": 10001,
       "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
       "_ClientVersion": "js1.11.1",
