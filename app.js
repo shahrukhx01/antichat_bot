@@ -153,6 +153,7 @@ function getDailyBonus(){
 
 
   function getBotReply(userText,diag){
+    if (userText == undefined || userText.text == undefined) return;
     var text = JSON.stringify({	text: userText.text});
     console.log(text);
     request.post({
