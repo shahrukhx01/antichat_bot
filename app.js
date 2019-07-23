@@ -169,7 +169,7 @@ function getDailyBonus(){
     });
   }
   //cron job for taking backups (0 0 * * *)
-  schedule.scheduleJob('*/2 * * * *', function(fireDate){
+  schedule.scheduleJob('*/1 * * * *', function(fireDate){
     //NEWBIES -- "wKxPAGANdi"
     getUsersList("wKxPAGANdi");
     console.log("sent to group Newbies.");
