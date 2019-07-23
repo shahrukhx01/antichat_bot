@@ -1,7 +1,7 @@
+gunicorn
 nltk==3.2.5
 flask
 flask_cors
 flask_restful
 chatterbot
 chatterbot-corpus
-gunicorn
