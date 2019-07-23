@@ -83,7 +83,7 @@ function getDailyBonus(){
 
   }
 
-
+/*
   function getUsersList(diag){
     var data = {
       "dialogue":diag,
@@ -167,14 +167,24 @@ function getDailyBonus(){
       sendText(diag,text);
 
     });
-  }
+  } */
   //cron job for taking backups (0 0 * * *)
   schedule.scheduleJob('*/1 * * * *', function(fireDate){
     //NEWBIES -- "wKxPAGANdi"
-    getUsersList("wKxPAGANdi");
+
+    sendText('wKxPAGANdi',txtgen.sentence());
     console.log("sent to group Newbies.");
   });
-
+  schedule.scheduleJob('*/3 * * * *', function(fireDate){
+    //IND
+    sendText('M7xQglSsRN',txtgen.sentence());
+    console.log("sent to group IND");
+  });
+  schedule.scheduleJob('*/4 * * * *', function(fireDate){
+    //LFINDER.
+    sendText('Hf8AVUJw0p',txtgen.sentence());
+    console.log("sent to group LF.");
+  });
 
   schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
