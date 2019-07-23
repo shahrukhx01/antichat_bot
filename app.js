@@ -161,7 +161,7 @@ function getDailyBonus(){
       url:     "https://anti-botx01.herokuapp.com/get_reply",
       body: text
     }, function(error, response, body){
-      var text = "@"+userText.name+", "+JSON.parse(body).reply;
+      var text = userText.name+", "+JSON.parse(body).reply;
       console.log("*** resp generated ***");
       console.log(text);
       sendText(diag,text);
