@@ -170,20 +170,11 @@ function getDailyBonus(){
   }
   //cron job for taking backups (0 0 * * *)
   schedule.scheduleJob('*/1 * * * *', function(fireDate){
-    //NEWBIES
-    getUsersList("wKxPAGANdi");
+    //NEWBIES -- "wKxPAGANdi"
+    getUsersList("4fkzGJsDs2");
     console.log("sent to group Newbies.");
   });
-  schedule.scheduleJob('*/2 * * * *', function(fireDate){
-    //IND
-    getUsersList("M7xQglSsRN");
-    console.log("sent to group IND.");
-  });
-  schedule.scheduleJob('*/3 * * * *', function(fireDate){
-    //ANTISTRESS.
-    getUsersList("fkoulukUIg");
-    console.log("sent to group ANTISTRESS.");
-  });
+
 
   schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
