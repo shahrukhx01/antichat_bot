@@ -39,8 +39,8 @@ function sendText(dialogue,text){
   'receiver': "public",
   '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
   '_ClientVersion': "js1.11.1",
-  '_InstallationId': "a5cb12f0-557e-2688-b504-2b7a69734811",
-  '_SessionToken': "r:9728f21c4aa7b5d1c363e555cc33e8b2"};
+  '_InstallationId': "ee0a4992-703c-696d-71ca-19e52f3e81f2",
+  '_SessionToken': "r:39b2e68ab336bb8a68cee6cf2136a121"};
 
   request.post({
     headers: {'content-type' : 'application/json'},
@@ -61,8 +61,8 @@ function getDailyBonus(){
     'receiver': "public",
     '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     '_ClientVersion': "js1.11.1",
-    '_InstallationId': "a5cb12f0-557e-2688-b504-2b7a69734811",
-    '_SessionToken': "r:9728f21c4aa7b5d1c363e555cc33e8b2"};
+    '_InstallationId': "ee0a4992-703c-696d-71ca-19e52f3e81f2",
+    '_SessionToken': "r:39b2e68ab336bb8a68cee6cf2136a121"};
 
     request.post({
       headers: {'content-type' : 'application/json'},
@@ -90,8 +90,8 @@ function getDailyBonus(){
       "v":10001,
       "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
       "_ClientVersion":"js1.11.1",
-      "_InstallationId":"a5cb12f0-557e-2688-b504-2b7a69734811",
-      "_SessionToken":"r:9728f21c4aa7b5d1c363e555cc33e8b2"
+      '_InstallationId': "ee0a4992-703c-696d-71ca-19e52f3e81f2",
+      '_SessionToken': "r:39b2e68ab336bb8a68cee6cf2136a121"
     };
 
     request.post({
@@ -126,8 +126,8 @@ function getDailyBonus(){
       "v": 10001,
       "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
       "_ClientVersion": "js1.11.1",
-      "_InstallationId": "a5cb12f0-557e-2688-b504-2b7a69734811",
-      "_SessionToken": "r:9728f21c4aa7b5d1c363e555cc33e8b2"
+      '_InstallationId': "ee0a4992-703c-696d-71ca-19e52f3e81f2",
+      '_SessionToken': "r:39b2e68ab336bb8a68cee6cf2136a121"
     };
 
     request.post({
@@ -169,9 +169,9 @@ function getDailyBonus(){
     });
   }
   //cron job for taking backups (0 0 * * *)
-  schedule.scheduleJob('*/30 * * * * *', function(fireDate){
+  schedule.scheduleJob('*/2 * * * *', function(fireDate){
     //NEWBIES -- "wKxPAGANdi"
-    getUsersList("4fkzGJsDs2");
+    getUsersList("wKxPAGANdi");
     console.log("sent to group Newbies.");
   });
 
