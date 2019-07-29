@@ -169,18 +169,18 @@ function getDailyBonus(){
     });
   } */
   //cron job for taking backups (0 0 * * *)
-  schedule.scheduleJob('*/2 * * * *', function(fireDate){
+  schedule.scheduleJob('*/4 * * * *', function(fireDate){
     //NEWBIES -- "wKxPAGANdi"
 
     sendText('wKxPAGANdi',txtgen.sentence());
     console.log("sent to group Newbies.");
   });
-  schedule.scheduleJob('*/3 * * * *', function(fireDate){
+  schedule.scheduleJob('*/5 * * * *', function(fireDate){
     //IND
     sendText('M7xQglSsRN',txtgen.sentence());
     console.log("sent to group IND");
   });
-  schedule.scheduleJob('*/4 * * * *', function(fireDate){
+  schedule.scheduleJob('*/6 * * * *', function(fireDate){
     //LFINDER.
     sendText('Hf8AVUJw0p',txtgen.sentence());
     console.log("sent to group LF.");
