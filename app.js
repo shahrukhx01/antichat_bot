@@ -30,7 +30,6 @@ app.get('/', function(req, res) {
   res.send({data:'hello'});
 });
 
-
 function sendText(dialogue,text){
 
   var data = {//'antiFlood': false ,
@@ -39,8 +38,8 @@ function sendText(dialogue,text){
   'receiver': "public",
   '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
   '_ClientVersion': "js1.11.1",
-  '_InstallationId': "ee0a4992-703c-696d-71ca-19e52f3e81f2",
-  '_SessionToken': "r:39b2e68ab336bb8a68cee6cf2136a121"};
+  '_InstallationId': "71273d8b-2f8c-82f0-542b-f28f4473ccfa",
+  '_SessionToken': "r:c74d85e072dd8e823ff36d25cdd8f19e"};
 
   request.post({
     headers: {'content-type' : 'application/json'},
@@ -53,7 +52,6 @@ function sendText(dialogue,text){
 
 }
 
-
 function getDailyBonus(){
   var data = {
     'dialogue': "wKxPAGANdi",
@@ -61,8 +59,8 @@ function getDailyBonus(){
     'receiver': "public",
     '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     '_ClientVersion': "js1.11.1",
-    '_InstallationId': "ee0a4992-703c-696d-71ca-19e52f3e81f2",
-    '_SessionToken': "r:39b2e68ab336bb8a68cee6cf2136a121"};
+    '_InstallationId': "71273d8b-2f8c-82f0-542b-f28f4473ccfa",
+    '_SessionToken': "r:c74d85e072dd8e823ff36d25cdd8f19e"};
 
     request.post({
       headers: {'content-type' : 'application/json'},
