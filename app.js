@@ -10,6 +10,7 @@ var fs = require('fs');
 var schedule = require('node-schedule');
 var txtgen = require('txtgen');
 const randomQuotes = require('random-quotes');
+var oneLinerJoke = require('one-liner-joke');
 
 
 app.use(helmet());
@@ -191,8 +192,18 @@ schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 
 var getQuote = function(){
-  return randomQuotes['default']().body;
+  if (Math.round(Math.random()) > 0.5) {
+    console.log('quote generated');
+    return randomQuotes['default']().body;
+  }
+  else {
+    console.log('joke generated');
+  return  oneLinerJoke.getRandomJoke().body;
+
+  }
+
 };
+
 
 server.listen(process.env.PORT || 5000, (err) => {
   if (err) {
