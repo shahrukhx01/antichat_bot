@@ -176,12 +176,12 @@ schedule.scheduleJob('*/3 * * * *', function(fireDate){
   console.log("sent to group Newbies. "+quote);
 });
 schedule.scheduleJob('*/4 * * * *', function(fireDate){
-  //INTELLI PEOPLE
+  //KHI
   var quote = getQuote();
-  sendText('BWwm5GK4Ab',quote);
-  console.log("sent to group IND "+quote);
+  sendText('VCb5Q3h6vQ',quote);
+  console.log("sent to group KHI "+quote);
 });
-schedule.scheduleJob('*/5 * * * *', function(fireDate){
+schedule.scheduleJob('*/4 * * * *', function(fireDate){
   //LFINDER.
   var quote = getQuote();
   sendText('Hf8AVUJw0p',quote);
