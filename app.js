@@ -169,36 +169,30 @@ sendText(diag,text);
 });
 } */
 //cron job for taking backups (0 0 * * *)
-schedule.scheduleJob('*/3 * * * *', function(fireDate){
-  //NEWBIES -- "wKxPAGANdi"
-  var quote = getQuote();
-  sendText('wKxPAGANdi',quote);
-  console.log("sent to group Newbies. "+quote);
-});
-schedule.scheduleJob('*/4 * * * *', function(fireDate){
-  //KHI
-  var quote = getQuote();
-  sendText('VCb5Q3h6vQ',quote);
-  console.log("sent to group KHI "+quote);
-});
-schedule.scheduleJob('*/4 * * * *', function(fireDate){
-  //LFINDER.
-  var quote = getQuote();
-  sendText('Hf8AVUJw0p',quote);
-  console.log("sent to group LF. "+quote);
+schedule.scheduleJob('*/1 * * * *', function(fireDate){
+
+  var quote = getText();
+  var groups =  ["VCb5Q3h6vQ", "4rbEOuP292", "OBXL1FFYcX", "wlskfXGy8L", "ZKAZjXz6Rx",
+  "0FLEEsLwCT", "OgZVAAJbUW", "7xBm7g9Dpo", "l0EgwBpBLW", "s0vxqBmbOw", "UtLAMPr1ls",
+  "ELFds8Moxc", "bhJ67XYqRq", "nK4F9UIgWM", "1m4AFbYyNx", "wKxPAGANdi", "mo6WeTKWTH",
+  "dpzAhVLhPl", "0K6HP3LnvE", "XjgwHkVqNV", "GkdWBUsSSd", "H60OOFxk2q", "Hf8AVUJw0p",
+  "RFWKxIC45G", "AVdggXExlo", "KaeTSKnjGL", "FAgoPb4QjS"];
+  var group = groups[Math.floor(Math.random()*groups.length)];
+  sendText(group,quote);
+  console.log("sent to group  "+group+" "+quote);
 });
 
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 
-var getQuote = function(){
+var getText = function(){
   if (Math.round(Math.random()) > 0.5) {
     console.log('quote generated');
     return randomQuotes['default']().body;
   }
   else {
     console.log('joke generated');
-  return  oneLinerJoke.getRandomJoke().body;
+    return  oneLinerJoke.getRandomJoke().body;
 
   }
 
