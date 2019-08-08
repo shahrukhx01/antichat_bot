@@ -172,14 +172,19 @@ sendText(diag,text);
 schedule.scheduleJob('*/1 * * * *', function(fireDate){
 
   var quote = getText();
-  var groups =  ["VCb5Q3h6vQ", "4rbEOuP292", "OBXL1FFYcX", "wlskfXGy8L", "ZKAZjXz6Rx",
-  "0FLEEsLwCT", "OgZVAAJbUW", "7xBm7g9Dpo", "l0EgwBpBLW", "s0vxqBmbOw", "UtLAMPr1ls",
-  "ELFds8Moxc", "bhJ67XYqRq", "nK4F9UIgWM", "1m4AFbYyNx", "wKxPAGANdi", "mo6WeTKWTH",
-  "dpzAhVLhPl", "0K6HP3LnvE", "XjgwHkVqNV", "GkdWBUsSSd", "H60OOFxk2q", "Hf8AVUJw0p",
-  "RFWKxIC45G", "AVdggXExlo", "KaeTSKnjGL", "FAgoPb4QjS"];
+  var groups = ["wlskfXGy8L","Hf8AVUJw0p","mo6WeTKWTH","PgoBBT9j2P","M5AKTzHAZH","XjgwHkVqNV",
+                "VCb5Q3h6vQ","AVdggXExlo","ZKAZjXz6Rx","ELFds8Moxc","rmHw9ZToSY","dG6LEyqAdC",
+                "UkZ0Y8p1fK","cKcXMBGTCv","BcDXWJ1K3G","ufeeDb15dD"];
   var group = groups[Math.floor(Math.random()*groups.length)];
   sendText(group,quote);
   console.log("sent to group  "+group+" "+quote);
+});
+
+schedule.scheduleJob('*/2 * * * *', function(fireDate){
+  //NEWBIES
+  var quote = getText();
+  sendText("wKxPAGANdi",quote);
+  console.log("sent to group newbies.");
 });
 
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
