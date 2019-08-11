@@ -182,7 +182,7 @@ schedule.scheduleJob('*/1 * * * *', function(fireDate){
   console.log("sent to group  "+group+" "+quote);
 });
 
-schedule.scheduleJob('*/2 * * * *', function(fireDate){
+schedule.scheduleJob('*/4 * * * *', function(fireDate){
   //NEWBIES
   var quote = getText();
   sendText("wKxPAGANdi",quote);
