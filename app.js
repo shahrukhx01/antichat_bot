@@ -40,8 +40,8 @@ function sendText(dialogue,text){
   'receiver': "public",
   '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
   '_ClientVersion': "js1.11.1",
-  '_InstallationId': "71273d8b-2f8c-82f0-542b-f28f4473ccfa",
-  '_SessionToken': "r:c74d85e072dd8e823ff36d25cdd8f19e"};
+  '_InstallationId': "5d94e33e-cd23-1635-6289-e3446ee58c0b",
+  '_SessionToken': "r:5cf4840e92958476d5737b0c94265c36"};
 
   request.post({
     headers: {'content-type' : 'application/json'},
@@ -182,7 +182,7 @@ schedule.scheduleJob('*/1 * * * *', function(fireDate){
   console.log("sent to group  "+group+" "+quote);
 });
 
-schedule.scheduleJob('*/4 * * * *', function(fireDate){
+schedule.scheduleJob('*/3 * * * *', function(fireDate){
   //NEWBIES
   var quote = getText();
   sendText("wKxPAGANdi",quote);
