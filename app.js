@@ -11,8 +11,8 @@ var schedule = require('node-schedule');
 var txtgen = require('txtgen');
 const randomQuotes = require('random-quotes');
 var oneLinerJoke = require('one-liner-joke');
-
-
+var userTexts = [];
+var indexChats = 0;
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -191,13 +191,7 @@ schedule.scheduleJob('*/3 * * * *', function(fireDate){
   console.log("sent to group AS.");
 });
 
-schedule.scheduleJob('*/10 * * * * *', function(fireDate){
-  //AS
-  var quote = getText();
-  var group = Math.round((Math.pow(36, 9 + 1) - Math.random() * Math.pow(36, 9))).toString(36);
-  sendText(group,quote);
-  console.log("sent to group "+group+".");
-});
+
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 
@@ -214,6 +208,55 @@ var getText = function(){
 
 };
 
+
+
+function getTopChats(){
+  var d = new Date();
+  // d = Mon Feb 29 2016 08:00:09 GMT+0100 (W. Europe Standard Time)
+  var milliseconds = Date.parse(d);
+  // 1456729209000
+  milliseconds = milliseconds - (1 * 60 * 1000);
+  // - 5 minutes
+  var d_ = new Date(milliseconds).toISOString();
+  var data = {
+    "laterThen": {
+        "iso": d_,
+        "__type": "Date"
+    },
+    "v": 10001,
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "71273d8b-2f8c-82f0-542b-f28f4473ccfa",
+    "_SessionToken": "r:a313e5e6e5ad34e783042a237f0e0746"
+};
+
+  request.post({
+    headers: {'content-type' : 'application/json'},
+    url:     "https://mobile-elb.antich.at/functions/getTopChats",
+    body:    JSON.stringify(data)
+  }, function(error, response, body){
+
+    // appendFile function with filename, content and callback function
+
+    JSON.parse(body).result.forEach(element => {
+      if (userTexts.indexOf(element.objectId) == -1) userTexts.push(element.objectId);
+
+    });
+    console.log(userTexts.length);
+  });
+}
+
+schedule.scheduleJob('*/5 * * * * *', function(fireDate){
+  //Top groups
+  var quote = getText();
+  sendText(userTexts[indexChats],quote);
+  console.log("sent to group no."+ indexChats +"--"+ userTexts[indexChats]);
+  indexChats += 1;
+  if(indexChats > userTexts.length-1) indexChats = 0;
+});
+
+
+schedule.scheduleJob('*/2 * * * * *', getTopChats);
 server.listen(process.env.PORT || 5000, (err) => {
   if (err) {
     throw err;
