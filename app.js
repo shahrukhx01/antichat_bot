@@ -168,24 +168,26 @@ sendText(diag,text);
 
 });
 } */
-//cron job for taking backups (0 0 * * *)
-schedule.scheduleJob('*/1 * * * *', function(fireDate){
 
-  var quote = getText();
-  var groups = ["VCb5Q3h6vQ", "4rbEOuP292", "OBXL1FFYcX", "wlskfXGy8L", "ZKAZjXz6Rx",
-  "0FLEEsLwCT", "OgZVAAJbUW", "7xBm7g9Dpo", "l0EgwBpBLW", "s0vxqBmbOw", "UtLAMPr1ls",
-  "ELFds8Moxc", "bhJ67XYqRq", "nK4F9UIgWM", "1m4AFbYyNx", "mo6WeTKWTH",
-  "dpzAhVLhPl", "0K6HP3LnvE", "XjgwHkVqNV", "GkdWBUsSSd", "H60OOFxk2q", "Hf8AVUJw0p",
-  "RFWKxIC45G", "AVdggXExlo", "KaeTSKnjGL", "FAgoPb4QjS"];
-  var group = groups[Math.floor(Math.random()*groups.length)];
-  sendText(group,quote);
-  console.log("sent to group  "+group+" "+quote);
-});
 
 schedule.scheduleJob('*/3 * * * *', function(fireDate){
   //NEWBIES
   var quote = getText();
   sendText("wKxPAGANdi",quote);
+  console.log("sent to group newbies.");
+});
+
+schedule.scheduleJob('*/3 * * * *', function(fireDate){
+  //NEWBIES
+  var quote = getText();
+  sendText("LblHyAGaTJ",quote);
+  console.log("sent to group newbies.");
+});
+
+schedule.scheduleJob('*/3 * * * *', function(fireDate){
+  //NEWBIES
+  var quote = getText();
+  sendText("tcO1iFGUAQ",quote);
   console.log("sent to group newbies.");
 });
 
