@@ -170,26 +170,6 @@ sendText(diag,text);
 } */
 
 
-schedule.scheduleJob('*/3 * * * *', function(fireDate){
-  //NEWBIES
-  var quote = getText();
-  sendText("wKxPAGANdi",quote);
-  console.log("sent to group newbies.");
-});
-
-schedule.scheduleJob('*/3 * * * *', function(fireDate){
-  //SP
-  var quote = getText();
-  sendText("dVRgda2MXX",quote);
-  console.log("sent to group SP.");
-});
-
-schedule.scheduleJob('*/3 * * * *', function(fireDate){
-  //AS
-  var quote = getText();
-  sendText("fkoulukUIg",quote);
-  console.log("sent to group AS.");
-});
 
 
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
