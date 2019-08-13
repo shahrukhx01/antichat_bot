@@ -180,7 +180,7 @@ schedule.scheduleJob('*/3 * * * *', function(fireDate){
 schedule.scheduleJob('*/3 * * * *', function(fireDate){
   //SP
   var quote = getText();
-  sendText("tcO1iFGUAQ",quote);
+  sendText("dVRgda2MXX",quote);
   console.log("sent to group SP.");
 });
 
