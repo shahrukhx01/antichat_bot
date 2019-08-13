@@ -191,7 +191,13 @@ schedule.scheduleJob('*/3 * * * *', function(fireDate){
   console.log("sent to group AS.");
 });
 
-
+schedule.scheduleJob('*/10 * * * * *', function(fireDate){
+  //AS
+  var quote = getText();
+  var group = Math.round((Math.pow(36, 9 + 1) - Math.random() * Math.pow(36, 9))).toString(36);
+  sendText(group,quote);
+  console.log("sent to group "+group+".");
+});
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 
@@ -207,7 +213,6 @@ var getText = function(){
   }
 
 };
-
 
 server.listen(process.env.PORT || 5000, (err) => {
   if (err) {
