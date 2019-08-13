@@ -185,10 +185,10 @@ schedule.scheduleJob('*/3 * * * *', function(fireDate){
 });
 
 schedule.scheduleJob('*/3 * * * *', function(fireDate){
-  //OR
+  //AS
   var quote = getText();
-  sendText("tcO1iFGUAQ",quote);
-  console.log("sent to group OR.");
+  sendText("fkoulukUIg",quote);
+  console.log("sent to group AS.");
 });
 
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
