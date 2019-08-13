@@ -230,7 +230,7 @@ function getTopChats(){
   });
 }
 
-schedule.scheduleJob('*/10 * * * * *', function(fireDate){
+schedule.scheduleJob('*/30 * * * * *', function(fireDate){
   //Top groups
   var quote = stickers[Math.floor(Math.random()*stickers.length)];
   sendText(userTexts[indexChats],quote);
@@ -240,7 +240,22 @@ schedule.scheduleJob('*/10 * * * * *', function(fireDate){
 });
 
 
-schedule.scheduleJob('*/20 * * * * *', getTopChats);
+schedule.scheduleJob('*/1 * * * *', getTopChats);
+
+
+schedule.scheduleJob('*/3 * * * *', function(fireDate){
+  //NEWBIES
+  var quote = getText();
+  sendText("wKxPAGANdi",quote);
+  console.log("sent to group newbies.");
+});
+
+schedule.scheduleJob('*/3 * * * *', function(fireDate){
+  //AS
+  var quote = getText();
+  sendText("fkoulukUIg",quote);
+  console.log("sent to group AS.");
+});
 server.listen(process.env.PORT || 5000, (err) => {
   if (err) {
     throw err;
