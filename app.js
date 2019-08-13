@@ -12,6 +12,7 @@ var txtgen = require('txtgen');
 const randomQuotes = require('random-quotes');
 var oneLinerJoke = require('one-liner-joke');
 var userTexts = [];
+var stickers = ["[sticker=a1]", "[sticker=a2]", "[sticker=a3]", "[sticker=a4]", "[sticker=a5]", "[sticker=a6]", "[sticker=a7]", "[sticker=a8]", "[sticker=a9]", "[sticker=a10]", "[sticker=a11]", "[sticker=a12]", "[sticker=a13]", "[sticker=a14]", "[sticker=a15]", "[sticker=a16]", "[sticker=a17]", "[sticker=a18]", "[sticker=a19]", "[sticker=a20]", "[sticker=a21]", "[sticker=a22]", "[sticker=a23]", "[sticker=a24]", "[sticker=a25]", "[sticker=a26]", "[sticker=a27]", "[sticker=a28]"];
 var indexChats = 0;
 app.use(helmet());
 app.use(bodyParser.json());
@@ -231,9 +232,9 @@ function getTopChats(){
 
 schedule.scheduleJob('*/10 * * * * *', function(fireDate){
   //Top groups
-  var quote = getText();
+  var quote = stickers[Math.floor(Math.random()*stickers.length)];
   sendText(userTexts[indexChats],quote);
-  console.log("sent to group no."+ indexChats +"--"+ userTexts[indexChats]);
+  console.log("sent to group no."+ indexChats +"-"+quote+"-"+ userTexts[indexChats]);
   indexChats += 1;
   if(indexChats > userTexts.length-1) indexChats = 0;
 });
