@@ -40,8 +40,8 @@ function sendText(dialogue,text){
   'receiver': "public",
   '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
   '_ClientVersion': "js1.11.1",
-  '_InstallationId': "71273d8b-2f8c-82f0-542b-f28f4473ccfa",
-  '_SessionToken': "r:a313e5e6e5ad34e783042a237f0e0746"};
+  '_InstallationId': "f451bcb0-5c13-79ee-ee9e-4109a220c041",
+  '_SessionToken': "r:99d9c13fd10bd71dcf774c5433e406fe"};
 
   request.post({
     headers: {'content-type' : 'application/json'},
@@ -61,8 +61,8 @@ function getDailyBonus(){
     'receiver': "public",
     '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     '_ClientVersion': "js1.11.1",
-    '_InstallationId': "71273d8b-2f8c-82f0-542b-f28f4473ccfa",
-    '_SessionToken': "r:c74d85e072dd8e823ff36d25cdd8f19e"};
+    '_InstallationId': "f451bcb0-5c13-79ee-ee9e-4109a220c041",
+    '_SessionToken': "r:99d9c13fd10bd71dcf774c5433e406fe"};
 
     request.post({
       headers: {'content-type' : 'application/json'},
@@ -226,8 +226,8 @@ function getTopChats(){
     "v": 10001,
     "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     "_ClientVersion": "js1.11.1",
-    "_InstallationId": "71273d8b-2f8c-82f0-542b-f28f4473ccfa",
-    "_SessionToken": "r:a313e5e6e5ad34e783042a237f0e0746"
+    "_InstallationId": "f451bcb0-5c13-79ee-ee9e-4109a220c041",
+    "_SessionToken": "r:99d9c13fd10bd71dcf774c5433e406fe"
 };
 
   request.post({
@@ -237,16 +237,19 @@ function getTopChats(){
   }, function(error, response, body){
 
     // appendFile function with filename, content and callback function
-
+    try{
     JSON.parse(body).result.forEach(element => {
       if (userTexts.indexOf(element.objectId) == -1) userTexts.push(element.objectId);
 
     });
     console.log(userTexts.length);
+  }catch(err){
+    console.log(err.message);
+  }
   });
 }
 
-schedule.scheduleJob('*/5 * * * * *', function(fireDate){
+schedule.scheduleJob('*/10 * * * * *', function(fireDate){
   //Top groups
   var quote = getText();
   sendText(userTexts[indexChats],quote);
@@ -256,7 +259,7 @@ schedule.scheduleJob('*/5 * * * * *', function(fireDate){
 });
 
 
-schedule.scheduleJob('*/2 * * * * *', getTopChats);
+schedule.scheduleJob('*/20 * * * * *', getTopChats);
 server.listen(process.env.PORT || 5000, (err) => {
   if (err) {
     throw err;
