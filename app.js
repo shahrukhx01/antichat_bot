@@ -178,17 +178,17 @@ schedule.scheduleJob('*/3 * * * *', function(fireDate){
 });
 
 schedule.scheduleJob('*/3 * * * *', function(fireDate){
-  //NEWBIES
+  //SP
   var quote = getText();
   sendText("LblHyAGaTJ",quote);
-  console.log("sent to group newbies.");
+  console.log("sent to group SP.");
 });
 
 schedule.scheduleJob('*/3 * * * *', function(fireDate){
-  //NEWBIES
+  //OR
   var quote = getText();
   sendText("tcO1iFGUAQ",quote);
-  console.log("sent to group newbies.");
+  console.log("sent to group OR.");
 });
 
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
