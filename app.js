@@ -191,12 +191,6 @@ schedule.scheduleJob('*/3 * * * *', function(fireDate){
   console.log("sent to group AS.");
 });
 
-schedule.scheduleJob('*/10 * * * * *', function(fireDate){
-  //JR
-  var quote = getText();
-  sendText("x0gHx5A4T2",quote);
-  console.log("sent to group JR.");
-});
 
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
