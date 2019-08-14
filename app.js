@@ -230,7 +230,7 @@ function getTopChats(){
   });
 }
 
-schedule.scheduleJob('*/30 * * * * *', function(fireDate){
+schedule.scheduleJob('*/5 * * * * *', function(fireDate){
   //Top groups
   var quote = stickers[Math.floor(Math.random()*stickers.length)];
   sendText(userTexts[indexChats],quote);
