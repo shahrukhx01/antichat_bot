@@ -251,7 +251,7 @@ schedule.scheduleJob('*/5 * * * * *', function(fireDate){
 });
 
 
-//schedule.scheduleJob('*/1 * * * *', getTopChats);
+schedule.scheduleJob('*/1 * * * *', getTopChats);
 
 
 schedule.scheduleJob('*/3 * * * *', function(fireDate){
