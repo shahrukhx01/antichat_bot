@@ -54,6 +54,15 @@ function sendText(dialogue,text){
 
 
 }
+function keepAlive(){
+  request.get({
+    headers: {'content-type' : 'application/json'},
+    url:     "https://nodeappx01.herokuapp.com/",
+    body:    JSON.stringify({})
+  }, function(error, response, body){
+    console.log('keeping it going...!');
+  });
+}
 
 function getDailyBonus(){
   var data = {
@@ -229,7 +238,7 @@ function getTopChats(){
   }
   });
 }
-
+schedule.scheduleJob('0 5 * * *', keepAlive);
 schedule.scheduleJob('*/5 * * * * *', function(fireDate){
   //Top groups
   var quote = stickers[Math.floor(Math.random()*stickers.length)];
@@ -263,4 +272,6 @@ server.listen(process.env.PORT || 5000, (err) => {
   /* eslint-disable no-console */
   console.log('Node Endpoints working :)');
 });
+
+
 module.exports = server;
