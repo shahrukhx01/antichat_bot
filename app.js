@@ -36,38 +36,8 @@ app.get('/', function(req, res) {
 function sendText(dialogue,text){
 
   var data = {//'antiFlood': false ,
-  'dialogue': dialogue,
-  'message': text,
-  'receiver': "public",
-  '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-  '_ClientVersion': "js1.11.1",
-  '_InstallationId': "f451bcb0-5c13-79ee-ee9e-4109a220c041",
-  '_SessionToken': "r:99d9c13fd10bd71dcf774c5433e406fe"};
-
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/classes/Messages",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-    console.log(JSON.stringify(body));
-  });
-
-
-}
-function keepAlive(){
-  request.get({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://nodeappx01.herokuapp.com/",
-    body:    JSON.stringify({})
-  }, function(error, response, body){
-    console.log('keeping it going...!');
-  });
-}
-
-function getDailyBonus(){
-  var data = {
-    'dialogue': "wKxPAGANdi",
-    'message': "/bonus",
+    'dialogue': dialogue,
+    'message': text,
     'receiver': "public",
     '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     '_ClientVersion': "js1.11.1",
@@ -79,35 +49,65 @@ function getDailyBonus(){
       url:     "https://mobile-elb.antich.at/classes/Messages",
       body:    JSON.stringify(data)
     }, function(error, response, body){
-
-      // appendFile function with filename, content and callback function
-      var date = new Date();
-      var timestamp = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-
-      fs.appendFile('bonus.log', JSON.parse(body).message+","+timestamp+"\n", function (err) {
-        if (err) throw err;
-        console.log('Bonus log written successfully.');
-      });
+      console.log(JSON.stringify(body));
     });
 
 
   }
+  function keepAlive(){
+    request.get({
+      headers: {'content-type' : 'application/json'},
+      url:     "https://nodeappx01.herokuapp.com/",
+      body:    JSON.stringify({})
+    }, function(error, response, body){
+      console.log('keeping it going...!');
+    });
+  }
 
-  /*
-  function getUsersList(diag){
-  var data = {
-  "dialogue":diag,
-  "v":10001,
-  "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-  "_ClientVersion":"js1.11.1",
-  '_InstallationId': "ee0a4992-703c-696d-71ca-19e52f3e81f2",
-  '_SessionToken': "r:39b2e68ab336bb8a68cee6cf2136a121"
-};
+  function getDailyBonus(){
+    var data = {
+      'dialogue': "wKxPAGANdi",
+      'message': "/bonus",
+      'receiver': "public",
+      '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+      '_ClientVersion': "js1.11.1",
+      '_InstallationId': "f451bcb0-5c13-79ee-ee9e-4109a220c041",
+      '_SessionToken': "r:99d9c13fd10bd71dcf774c5433e406fe"};
 
-request.post({
-headers: {'content-type' : 'application/json'},
-url:     "https://mobile-elb.antich.at/functions/getActiveUsers",
-body:    JSON.stringify(data)
+      request.post({
+        headers: {'content-type' : 'application/json'},
+        url:     "https://mobile-elb.antich.at/classes/Messages",
+        body:    JSON.stringify(data)
+      }, function(error, response, body){
+
+        // appendFile function with filename, content and callback function
+        var date = new Date();
+        var timestamp = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+        fs.appendFile('bonus.log', JSON.parse(body).message+","+timestamp+"\n", function (err) {
+          if (err) throw err;
+          console.log('Bonus log written successfully.');
+        });
+      });
+
+
+    }
+
+    /*
+    function getUsersList(diag){
+    var data = {
+    "dialogue":diag,
+    "v":10001,
+    "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion":"js1.11.1",
+    '_InstallationId': "ee0a4992-703c-696d-71ca-19e52f3e81f2",
+    '_SessionToken': "r:39b2e68ab336bb8a68cee6cf2136a121"
+  };
+
+  request.post({
+  headers: {'content-type' : 'application/json'},
+  url:     "https://mobile-elb.antich.at/functions/getActiveUsers",
+  body:    JSON.stringify(data)
 }, function(error, response, body){
 
 // appendFile function with filename, content and callback function
@@ -210,15 +210,15 @@ function getTopChats(){
   var d_ = new Date(milliseconds).toISOString();
   var data = {
     "laterThen": {
-        "iso": d_,
-        "__type": "Date"
+      "iso": d_,
+      "__type": "Date"
     },
     "v": 10001,
     "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     "_ClientVersion": "js1.11.1",
     "_InstallationId": "f451bcb0-5c13-79ee-ee9e-4109a220c041",
     "_SessionToken": "r:99d9c13fd10bd71dcf774c5433e406fe"
-};
+  };
 
   request.post({
     headers: {'content-type' : 'application/json'},
@@ -228,25 +228,26 @@ function getTopChats(){
 
     // appendFile function with filename, content and callback function
     try{
-    JSON.parse(body).result.forEach(element => {
-      if (userTexts.indexOf(element.objectId) == -1) userTexts.push(element.objectId);
+      JSON.parse(body).result.forEach(element => {
+        if (userTexts.indexOf(element.objectId) == -1) userTexts.push(element.objectId);
 
-    });
-    console.log(userTexts.length);
-  }catch(err){
-    console.log(err.message);
-  }
+      });
+      console.log(userTexts.length);
+    }catch(err){
+      console.log(err.message);
+    }
   });
 }
 schedule.scheduleJob('*/1 * * * *', keepAlive);
-//schedule.scheduleJob('*/5 * * * * *', function(fireDate){
+schedule.scheduleJob('*/5 * * * * *', function(fireDate){
   //Top groups
-/*  var quote = stickers[Math.floor(Math.random()*stickers.length)];
+  //var quote = stickers[Math.floor(Math.random()*stickers.length)];
+  var quote = getText();
   sendText(userTexts[indexChats],quote);
   console.log("sent to group no."+ indexChats +"-"+quote+"-"+ userTexts[indexChats]);
   indexChats += 1;
   if(indexChats > userTexts.length-1) indexChats = 0;
-});*/
+});
 
 
 //schedule.scheduleJob('*/1 * * * *', getTopChats);
