@@ -238,7 +238,7 @@ function getTopChats(){
   }
   });
 }
-schedule.scheduleJob('0 5 * * *', keepAlive);
+schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/5 * * * * *', function(fireDate){
   //Top groups
   var quote = stickers[Math.floor(Math.random()*stickers.length)];
