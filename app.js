@@ -40,9 +40,8 @@ function sendText(dialogue,text){
     'message': text,
     'receiver': "public",
     '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    '_ClientVersion': "js1.11.1",
-    "_InstallationId": "b6d80e5d-4336-f034-3765-ce1e4efea5e7",
-   "_SessionToken": "r:d009136e31eb893f64133af56d05b4fe"};
+    "_InstallationId":"b6d80e5d-4336-f034-3765-ce1e4efea5e7",
+    "_SessionToken":"r:fd0c0c89b5690ab09696c771b230403a"};
 
     request.post({
       headers: {'content-type' : 'application/json'},
@@ -71,8 +70,8 @@ function sendText(dialogue,text){
       'receiver': "public",
       '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
       '_ClientVersion': "js1.11.1",
-      "_InstallationId": "b6d80e5d-4336-f034-3765-ce1e4efea5e7",
-     "_SessionToken": "r:d009136e31eb893f64133af56d05b4fe"};
+      "_InstallationId":"b6d80e5d-4336-f034-3765-ce1e4efea5e7",
+      "_SessionToken":"r:fd0c0c89b5690ab09696c771b230403a"};
 
       request.post({
         headers: {'content-type' : 'application/json'},
@@ -216,8 +215,8 @@ function getTopChats(){
     "v": 10001,
     "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     "_ClientVersion": "js1.11.1",
-    "_InstallationId": "b6d80e5d-4336-f034-3765-ce1e4efea5e7",
-   "_SessionToken": "r:d009136e31eb893f64133af56d05b4fe"
+    "_InstallationId":"b6d80e5d-4336-f034-3765-ce1e4efea5e7",
+    "_SessionToken":"r:fd0c0c89b5690ab09696c771b230403a"
   };
 
   request.post({
