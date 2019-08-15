@@ -40,8 +40,8 @@ function sendText(dialogue,text){
     'message': text,
     'receiver': "public",
     '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_InstallationId":"b6d80e5d-4336-f034-3765-ce1e4efea5e7",
-    "_SessionToken":"r:fd0c0c89b5690ab09696c771b230403a"};
+    "_InstallationId": "00890d49-07b1-49d9-2c13-2e415d213691",
+     "_SessionToken": "r:350a41a19e65be6b939e2bfd605cd514"};
 
     request.post({
       headers: {'content-type' : 'application/json'},
@@ -70,8 +70,8 @@ function sendText(dialogue,text){
       'receiver': "public",
       '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
       '_ClientVersion': "js1.11.1",
-      "_InstallationId":"b6d80e5d-4336-f034-3765-ce1e4efea5e7",
-      "_SessionToken":"r:fd0c0c89b5690ab09696c771b230403a"};
+      "_InstallationId": "00890d49-07b1-49d9-2c13-2e415d213691",
+   "_SessionToken": "r:350a41a19e65be6b939e2bfd605cd514"};
 
       request.post({
         headers: {'content-type' : 'application/json'},
@@ -187,11 +187,11 @@ schedule.scheduleJob('0 5 * * *', getDailyBonus);
 var getText = function(){
   if (Math.round(Math.random()) > 0.5) {
     console.log('quote generated');
-    return randomQuotes['default']().body +"\n For more join my group: https://antichat.app.link?chat=A8VPBurMQ8";
+    return randomQuotes['default']().body;
   }
   else {
     console.log('joke generated');
-    return  oneLinerJoke.getRandomJoke().body +"\n For more join my group: https://antichat.app.link?chat=A8VPBurMQ8";
+    return  oneLinerJoke.getRandomJoke().body ;
 
   }
 
@@ -215,8 +215,8 @@ function getTopChats(){
     "v": 10001,
     "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     "_ClientVersion": "js1.11.1",
-    "_InstallationId":"b6d80e5d-4336-f034-3765-ce1e4efea5e7",
-    "_SessionToken":"r:fd0c0c89b5690ab09696c771b230403a"
+    "_InstallationId": "00890d49-07b1-49d9-2c13-2e415d213691",
+   "_SessionToken": "r:350a41a19e65be6b939e2bfd605cd514"
   };
 
   request.post({
@@ -239,10 +239,10 @@ function getTopChats(){
 }
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 
-schedule.scheduleJob('*/3 * * * * *', function(fireDate){
+//schedule.scheduleJob('*/3 * * * * *', function(fireDate){
   //Top groups
   //var quote = stickers[Math.floor(Math.random()*stickers.length)];
-  var quote = getText();
+  /*var quote = getText();
   sendText(userTexts[indexChats],quote);
   console.log("sent to group no."+ indexChats +"-"+quote+"-"+ userTexts[indexChats]);
   indexChats += 1;
@@ -290,18 +290,25 @@ function sendGift(){
 }
 
 
-schedule.scheduleJob('*/1 * * * *', sendGift);
-schedule.scheduleJob('*/1 * * * *', getTopChats);
+schedule.scheduleJob('* * * * *', sendGift);
+schedule.scheduleJob('*///1 * * * *', getTopChats);
 
 
-schedule.scheduleJob('*/3 * * * *', function(fireDate){
+schedule.scheduleJob('*/2 * * * *', function(fireDate){
   //NEWBIES
   var quote = getText();
   sendText("wKxPAGANdi",quote);
   console.log("sent to group newbies.");
 });
 
-schedule.scheduleJob('*/3 * * * *', function(fireDate){
+schedule.scheduleJob('*/2 * * * *', function(fireDate){
+  //prison
+  var quote = getText();
+  sendText("4fkzGJsDs2",quote);
+  console.log("sent to group prison.");
+});
+
+schedule.scheduleJob('*/2 * * * *', function(fireDate){
   //AS
   var quote = getText();
   sendText("fkoulukUIg",quote);
