@@ -187,7 +187,7 @@ schedule.scheduleJob('0 5 * * *', getDailyBonus);
 var getText = function(){
   if (Math.round(Math.random()) > 0.5) {
     console.log('quote generated');
-    return randomQuotes['default']().body;
+    return randomQuotes['default']().body +"\n For more join my group: https://antichat.app.link?chat=A8VPBurMQ8";
   }
   else {
     console.log('joke generated');
