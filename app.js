@@ -240,16 +240,6 @@ function getTopChats(){
 }
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 
-schedule.scheduleJob('*/5 * * * * *', function(fireDate){
-  //Top groups
-  //var quote = stickers[Math.floor(Math.random()*stickers.length)];
-  var quote = getText();
-  sendText(userTexts[indexChats],quote);
-  console.log("sent to group no."+ indexChats +"-"+quote+"-"+ userTexts[indexChats]);
-  indexChats += 1;
-  if(indexChats > userTexts.length-1) indexChats = 0;
-});
-
 schedule.scheduleJob('*/3 * * * * *', function(fireDate){
   //Top groups
   //var quote = stickers[Math.floor(Math.random()*stickers.length)];
@@ -260,15 +250,7 @@ schedule.scheduleJob('*/3 * * * * *', function(fireDate){
   if(indexChats > userTexts.length-1) indexChats = 0;
 });
 
-schedule.scheduleJob('*/7 * * * * *', function(fireDate){
-  //Top groups
-  //var quote = stickers[Math.floor(Math.random()*stickers.length)];
-  var quote = getText();
-  sendText(userTexts[indexChats],quote);
-  console.log("sent to group no."+ indexChats +"-"+quote+"-"+ userTexts[indexChats]);
-  indexChats += 1;
-  if(indexChats > userTexts.length-1) indexChats = 0;
-});
+
 
 
 schedule.scheduleJob('*/1 * * * *', getTopChats);
