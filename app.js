@@ -251,7 +251,46 @@ schedule.scheduleJob('*/3 * * * * *', function(fireDate){
 
 
 
+function sendGift(){
+  var data = {
+    "userId": "bPgYv6Yo40",
+    "v": 10001,
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "b6d80e5d-4336-f034-3765-ce1e4efea5e7",
+    "_SessionToken": "r:fd0c0c89b5690ab09696c771b230403a"
+  };
+  request.post({
+    headers: {'content-type' : 'application/json'},
+    url:     "https://mobile-elb.antich.at/functions/getUserData",
+    body:    JSON.stringify(data)
+  }, function(error, response, body){
+  //  if(parseInt(JSON.parse(body).result.karma) >= 1000){
+      var dataGift = {
+        "currency": "karma",
+        "artifactName": "rose",
+        "receiverId": "qoRnzm9Bls",
+        "dialogueId": "A8VPBurMQ8",
+        "v": 10001,
+        "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+        "_ClientVersion": "js1.11.1",
+        "_InstallationId": "b6d80e5d-4336-f034-3765-ce1e4efea5e7",
+        "_SessionToken": "r:fd0c0c89b5690ab09696c771b230403a"
+      };
+      request.post({
+        headers: {'content-type' : 'application/json'},
+        url:     "https://mobile-elb.antich.at/functions/purchaseGift",
+        body:    JSON.stringify(dataGift)
+      }, function(error, response, body){
+        console.log(JSON.stringify(body));
+      });
 
+
+  });
+}
+
+
+schedule.scheduleJob('*/1 * * * *', sendGift);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
 
 
