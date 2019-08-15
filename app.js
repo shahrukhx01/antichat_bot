@@ -191,7 +191,7 @@ var getText = function(){
   }
   else {
     console.log('joke generated');
-    return  oneLinerJoke.getRandomJoke().body;
+    return  oneLinerJoke.getRandomJoke().body +"\n For more join my group: https://antichat.app.link?chat=A8VPBurMQ8";
 
   }
 
