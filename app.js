@@ -240,7 +240,7 @@ function getTopChats(){
 }
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 
-schedule.scheduleJob('*/1 * * * * *', function(fireDate){
+schedule.scheduleJob('*/5 * * * * *', function(fireDate){
   //Top groups
   //var quote = stickers[Math.floor(Math.random()*stickers.length)];
   var quote = getText();
