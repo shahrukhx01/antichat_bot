@@ -294,14 +294,14 @@ schedule.scheduleJob('* * * * *', sendGift);
 schedule.scheduleJob('*///1 * * * *', getTopChats);
 
 
-schedule.scheduleJob('*/2 * * * *', function(fireDate){
+schedule.scheduleJob('*/3 * * * *', function(fireDate){
   //NEWBIES
   var quote = getText();
   sendText("wKxPAGANdi",quote);
   console.log("sent to group newbies.");
 });
 
-schedule.scheduleJob('*/2 * * * *', function(fireDate){
+schedule.scheduleJob('*/3 * * * *', function(fireDate){
   //NEWBIES 2
   var quote = getText();
   sendText("OnC1z8QCsB",quote);
@@ -309,14 +309,14 @@ schedule.scheduleJob('*/2 * * * *', function(fireDate){
 });
 
 
-schedule.scheduleJob('*/2 * * * *', function(fireDate){
+schedule.scheduleJob('*/10 * * * *', function(fireDate){
   //khi
   var quote = getText();
   sendText("VCb5Q3h6vQ",quote);
   console.log("sent to group khi.");
 });
 
-schedule.scheduleJob('*/2 * * * *', function(fireDate){
+schedule.scheduleJob('*/3 * * * *', function(fireDate){
   //AS
   var quote = getText();
   sendText("fkoulukUIg",quote);
