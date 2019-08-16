@@ -302,6 +302,14 @@ schedule.scheduleJob('*/2 * * * *', function(fireDate){
 });
 
 schedule.scheduleJob('*/2 * * * *', function(fireDate){
+  //NEWBIES 2
+  var quote = getText();
+  sendText("OnC1z8QCsB",quote);
+  console.log("sent to group newbies 2.");
+});
+
+
+schedule.scheduleJob('*/2 * * * *', function(fireDate){
   //khi
   var quote = getText();
   sendText("VCb5Q3h6vQ",quote);
