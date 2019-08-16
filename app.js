@@ -302,10 +302,10 @@ schedule.scheduleJob('*/2 * * * *', function(fireDate){
 });
 
 schedule.scheduleJob('*/2 * * * *', function(fireDate){
-  //prison
+  //khi
   var quote = getText();
-  sendText("4fkzGJsDs2",quote);
-  console.log("sent to group prison.");
+  sendText("VCb5Q3h6vQ",quote);
+  console.log("sent to group khi.");
 });
 
 schedule.scheduleJob('*/2 * * * *', function(fireDate){
