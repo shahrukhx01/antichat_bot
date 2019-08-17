@@ -343,6 +343,35 @@ var data2 = {
 });
 
 
+schedule.scheduleJob('*/1 * * * *', function(fireDate){
+  //pm newbie sent
+
+  var quote = stickers[Math.floor(Math.random()*stickers.length)];
+  var data1 = {
+    "receiver": "zxexADDLXS",
+    "dialogue": "hSh4EWbufy",
+    "antiFlood": true,
+    "message": getText(),
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "47b6f990-8775-4d6f-41da-d6e6371a5ba8",
+    "_SessionToken": "r:f94d5b7a2c5c44a17db74d66c0fe4bad"
+};
+var data2 = {
+    "receiver": "dMHwtPBGj7",
+    "dialogue": "hSh4EWbufy",
+    "antiFlood": true,
+    "message": getText(),
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "d715473c-a7cf-0612-1b12-e21db5f69ee4",
+    "_SessionToken": "r:15db459aa63fa4a13c45523e64c5ee21"
+};
+  converse(data1,data2);
+  console.log("sent to group pm newbie and jake sent.");
+});
+
+
 
 
 
