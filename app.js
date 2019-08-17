@@ -293,6 +293,55 @@ function sendGift(){
 schedule.scheduleJob('* * * * *', sendGift);
 schedule.scheduleJob('*///1 * * * *', getTopChats);
 
+function converse(data){
+  request.post({
+    headers: {'content-type' : 'application/json'},
+    url:     "https://mobile-elb.antich.at/classes/Messages",
+    body:    JSON.stringify(data)
+  }, function(error, response, body){
+    console.log(JSON.stringify(body));
+  });
+
+}
+
+schedule.scheduleJob('*/5 * * * * *', function(fireDate){
+  //pm newbie sent
+
+  var quote = stickers[Math.floor(Math.random()*stickers.length)];
+  var data = {
+    "receiver": "bEpOR0gsEZ",
+    "dialogue": "sIvz7OvZqz",
+    "antiFlood": true,
+    "message": quote,
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "1c5372a1-f525-8fe0-78eb-e9de53a147df",
+    "_SessionToken": "r:d5134549564877e9ddc349cdb826765a"
+};
+  converse(data);
+  console.log("sent to group pm newbie sent.");
+});
+
+schedule.scheduleJob('*/13 * * * * *', function(fireDate){
+  //pm jake
+
+  var quote = stickers[Math.floor(Math.random()*stickers.length)];
+  var data = {
+    "receiver": "qoRnzm9Bls",
+    "dialogue": "sIvz7OvZqz",
+    "antiFlood": true,
+    "message": quote,
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "c86c6213-2f13-f1ca-e2d2-a44d8a3a8f63",
+    "_SessionToken": "r:f7a34b6b4bbbbac49f49ab875a95c825"
+};
+  converse(data);
+  console.log("sent to group pm jake sent.");
+});
+
+
+
 
 schedule.scheduleJob('*/3 * * * *', function(fireDate){
   //NEWBIES
