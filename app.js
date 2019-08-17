@@ -348,6 +348,35 @@ schedule.scheduleJob('*/1 * * * *', function(fireDate){
 
   var quote = stickers[Math.floor(Math.random()*stickers.length)];
   var data1 = {
+    "receiver": "ijg4pw6rcG",
+    "dialogue": "HkssrXX3X0",
+    "antiFlood": true,
+    "message": getText(),
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "47b6f990-8775-4d6f-41da-d6e6371a5ba8",
+    "_SessionToken": "r:f94d5b7a2c5c44a17db74d66c0fe4bad"
+};
+var data2 = {
+    "receiver": "dMHwtPBGj7",
+    "dialogue": "HkssrXX3X0",
+    "antiFlood": true,
+    "message": getText(),
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "f2bfd59a-ae49-7b6c-a7d5-f19c71442930",
+    "_SessionToken": "r:6546c5bf0ef8639d991020f39070d817"
+};
+  converse(data1,data2);
+  console.log("sent to group pm newbie and jake sent.");
+});
+
+
+schedule.scheduleJob('*/1 * * * *', function(fireDate){
+  //pm newbie sent
+
+  var quote = stickers[Math.floor(Math.random()*stickers.length)];
+  var data1 = {
     "receiver": "zxexADDLXS",
     "dialogue": "hSh4EWbufy",
     "antiFlood": true,
