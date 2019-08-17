@@ -40,8 +40,9 @@ function sendText(dialogue,text){
     'message': text,
     'receiver': "public",
     '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_InstallationId": "00890d49-07b1-49d9-2c13-2e415d213691",
-     "_SessionToken": "r:350a41a19e65be6b939e2bfd605cd514"};
+    "_InstallationId": "47b6f990-8775-4d6f-41da-d6e6371a5ba8",
+      "_SessionToken": "r:f94d5b7a2c5c44a17db74d66c0fe4bad"
+   };
 
     request.post({
       headers: {'content-type' : 'application/json'},
@@ -70,8 +71,9 @@ function sendText(dialogue,text){
       'receiver': "public",
       '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
       '_ClientVersion': "js1.11.1",
-      "_InstallationId": "00890d49-07b1-49d9-2c13-2e415d213691",
-   "_SessionToken": "r:350a41a19e65be6b939e2bfd605cd514"};
+      "_InstallationId": "47b6f990-8775-4d6f-41da-d6e6371a5ba8",
+      "_SessionToken": "r:f94d5b7a2c5c44a17db74d66c0fe4bad"
+    };
 
       request.post({
         headers: {'content-type' : 'application/json'},
@@ -215,8 +217,8 @@ function getTopChats(){
     "v": 10001,
     "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     "_ClientVersion": "js1.11.1",
-    "_InstallationId": "00890d49-07b1-49d9-2c13-2e415d213691",
-   "_SessionToken": "r:350a41a19e65be6b939e2bfd605cd514"
+    "_InstallationId": "47b6f990-8775-4d6f-41da-d6e6371a5ba8",
+    "_SessionToken": "r:f94d5b7a2c5c44a17db74d66c0fe4bad"
   };
 
   request.post({
@@ -293,52 +295,54 @@ function sendGift(){
 schedule.scheduleJob('* * * * *', sendGift);
 schedule.scheduleJob('*///1 * * * *', getTopChats);
 
-function converse(data){
+function converse(data1,data2){
   request.post({
     headers: {'content-type' : 'application/json'},
     url:     "https://mobile-elb.antich.at/classes/Messages",
-    body:    JSON.stringify(data)
+    body:    JSON.stringify(data1)
+  }, function(error, response, body){
+    console.log(JSON.stringify(body));
+  });
+
+  request.post({
+    headers: {'content-type' : 'application/json'},
+    url:     "https://mobile-elb.antich.at/classes/Messages",
+    body:    JSON.stringify(data2)
   }, function(error, response, body){
     console.log(JSON.stringify(body));
   });
 
 }
 
-schedule.scheduleJob('*/5 * * * * *', function(fireDate){
+schedule.scheduleJob('*/1 * * * *', function(fireDate){
   //pm newbie sent
 
   var quote = stickers[Math.floor(Math.random()*stickers.length)];
-  var data = {
-    "receiver": "bEpOR0gsEZ",
-    "dialogue": "sIvz7OvZqz",
+  var data1 = {
+    "receiver": "dMHwtPBGj7",
+    "dialogue": "WFO1t6toPB",
     "antiFlood": true,
-    "message": quote,
+    "message": getText(),
     "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     "_ClientVersion": "js1.11.1",
-    "_InstallationId": "1c5372a1-f525-8fe0-78eb-e9de53a147df",
-    "_SessionToken": "r:d5134549564877e9ddc349cdb826765a"
+    "_InstallationId": "cedc6bad-324d-3e70-ea80-75364a848d55",
+    "_SessionToken": "r:c3e419d4cb8595fc4ab2365f5b1691f1"
 };
-  converse(data);
-  console.log("sent to group pm newbie sent.");
+var data2 = {
+  "receiver": "2Cf6H9g8OA",
+  "dialogue": "WFO1t6toPB",
+  "antiFlood": true,
+  "message": getText(),
+  "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+  "_ClientVersion": "js1.11.1",
+  "_InstallationId": "47b6f990-8775-4d6f-41da-d6e6371a5ba8",
+  "_SessionToken": "r:f94d5b7a2c5c44a17db74d66c0fe4bad"
+};
+  converse(data1,data2);
+  console.log("sent to group pm newbie and jake sent.");
 });
 
-schedule.scheduleJob('*/13 * * * * *', function(fireDate){
-  //pm jake
 
-  var quote = stickers[Math.floor(Math.random()*stickers.length)];
-  var data = {
-    "receiver": "qoRnzm9Bls",
-    "dialogue": "sIvz7OvZqz",
-    "antiFlood": true,
-    "message": quote,
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "c86c6213-2f13-f1ca-e2d2-a44d8a3a8f63",
-    "_SessionToken": "r:f7a34b6b4bbbbac49f49ab875a95c825"
-};
-  converse(data);
-  console.log("sent to group pm jake sent.");
-});
 
 
 
