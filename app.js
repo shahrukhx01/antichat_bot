@@ -94,95 +94,6 @@ function sendText(dialogue,text){
 
     }
 
-    /*
-    function getUsersList(diag){
-    var data = {
-    "dialogue":diag,
-    "v":10001,
-    "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion":"js1.11.1",
-    '_InstallationId': "ee0a4992-703c-696d-71ca-19e52f3e81f2",
-    '_SessionToken': "r:39b2e68ab336bb8a68cee6cf2136a121"
-  };
-
-  request.post({
-  headers: {'content-type' : 'application/json'},
-  url:     "https://mobile-elb.antich.at/functions/getActiveUsers",
-  body:    JSON.stringify(data)
-}, function(error, response, body){
-
-// appendFile function with filename, content and callback function
-var date = new Date();
-var timestamp = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-
-var usersDict = {};
-JSON.parse(body).result.forEach(element => {
-usersDict[element.objectId] = element.profileName;
-});
-getRecentMessages(usersDict,diag);
-});
-}
-
-function getRecentMessages(users,diag){
-var d = new Date();
-// d = Mon Feb 29 2016 08:00:09 GMT+0100 (W. Europe Standard Time)
-var milliseconds = Date.parse(d);
-// 1456729209000
-milliseconds = milliseconds - (1 * 60 * 1000);
-// - 5 minutes
-var d_ = new Date(milliseconds).toISOString();
-var data = {
-"laterThan": {"iso": d_, "__type": "Date"},
-"dialogueId": diag,
-"v": 10001,
-"_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-"_ClientVersion": "js1.11.1",
-'_InstallationId': "ee0a4992-703c-696d-71ca-19e52f3e81f2",
-'_SessionToken': "r:39b2e68ab336bb8a68cee6cf2136a121"
-};
-
-request.post({
-headers: {'content-type' : 'application/json'},
-url:     "https://mobile-elb.antich.at/functions/getMessages",
-body:    JSON.stringify(data)
-}, function(error, response, body){
-
-// appendFile function with filename, content and callback function
-var userTexts = [];
-JSON.parse(body).result.forEach(element => {
-if (users[element.senderId] != undefined)
-userTexts.push({name: users[element.senderId].trim(), text: element.message});
-});
-
-userTexts = userTexts.filter(obj => Object.keys(obj).includes("name"));
-const toSearch = new Set(["Jake"]);
-userTexts = userTexts.filter(obj => !toSearch.has(obj.name));
-console.log(JSON.stringify(userTexts));
-getBotReply(userTexts[Math.floor(Math.random()*userTexts.length)],diag);
-});
-}
-
-
-function getBotReply(userText,diag){
-if (userText == undefined || userText.text == undefined) return;
-var text = JSON.stringify({	text: userText.text});
-console.log(text);
-request.post({
-headers: {'content-type' : 'application/json'},
-url:     "https://anti-botx01.herokuapp.com/get_reply",
-body: text
-}, function(error, response, body){
-var text = userText.name+", "+JSON.parse(body).reply;
-console.log("*** resp generated ***");
-console.log(text);
-sendText(diag,text);
-
-});
-} */
-
-
-
-
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 
@@ -240,60 +151,6 @@ function getTopChats(){
   });
 }
 schedule.scheduleJob('*/1 * * * *', keepAlive);
-
-//schedule.scheduleJob('*/3 * * * * *', function(fireDate){
-  //Top groups
-  //var quote = stickers[Math.floor(Math.random()*stickers.length)];
-  /*var quote = getText();
-  sendText(userTexts[indexChats],quote);
-  console.log("sent to group no."+ indexChats +"-"+quote+"-"+ userTexts[indexChats]);
-  indexChats += 1;
-  if(indexChats > userTexts.length-1) indexChats = 0;
-});
-
-
-
-function sendGift(){
-  var data = {
-    "userId": "bPgYv6Yo40",
-    "v": 10001,
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "b6d80e5d-4336-f034-3765-ce1e4efea5e7",
-    "_SessionToken": "r:fd0c0c89b5690ab09696c771b230403a"
-  };
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/functions/getUserData",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-  //  if(parseInt(JSON.parse(body).result.karma) >= 1000){
-      var dataGift = {
-        "currency": "karma",
-        "artifactName": "rose",
-        "receiverId": "qoRnzm9Bls",
-        "dialogueId": "A8VPBurMQ8",
-        "v": 10001,
-        "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-        "_ClientVersion": "js1.11.1",
-        "_InstallationId": "b6d80e5d-4336-f034-3765-ce1e4efea5e7",
-        "_SessionToken": "r:fd0c0c89b5690ab09696c771b230403a"
-      };
-      request.post({
-        headers: {'content-type' : 'application/json'},
-        url:     "https://mobile-elb.antich.at/functions/purchaseGift",
-        body:    JSON.stringify(dataGift)
-      }, function(error, response, body){
-        console.log(JSON.stringify(body));
-      });
-
-
-  });
-}
-
-
-schedule.scheduleJob('* * * * *', sendGift);
-schedule.scheduleJob('*///1 * * * *', getTopChats);
 
 function converse(data1,data2){
   request.post({
@@ -402,37 +259,7 @@ var data2 = {
 
 
 
-
-
-
-schedule.scheduleJob('*/3 * * * *', function(fireDate){
-  //NEWBIES
-  var quote = getText();
-  sendText("wKxPAGANdi",quote);
-  console.log("sent to group newbies.");
-});
-
-schedule.scheduleJob('*/3 * * * *', function(fireDate){
-  //NEWBIES 2
-  var quote = getText();
-  sendText("OnC1z8QCsB",quote);
-  console.log("sent to group newbies 2.");
-});
-
-
-schedule.scheduleJob('*/10 * * * *', function(fireDate){
-  //khi
-  var quote = getText();
-  sendText("VCb5Q3h6vQ",quote);
-  console.log("sent to group khi.");
-});
-
-schedule.scheduleJob('*/3 * * * *', function(fireDate){
-  //AS
-  var quote = getText();
-  sendText("fkoulukUIg",quote);
-  console.log("sent to group AS.");
-});
+//NEWBIES wKxPAGANdi NEWBIES 2 OnC1z8QCsB Khi VCb5Q3h6vQ AS fkoulukUIg
 server.listen(process.env.PORT || 5000, (err) => {
   if (err) {
     throw err;
