@@ -33,15 +33,15 @@ app.get('/', function(req, res) {
   res.send({data:'hello'});
 });
 
-function sendText(dialogue,text){
-
+function sendText(text){
   var data = {//'antiFlood': false ,
-    'dialogue': dialogue,
+    'dialogue': 'wKxPAGANdi',
     'message': text,
     'receiver': "public",
     '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_InstallationId": "47b6f990-8775-4d6f-41da-d6e6371a5ba8",
-      "_SessionToken": "r:f94d5b7a2c5c44a17db74d66c0fe4bad"
+    "_InstallationId": "259dc7de-e769-86db-89a0-037162bd5f1b",
+      "_SessionToken": "r:116be86c7c281749485dd2ae37e9f8b6",
+      "_ClientVersion":"js1.11.1"
    };
 
     request.post({
@@ -99,11 +99,9 @@ schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 var getText = function(){
   if (Math.round(Math.random()) > 0.5) {
-    console.log('quote generated');
     return randomQuotes['default']().body;
   }
   else {
-    console.log('joke generated');
     return  oneLinerJoke.getRandomJoke().body ;
 
   }
@@ -112,152 +110,15 @@ var getText = function(){
 
 
 
-function getTopChats(){
-  var d = new Date();
-  // d = Mon Feb 29 2016 08:00:09 GMT+0100 (W. Europe Standard Time)
-  var milliseconds = Date.parse(d);
-  // 1456729209000
-  milliseconds = milliseconds - (1 * 60 * 1000);
-  // - 5 minutes
-  var d_ = new Date(milliseconds).toISOString();
-  var data = {
-    "laterThen": {
-      "iso": d_,
-      "__type": "Date"
-    },
-    "v": 10001,
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "47b6f990-8775-4d6f-41da-d6e6371a5ba8",
-    "_SessionToken": "r:f94d5b7a2c5c44a17db74d66c0fe4bad"
-  };
-
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/functions/getTopChats",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-
-    // appendFile function with filename, content and callback function
-    try{
-      JSON.parse(body).result.forEach(element => {
-        if (userTexts.indexOf(element.objectId) == -1) userTexts.push(element.objectId);
-
-      });
-      console.log(userTexts.length);
-    }catch(err){
-      console.log(err.message);
-    }
-  });
+var diseminateText = function(){
+console.log('**** THE TEXT IS: ***')
+let text = getText();
+console.log(text);
+sendText(text);
 }
+
+schedule.scheduleJob('*/5 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
-
-function converse(data1,data2){
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/classes/Messages",
-    body:    JSON.stringify(data1)
-  }, function(error, response, body){
-    console.log(JSON.stringify(body));
-  });
-
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/classes/Messages",
-    body:    JSON.stringify(data2)
-  }, function(error, response, body){
-    console.log(JSON.stringify(body));
-  });
-
-}
-
-schedule.scheduleJob('*/1 * * * *', function(fireDate){
-  //pm newbie sent
-
-  var quote = stickers[Math.floor(Math.random()*stickers.length)];
-  var data1 = {
-    "receiver": "dMHwtPBGj7",
-    "dialogue": "WFO1t6toPB",
-    "antiFlood": true,
-    "message": getText(),
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "cedc6bad-324d-3e70-ea80-75364a848d55",
-    "_SessionToken": "r:c3e419d4cb8595fc4ab2365f5b1691f1"
-};
-var data2 = {
-  "receiver": "2Cf6H9g8OA",
-  "dialogue": "WFO1t6toPB",
-  "antiFlood": true,
-  "message": getText(),
-  "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-  "_ClientVersion": "js1.11.1",
-  "_InstallationId": "47b6f990-8775-4d6f-41da-d6e6371a5ba8",
-  "_SessionToken": "r:f94d5b7a2c5c44a17db74d66c0fe4bad"
-};
-  converse(data1,data2);
-  console.log("sent to group pm newbie and jake sent.");
-});
-
-
-schedule.scheduleJob('*/1 * * * *', function(fireDate){
-  //pm newbie sent
-
-  var quote = stickers[Math.floor(Math.random()*stickers.length)];
-  var data1 = {
-    "receiver": "ijg4pw6rcG",
-    "dialogue": "HkssrXX3X0",
-    "antiFlood": true,
-    "message": getText(),
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "47b6f990-8775-4d6f-41da-d6e6371a5ba8",
-    "_SessionToken": "r:f94d5b7a2c5c44a17db74d66c0fe4bad"
-};
-var data2 = {
-    "receiver": "dMHwtPBGj7",
-    "dialogue": "HkssrXX3X0",
-    "antiFlood": true,
-    "message": getText(),
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "f2bfd59a-ae49-7b6c-a7d5-f19c71442930",
-    "_SessionToken": "r:6546c5bf0ef8639d991020f39070d817"
-};
-  converse(data1,data2);
-  console.log("sent to group pm newbie and jake sent.");
-});
-
-
-schedule.scheduleJob('*/1 * * * *', function(fireDate){
-  //pm newbie sent
-
-  var quote = stickers[Math.floor(Math.random()*stickers.length)];
-  var data1 = {
-    "receiver": "zxexADDLXS",
-    "dialogue": "hSh4EWbufy",
-    "antiFlood": true,
-    "message": getText(),
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "47b6f990-8775-4d6f-41da-d6e6371a5ba8",
-    "_SessionToken": "r:f94d5b7a2c5c44a17db74d66c0fe4bad"
-};
-var data2 = {
-    "receiver": "dMHwtPBGj7",
-    "dialogue": "hSh4EWbufy",
-    "antiFlood": true,
-    "message": getText(),
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "d715473c-a7cf-0612-1b12-e21db5f69ee4",
-    "_SessionToken": "r:15db459aa63fa4a13c45523e64c5ee21"
-};
-  converse(data1,data2);
-  console.log("sent to group pm newbie and jake sent.");
-});
-
-
 
 //NEWBIES wKxPAGANdi NEWBIES 2 OnC1z8QCsB Khi VCb5Q3h6vQ AS fkoulukUIg
 server.listen(process.env.PORT || 5000, (err) => {
