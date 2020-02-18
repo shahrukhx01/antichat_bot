@@ -114,11 +114,13 @@ var diseminateText = function(){
 console.log('**** THE TEXT IS: ***')
 let text = getText();
 console.log(text);
+if (Math.round(Math.random()) > 0.2) {
 sendText(text);
+}
 }
 
 schedule.scheduleJob('*/5 * * * *', diseminateText);
-schedule.scheduleJob('*/1 * * * *', keepAlive);
+schedule.scheduleJob('*/2 * * * *', keepAlive);
 
 //NEWBIES wKxPAGANdi NEWBIES 2 OnC1z8QCsB Khi VCb5Q3h6vQ AS fkoulukUIg
 server.listen(process.env.PORT || 5000, (err) => {
