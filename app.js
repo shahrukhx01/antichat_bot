@@ -122,6 +122,7 @@ sendText(text,dialogue);
 var makeupText = function(){
   diseminateText('wKxPAGANdi');
   diseminateText('78RPuf7pjD');
+  diseminateText('VCb5Q3h6vQ');
 }
 schedule.scheduleJob('*/1 * * * *', makeupText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
