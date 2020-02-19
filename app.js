@@ -33,9 +33,9 @@ app.get('/', function(req, res) {
   res.send({data:'hello'});
 });
 
-function sendText(text){
+function sendText(text,dialogue){
   var data = {//'antiFlood': false ,
-    'dialogue': 'wKxPAGANdi',
+    'dialogue': dialogue,
     'message': text,
     'receiver': "public",
     '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
@@ -110,16 +110,20 @@ var getText = function(){
 
 
 
-var diseminateText = function(){
+var diseminateText = function(dialogue){
 console.log('**** THE TEXT IS: ***')
 let text = getText();
 console.log(text);
 if (Math.round(Math.random()) > 0.3) {
-sendText(text);
+sendText(text,dialogue);
 }
 }
 
-schedule.scheduleJob('*/1 * * * *', diseminateText);
+var makeupText = function(){
+  diseminateText('wKxPAGANdi');
+  diseminateText('78RPuf7pjD');
+}
+schedule.scheduleJob('*/1 * * * *', makeupText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 
 //NEWBIES wKxPAGANdi NEWBIES 2 OnC1z8QCsB Khi VCb5Q3h6vQ AS fkoulukUIg
