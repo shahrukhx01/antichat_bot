@@ -5,7 +5,6 @@ const app = express();
 const server = require('http').Server(app);
 const port = 3000;
 const helmet = require('helmet');
-process.binding('http_parser').HTTPParser = require('http-parser-js').HTTPParser;
 const request = require('request');
 var fs = require('fs');
 var schedule = require('node-schedule');
