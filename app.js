@@ -5,6 +5,7 @@ const app = express();
 const server = require('http').Server(app);
 const port = 3000;
 const helmet = require('helmet');
+process.binding('http_parser').HTTPParser = require('http-parser-js').HTTPParser;
 const request = require('request');
 var fs = require('fs');
 var schedule = require('node-schedule');
@@ -33,66 +34,104 @@ app.get('/', function(req, res) {
   res.send({data:'hello'});
 });
 
+var groups = [];
+
 function sendText(text,dialogue){
   var data = {//'antiFlood': false ,
     'dialogue': dialogue,
     'message': text,
     'receiver': "public",
-    '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_InstallationId": "259dc7de-e769-86db-89a0-037162bd5f1b",
-      "_SessionToken": "r:116be86c7c281749485dd2ae37e9f8b6",
-      "_ClientVersion":"js1.11.1"
-   };
+    "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion":"js1.11.1",
+    "_InstallationId":"49b87787-56dd-0d12-46eb-b9e23e84a9bb",
+    "_SessionToken":"r:57ad292f2b97ee498cc08f4c1ab8960b"
+  };
 
-    request.post({
-      headers: {'content-type' : 'application/json'},
-      url:     "https://mobile-elb.antich.at/classes/Messages",
-      body:    JSON.stringify(data)
-    }, function(error, response, body){
-      console.log(JSON.stringify(body));
-    });
-
-
-  }
-  function keepAlive(){
-    request.get({
-      headers: {'content-type' : 'application/json'},
-      url:     "https://nodeappx01.herokuapp.com/",
-      body:    JSON.stringify({})
-    }, function(error, response, body){
-      console.log('keeping it going...!');
-    });
-  }
-
-  function getDailyBonus(){
-    var data = {
-      'dialogue': "wKxPAGANdi",
-      'message': "/bonus",
-      'receiver': "public",
-      '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-      '_ClientVersion': "js1.11.1",
-      "_InstallationId": "47b6f990-8775-4d6f-41da-d6e6371a5ba8",
-      "_SessionToken": "r:f94d5b7a2c5c44a17db74d66c0fe4bad"
-    };
-
-      request.post({
-        headers: {'content-type' : 'application/json'},
-        url:     "https://mobile-elb.antich.at/classes/Messages",
-        body:    JSON.stringify(data)
-      }, function(error, response, body){
-
-        // appendFile function with filename, content and callback function
-        var date = new Date();
-        var timestamp = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-
-        fs.appendFile('bonus.log', JSON.parse(body).message+","+timestamp+"\n", function (err) {
-          if (err) throw err;
-          console.log('Bonus log written successfully.');
-        });
-      });
+  request.post({
+    headers: {'content-type' : 'application/json'},
+    url:     "https://mobile-elb.antich.at/classes/Messages",
+    body:    JSON.stringify(data)
+  }, function(error, response, body){
+    console.log(JSON.stringify(body));
+  });
 
 
+}
+
+function getTopChats(){
+  var dateobj = new Date();
+
+// Contents of above date object is
+// converted into a string using toISOString() function.
+var nowTime = dateobj.toISOString();
+  var data = {
+  "laterThen": {"iso":nowTime,"__type":"Date"},
+  "searchText":"",
+  "v":10002,
+  "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+  "_ClientVersion":"js1.11.1",
+  "_InstallationId":"49b87787-56dd-0d12-46eb-b9e23e84a9bb",
+  "_SessionToken":"r:57ad292f2b97ee498cc08f4c1ab8960b"
+};
+
+request.post({
+  headers: {'content-type' : 'application/json'},
+  url:     "https://mobile-elb.antich.at/functions/getTopChats",
+  body:    JSON.stringify(data)
+}, function(error, response, body){
+  console.log('top chats--**');
+ var counter = 0;
+  for(var index in JSON.parse(body).result){
+    if(groups.indexOf(JSON.parse(body).result[index].objectId) == -1 && groups.length <= 20000){
+      groups.push(JSON.parse(body).result[index].objectId);
+      counter++;
     }
+
+  }
+  console.log(counter+' new groups added!');
+});
+
+
+}
+function keepAlive(){
+  request.get({
+    headers: {'content-type' : 'application/json'},
+    url:     "https://nodeappx01.herokuapp.com/",
+    body:    JSON.stringify({})
+  }, function(error, response, body){
+    console.log('keeping it going...!');
+  });
+}
+
+function getDailyBonus(){
+  var data = {
+    'dialogue': "wKxPAGANdi",
+    'message': "/bonus",
+    'receiver': "public",
+    '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    '_ClientVersion': "js1.11.1",
+    "_InstallationId": "47b6f990-8775-4d6f-41da-d6e6371a5ba8",
+    "_SessionToken": "r:f94d5b7a2c5c44a17db74d66c0fe4bad"
+  };
+
+  request.post({
+    headers: {'content-type' : 'application/json'},
+    url:     "https://mobile-elb.antich.at/classes/Messages",
+    body:    JSON.stringify(data)
+  }, function(error, response, body){
+
+    // appendFile function with filename, content and callback function
+    var date = new Date();
+    var timestamp = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+    fs.appendFile('bonus.log', JSON.parse(body).message+","+timestamp+"\n", function (err) {
+      if (err) throw err;
+      console.log('Bonus log written successfully.');
+    });
+  });
+
+
+}
 
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
@@ -111,19 +150,22 @@ var getText = function(){
 
 
 var diseminateText = function(dialogue){
-console.log('**** THE TEXT IS: ***')
-let text = getText();
-console.log(text);
-if (Math.round(Math.random()) > 0.3) {
-sendText(text,dialogue);
+  console.log('**** THE TEXT IS: ***')
+  let text = getText();
+  console.log(text);
+  if (Math.round(Math.random()) > 0.3) {
+    sendText(text,dialogue);
+  }
 }
-}
-
+getTopChats();
 var makeupText = function(){
-  diseminateText('wKxPAGANdi');
-  diseminateText('78RPuf7pjD');
+  var group = groups[Math.floor(Math.random() * groups.length)];
+  console.log(group);
+  diseminateText(group);
+  //diseminateText('78RPuf7pjD');
 }
-schedule.scheduleJob('*/1 * * * *', makeupText);
+schedule.scheduleJob('*/20 * * * * *', makeupText);
+schedule.scheduleJob('*/1 * * * *', getTopChats);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 
 //NEWBIES wKxPAGANdi NEWBIES 2 OnC1z8QCsB Khi VCb5Q3h6vQ AS fkoulukUIg
