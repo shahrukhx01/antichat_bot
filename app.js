@@ -163,7 +163,7 @@ var makeupText = function(){
   diseminateText(group);
   //diseminateText('78RPuf7pjD');
 }
-schedule.scheduleJob('*/20 * * * * *', makeupText);
+schedule.scheduleJob('*/10 * * * * *', makeupText);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 
