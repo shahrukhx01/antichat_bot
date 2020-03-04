@@ -11,11 +11,14 @@ var schedule = require('node-schedule');
 var txtgen = require('txtgen');
 const randomQuotes = require('random-quotes');
 var oneLinerJoke = require('one-liner-joke');
+var moby = require('moby')
 //import wordlist from 'wordlist-english'; // ES Modules
 var wordlist = require('wordlist-english');
 var userTexts = [];
 var stickers = ["[sticker=a1]", "[sticker=a2]", "[sticker=a3]", "[sticker=a4]", "[sticker=a5]", "[sticker=a6]", "[sticker=a7]", "[sticker=a8]", "[sticker=a9]", "[sticker=a10]", "[sticker=a11]", "[sticker=a12]", "[sticker=a13]", "[sticker=a14]", "[sticker=a15]", "[sticker=a16]", "[sticker=a17]", "[sticker=a18]", "[sticker=a19]", "[sticker=a20]", "[sticker=a21]", "[sticker=a22]", "[sticker=a23]", "[sticker=a24]", "[sticker=a25]", "[sticker=a26]", "[sticker=a27]", "[sticker=a28]"];
 var indexChats = 0;
+var vocab = {};
+var englishWords = wordlist['english'];
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -58,6 +61,50 @@ function sendText(text,dialogue){
 
 
 }
+
+function getLastText(){
+  var dateobj = new Date();
+  var nowTime = dateobj.toISOString();
+  console.log(nowTime);
+  var data = {
+    "laterThen": {"iso":nowTime,"__type":"Date"},
+    "searchText":"word",
+    "v":10002,
+    "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion":"js1.11.1",
+    "_InstallationId":"49b87787-56dd-0d12-46eb-b9e23e84a9bb",
+    "_SessionToken":"r:57ad292f2b97ee498cc08f4c1ab8960b"
+};
+
+  request.post({
+    headers: {'content-type' : 'application/json'},
+    url:     "https://mobile-elb.antich.at/functions/getTopChats",
+    body:    JSON.stringify(data)
+  }, function(error, response, body){
+    try{
+    console.log('last letter word--**');
+   var counter = 0;
+    for(var index in JSON.parse(body).result){
+      if(JSON.parse(body).result[index].objectId == 'eMMUDYAfFf'){
+        console.log(JSON.parse(body).result[index].guestname);
+        var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
+        var _wrds = vocab[wrdarr[wrdarr.length-1]]
+        var _wrd = _wrds[Math.floor(Math.random() * _wrds.length)];
+        var text = englishWords[_wrd];
+        if (Math.round(Math.random()) > 0.3) {
+         sendText(text,'eMMUDYAfFf');
+        }
+      }
+
+    }
+  }catch(error){
+    console.log('top chats error');
+  }
+  });
+
+
+}
+
 
 function getTopChats(){
   var dateobj = new Date();
@@ -166,24 +213,45 @@ var diseminateText = function(dialogue){
 var wordGroup = function(){
   var dialogue = 'RF6BE7JXG1';
   console.log('**** WORD GROUP: ***')
-  var englishWords = wordlist['english'];
-  var text = englishWords[Math.floor(Math.random() * englishWords.length)];
-  console.log(text);
-  if (Math.round(Math.random()) > 0.3) {
-    sendText(text,dialogue);
+  //console.log(JSON.stringify(vocab))
+  getLastText();
+  //var text = englishWords[Math.floor(Math.random() * englishWords.length)];
+  //console.log(text);
+  //if (Math.round(Math.random()) > 0.3) {
+//    sendText(text,dialogue);
+  //}
+}
+
+
+var createVocab = function(){
+  for (var index in englishWords ){
+    console.log();
+
+    var key = englishWords[index].split('')[0];
+    if(Object.keys(vocab).indexOf(key) > -1){
+      vocab[key].push(index);
+    }
+    else{
+      vocab[key] = [index];
+    }
   }
 }
 
-//
-getTopChats();
 var makeupText = function(){
   var group = groups[Math.floor(Math.random() * groups.length)];
   console.log(group);
   diseminateText(group);
   //diseminateText('78RPuf7pjD');
 }
-//wordGroup();
-//schedule.scheduleJob('*/59 * * * * *', wordGroup);
+
+
+getTopChats();
+createVocab();
+
+
+
+
+schedule.scheduleJob('*/30 * * * * *', getLastText);
 schedule.scheduleJob('*/30 * * * * *', makeupText);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
 schedule.scheduleJob('*/1 * * * *', keepAlive);

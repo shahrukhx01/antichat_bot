@@ -1,0 +1,114 @@
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+body {
+  font-family: "Georgia", helvetica;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #990000;
+  margin-bottom: 20px;
+}
+
+section {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+}
+
+ul.results {
+  margin: 10px 0 30px 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul.results > li {
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+ul.results > li:after {
+  content: ", ";
+  padding-right: 5px;
+}
+
+ul.results > li:last-child:after {
+  content: ".";
+  padding-right: 0;
+}
+
+body.list-mode ul.results > li {
+  display: block;
+  padding: 0 0 0 5px;
+}
+
+body.list-mode ul.results > li:after {
+  content: "";
+  padding-right: 0;
+}
+
+
+h1 {
+  margin: 0;
+  padding: 20px 0 0 0;
+  text-align: center;
+  font-weight: normal;
+  color: white;
+  font-size: 80px;
+  line-height: 1.4;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: normal;
+  margin: 0;
+  padding: 10px 0 10px 0;
+  color: #990000;
+}
+
+p {
+  line-height: 1.4;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover, p a {
+  color: #990000;
+  text-decoration: underline;
+}
+
+form {
+  padding: 30px 0;
+}
+
+form input[type=text] {
+  width: 100%;
+  font-family: 'Georgia', serif;
+  font-size: 24px;
+  margin: 0;
+  padding: 8px 10px;
+  outline: none;
+  border: 2px solid #7B1515;
+  background: white;
+  border-radius: 4px;
+  color: black;
+}
+
+.weak {
+  opacity: 0.5;
+}
+
+
+footer {
+  margin-top: 100px;
+}
