@@ -225,8 +225,6 @@ var wordGroup = function(){
 
 var createVocab = function(){
   for (var index in englishWords ){
-    console.log();
-
     var key = englishWords[index].split('')[0];
     if(Object.keys(vocab).indexOf(key) > -1){
       vocab[key].push(index);
