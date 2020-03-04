@@ -182,7 +182,6 @@ function theWord(){
   }, function(error, response, body){
     try{
     console.log('the word--**');
-    console.log(JSON.parse(body).result);
     for(var index in JSON.parse(body).result){
       if(JSON.parse(body).result[index].objectId == 'RF6BE7JXG1' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
       try{
