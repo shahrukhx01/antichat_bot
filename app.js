@@ -191,15 +191,17 @@ function lastLetterWordSixPlus(){
     body:    JSON.stringify(data)
   }, function(error, response, body){
     try{
-    console.log('last letter word--**');
+    console.log('last letter word 6+--**');
+
    var counter = 0;
     for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'hg3SXYIQG4' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
+      if(JSON.parse(body).result[index].objectId == 'vdnvBkvSw7' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
 
         var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
         var _wrds = vocab[wrdarr[wrdarr.length-1]]
         var filtered = []
         for(var ind in _wrds){
+          console.log(_wrds[ind])
           if(vocab[_wrds[ind]].length >= 6){
             filtered.push(vocab[_wrds[ind]])
           }
@@ -207,13 +209,13 @@ function lastLetterWordSixPlus(){
         var text = filtered[Math.floor(Math.random() * filtered.length)];
 
 
-         sendText(text,'hg3SXYIQG4');
+         sendText(text,'vdnvBkvSw7');
 
       }
 
     }
   }catch(error){
-    console.log('top chats error');
+    console.log('top chats error 6+');
   }
   });
 
@@ -569,13 +571,15 @@ var makeupText = function(){
 createVocab();
 
 
-schedule.scheduleJob('*/45 * * * * *', nextFirstLetter);
-schedule.scheduleJob('*/40 * * * * *', secondLastLetterWordDup);
-schedule.scheduleJob('*/35 * * * * *', secondLastLetterWord);
-schedule.scheduleJob('*/30 * * * * *', lastLetterWord4567);
-schedule.scheduleJob('*/20 * * * * *', theWord);
-schedule.scheduleJob('*/15 * * * * *', lastLetterWord);
-schedule.scheduleJob('*/10 * * * * *', lastLetterWordDup);
+
+//schedule.scheduleJob('*/45 * * * * *', nextFirstLetter);
+//schedule.scheduleJob('*/40 * * * * *', secondLastLetterWordDup);
+//schedule.scheduleJob('*/35 * * * * *', secondLastLetterWord);
+//schedule.scheduleJob('*/30 * * * * *', lastLetterWord4567);
+//schedule.scheduleJob('*/20 * * * * *', theWord);
+//schedule.scheduleJob('*/15 * * * * *', lastLetterWord);
+//schedule.scheduleJob('*/10 * * * * *', lastLetterWordDup);
+
 schedule.scheduleJob('*/10 * * * * *', lastLetterWordSixPlus);
 
 
