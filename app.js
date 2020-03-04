@@ -159,7 +159,7 @@ function lastLetterWord(){
 
 }
 
-function secondLastLetterWord(){
+function secondLastLetterWordDup(){
   var dateobj = new Date();
   var nowTime = dateobj.toISOString();
   console.log(nowTime);
@@ -421,6 +421,7 @@ var makeupText = function(){
 createVocab();
 
 
+schedule.scheduleJob('*/10 * * * * *', secondLastLetterWordDup);
 schedule.scheduleJob('*/10 * * * * *', secondLastLetterWord);
 schedule.scheduleJob('*/10 * * * * *', lastLetterWord4567);
 schedule.scheduleJob('*/10 * * * * *', theWord);
