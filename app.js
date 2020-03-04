@@ -85,15 +85,16 @@ function getLastText(){
     console.log('last letter word--**');
    var counter = 0;
     for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'eMMUDYAfFf'){
+      if(JSON.parse(body).result[index].objectId == 'eMMUDYAfFf' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
+        console.log(JSON.stringify(JSON.parse(body).result[index]))
         console.log(JSON.parse(body).result[index].guestname);
         var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
         var _wrds = vocab[wrdarr[wrdarr.length-1]]
         var _wrd = _wrds[Math.floor(Math.random() * _wrds.length)];
         var text = englishWords[_wrd];
-        if (Math.round(Math.random()) > 0.3) {
+
          sendText(text,'eMMUDYAfFf');
-        }
+
       }
 
     }
