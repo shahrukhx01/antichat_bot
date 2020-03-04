@@ -183,7 +183,7 @@ var makeupText = function(){
   //diseminateText('78RPuf7pjD');
 }
 //wordGroup();
-schedule.scheduleJob('*/15 * * * * *', wordGroup);
+//schedule.scheduleJob('*/59 * * * * *', wordGroup);
 schedule.scheduleJob('*/30 * * * * *', makeupText);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
