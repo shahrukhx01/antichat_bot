@@ -520,13 +520,13 @@ var makeupText = function(){
 createVocab();
 
 
-schedule.scheduleJob('*/10 * * * * *', nextFirstLetter);
-schedule.scheduleJob('*/15 * * * * *', secondLastLetterWordDup);
-schedule.scheduleJob('*/20 * * * * *', secondLastLetterWord);
-schedule.scheduleJob('*/25 * * * * *', lastLetterWord4567);
-schedule.scheduleJob('*/30 * * * * *', theWord);
-schedule.scheduleJob('*/35 * * * * *', lastLetterWord);
-schedule.scheduleJob('*/40 * * * * *', lastLetterWordDup);
+schedule.scheduleJob('*/45 * * * * *', nextFirstLetter);
+schedule.scheduleJob('*/40 * * * * *', secondLastLetterWordDup);
+schedule.scheduleJob('*/35 * * * * *', secondLastLetterWord);
+schedule.scheduleJob('*/30 * * * * *', lastLetterWord4567);
+schedule.scheduleJob('*/20 * * * * *', theWord);
+schedule.scheduleJob('*/15 * * * * *', lastLetterWord);
+schedule.scheduleJob('*/10 * * * * *', lastLetterWordDup);
 
 
 
