@@ -359,7 +359,7 @@ function secondLastLetterWord(){
   console.log(nowTime);
   var data = {
     "laterThen": {"iso":nowTime,"__type":"Date"},
-    "searchText":"2nd last",
+    "searchText":"SeCoND LaSt",
     "v":10002,
     "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     "_ClientVersion":"js1.11.1",
@@ -373,23 +373,23 @@ function secondLastLetterWord(){
     body:    JSON.stringify(data)
   }, function(error, response, body){
     try{
-    console.log('second last letter word--**');
+    console.log('second letter last  word--**');
    var counter = 0;
     for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'jrZV1GU4yJ' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
+      if(JSON.parse(body).result[index].objectId == 'HzqlpRUTTT' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
 
         var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
         var _wrds = vocab[wrdarr[wrdarr.length-2]]
         var _wrd = _wrds[Math.floor(Math.random() * _wrds.length)];
         var text = englishWords[_wrd];
 
-         sendText(text,'jrZV1GU4yJ');
+         sendText(text,'HzqlpRUTTT');
 
       }
 
     }
   }catch(error){
-    console.log('top chats error');
+    console.log('second letter last');
   }
   });
 
