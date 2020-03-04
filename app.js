@@ -197,7 +197,7 @@ function nextFirstLetter(){
       if(JSON.parse(body).result[index].objectId == 'gHXWF8bgH9' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
 
         var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
-        var _wrds = nextLetter(vocab[wrdarr[0]]).toLowerCase()
+        var _wrds = vocab[nextLetter(wrdarr[0]).toLowerCase()]
         var _wrd = _wrds[Math.floor(Math.random() * _wrds.length)];
         var text = englishWords[_wrd];
 
@@ -207,7 +207,8 @@ function nextFirstLetter(){
 
     }
   }catch(error){
-    console.log('top chats error');
+    console.log('first next letter word error');
+    console.log(error);
   }
   });
 
