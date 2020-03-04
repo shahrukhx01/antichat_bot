@@ -201,14 +201,12 @@ function lastLetterWordSixPlus(){
         var _wrds = vocab[wrdarr[wrdarr.length-1]]
         var filtered = []
         for(var ind in _wrds){
-          console.log(_wrds[ind])
-          if(vocab[_wrds[ind]].length >= 6){
-            filtered.push(vocab[_wrds[ind]])
+
+          if(englishWords[_wrds[ind]].length >= 6){
+            filtered.push(englishWords[_wrds[ind]])
           }
         }
         var text = filtered[Math.floor(Math.random() * filtered.length)];
-
-
          sendText(text,'vdnvBkvSw7');
 
       }
@@ -216,6 +214,7 @@ function lastLetterWordSixPlus(){
     }
   }catch(error){
     console.log('top chats error 6+');
+    console.log(error)
   }
   });
 
@@ -572,14 +571,13 @@ createVocab();
 
 
 
-//schedule.scheduleJob('*/45 * * * * *', nextFirstLetter);
-//schedule.scheduleJob('*/40 * * * * *', secondLastLetterWordDup);
-//schedule.scheduleJob('*/35 * * * * *', secondLastLetterWord);
-//schedule.scheduleJob('*/30 * * * * *', lastLetterWord4567);
-//schedule.scheduleJob('*/20 * * * * *', theWord);
-//schedule.scheduleJob('*/15 * * * * *', lastLetterWord);
-//schedule.scheduleJob('*/10 * * * * *', lastLetterWordDup);
-
+schedule.scheduleJob('*/45 * * * * *', nextFirstLetter);
+schedule.scheduleJob('*/40 * * * * *', secondLastLetterWordDup);
+schedule.scheduleJob('*/35 * * * * *', secondLastLetterWord);
+schedule.scheduleJob('*/30 * * * * *', lastLetterWord4567);
+schedule.scheduleJob('*/20 * * * * *', theWord);
+schedule.scheduleJob('*/15 * * * * *', lastLetterWord);
+schedule.scheduleJob('*/10 * * * * *', lastLetterWordDup);
 schedule.scheduleJob('*/10 * * * * *', lastLetterWordSixPlus);
 
 
