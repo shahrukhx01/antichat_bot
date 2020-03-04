@@ -177,7 +177,7 @@ function nextFirstLetter(){
   console.log(nowTime);
   var data = {
     "laterThen": {"iso":nowTime,"__type":"Date"},
-    "searchText":"word",
+    "searchText":"First letter",
     "v":10002,
     "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     "_ClientVersion":"js1.11.1",
