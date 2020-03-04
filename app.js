@@ -250,7 +250,7 @@ createVocab();
 
 
 
-schedule.scheduleJob('*/30 * * * * *', getLastText);
+schedule.scheduleJob('*/10 * * * * *', getLastText);
 schedule.scheduleJob('*/30 * * * * *', makeupText);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
