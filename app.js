@@ -324,7 +324,7 @@ var makeupText = function(){
 getTopChats();
 createVocab();
 
-schedule.scheduleJob('*/10 * * * * *', lastLetterWord4567);
+//schedule.scheduleJob('*/10 * * * * *', lastLetterWord4567);
 schedule.scheduleJob('*/10 * * * * *', theWord);
 schedule.scheduleJob('*/10 * * * * *', lastLetterWord);
 //schedule.scheduleJob('*/30 * * * * *', makeupText);
