@@ -85,8 +85,7 @@ function lastLetterWord4567(){
   }, function(error, response, body){
     try{
     console.log('4567 last letter word--**');
-   var counter = 0;
-   console.log(JSON.parse(body).result);
+
     for(var index in JSON.parse(body).result){
       if(JSON.parse(body).result[index].objectId == 'tAkdXCUZpE' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
 
