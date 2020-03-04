@@ -86,21 +86,31 @@ function lastLetterWord4567(){
     try{
     console.log('4567 last letter word--**');
    var counter = 0;
+   console.log(JSON.parse(body).result);
     for(var index in JSON.parse(body).result){
       if(JSON.parse(body).result[index].objectId == 'tAkdXCUZpE' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
 
         var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
         var _wrds = vocab[wrdarr[wrdarr.length-1]]
-        var _wrd = _wrds[Math.floor(Math.random() * _wrds.length)];
-        var text = englishWords[_wrd];
 
-         sendText(text,'tAkdXCUZpE');
+        var lengthToFind = wrdarr.length+1;
+        if(lengthToFind>7) lengthToFind=4
+
+        var filtered = [];
+        for (var _index in _wrds){
+          if(englishWords[_wrds[_index]].length == lengthToFind){
+          filtered.push(englishWords[_wrds[_index]]);
+          }
+        }
+        var text = filtered[Math.floor(Math.random() * filtered.length)];
+        sendText(text,'tAkdXCUZpE');
 
       }
 
     }
   }catch(error){
-    console.log('top chats error');
+    console.log('4567 error');
+    console.log(error)
   }
   });
 
@@ -321,12 +331,16 @@ var makeupText = function(){
 }
 
 
-getTopChats();
+//getTopChats();
 createVocab();
 
-//schedule.scheduleJob('*/10 * * * * *', lastLetterWord4567);
+
+schedule.scheduleJob('*/10 * * * * *', lastLetterWord4567);
 schedule.scheduleJob('*/10 * * * * *', theWord);
 schedule.scheduleJob('*/10 * * * * *', lastLetterWord);
+
+
+
 //schedule.scheduleJob('*/30 * * * * *', makeupText);
 //schedule.scheduleJob('*/1 * * * *', getTopChats);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
