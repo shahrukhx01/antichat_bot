@@ -42,6 +42,17 @@ app.get('/', function(req, res) {
 
 var groups = [];
 
+function nextLetter(s){
+    return s.replace(/([a-zA-Z])[^a-zA-Z]*$/, function(a){
+        var c= a.charCodeAt(0);
+        switch(c){
+            case 90: return 'A';
+            case 122: return 'a';
+            default: return String.fromCharCode(++c);
+        }
+    });
+}
+
 function sendText(text,dialogue){
   var data = {//'antiFlood': false ,
     'dialogue': dialogue,
@@ -63,6 +74,7 @@ function sendText(text,dialogue){
 
 
 }
+
 
 function lastLetterWord4567(){
   var dateobj = new Date();
@@ -147,6 +159,49 @@ function lastLetterWord(){
         var text = englishWords[_wrd];
 
          sendText(text,'eMMUDYAfFf');
+
+      }
+
+    }
+  }catch(error){
+    console.log('top chats error');
+  }
+  });
+
+
+}
+
+function nextFirstLetter(){
+  var dateobj = new Date();
+  var nowTime = dateobj.toISOString();
+  console.log(nowTime);
+  var data = {
+    "laterThen": {"iso":nowTime,"__type":"Date"},
+    "searchText":"word",
+    "v":10002,
+    "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion":"js1.11.1",
+    "_InstallationId":"49b87787-56dd-0d12-46eb-b9e23e84a9bb",
+    "_SessionToken":"r:57ad292f2b97ee498cc08f4c1ab8960b"
+};
+
+  request.post({
+    headers: {'content-type' : 'application/json'},
+    url:     "https://mobile-elb.antich.at/functions/getTopChats",
+    body:    JSON.stringify(data)
+  }, function(error, response, body){
+    try{
+    console.log('first next letter word--**');
+   var counter = 0;
+    for(var index in JSON.parse(body).result){
+      if(JSON.parse(body).result[index].objectId == 'gHXWF8bgH9' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
+
+        var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
+        var _wrds = nextLetter(vocab[wrdarr[0]]).toLowerCase()
+        var _wrd = _wrds[Math.floor(Math.random() * _wrds.length)];
+        var text = englishWords[_wrd];
+
+         sendText(text,'gHXWF8bgH9');
 
       }
 
@@ -421,6 +476,7 @@ var makeupText = function(){
 createVocab();
 
 
+schedule.scheduleJob('*/10 * * * * *', nextFirstLetter);
 schedule.scheduleJob('*/10 * * * * *', secondLastLetterWordDup);
 schedule.scheduleJob('*/10 * * * * *', secondLastLetterWord);
 schedule.scheduleJob('*/10 * * * * *', lastLetterWord4567);
