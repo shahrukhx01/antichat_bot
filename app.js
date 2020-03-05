@@ -450,7 +450,7 @@ function secondLastLetterWord(){
 
 //the word
 
-function theWord(){
+function thirdToLastLetter(){
   var dateobj = new Date();
   var nowTime = dateobj.toISOString();
   console.log(nowTime);
@@ -470,23 +470,23 @@ function theWord(){
     body:    JSON.stringify(data)
   }, function(error, response, body){
     try{
-    console.log('the word--**');
+    console.log('third to last letter word--**');
+   var counter = 0;
     for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'RF6BE7JXG1' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
-      try{
-        if(synonyms(JSON.parse(body).result[index].lastmessage,"n")){
-          sendText(synonyms(JSON.parse(body).result[index].lastmessage,"n")[1],'RF6BE7JXG1');
-        }
-      }catch(error){
+      if(JSON.parse(body).result[index].objectId == 'lnSk9jEJTF' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
 
-      }
+        var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
+        var _wrds = vocab[wrdarr[wrdarr.length-3]]
+        var _wrd = _wrds[Math.floor(Math.random() * _wrds.length)];
+        var text = englishWords[_wrd];
 
+         sendText(text,'lnSk9jEJTF');
 
       }
 
     }
   }catch(error){
-    console.log('top chats error');
+    console.log('third to last letter word error');
   }
   });
 
@@ -626,11 +626,11 @@ createVocab();
 schedule.scheduleJob('*/45 * * * * *', nextFirstLetter);
 schedule.scheduleJob('*/35 * * * * *', secondLastLetterWord);
 schedule.scheduleJob('*/30 * * * * *', lastLetterWord4567);
-schedule.scheduleJob('*/20 * * * * *', theWord);
 schedule.scheduleJob('*/15 * * * * *', lastLetterWord);
-schedule.scheduleJob('*/10 * * * * *', lastLetterWordDup);
-schedule.scheduleJob('*/10 * * * * *', lastLetterWordSixPlus);
+schedule.scheduleJob('*/20 * * * * *', lastLetterWordSixPlus);
 schedule.scheduleJob('*/15 * * * * *', lastLetterWordFivePlus);
+schedule.scheduleJob('*/10 * * * * *', lastLetterWordDup);
+schedule.scheduleJob('*/10 * * * * *', thirdToLastLetter);
 schedule.scheduleJob('*/8 * * * * *', lastLetterWordPinoy);
 
 
