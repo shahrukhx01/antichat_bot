@@ -380,7 +380,7 @@ function lastLetterWordPinoy(){
     body:    JSON.stringify(data)
   }, function(error, response, body){
     try{
-    console.log('second last letter word--**');
+    console.log('last letter word pinoy--**');
    var counter = 0;
     for(var index in JSON.parse(body).result){
       if(JSON.parse(body).result[index].objectId == 'htwiJXACVd' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
