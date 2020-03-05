@@ -360,13 +360,13 @@ function nextFirstLetter(){
 
 }
 
-function secondLastLetterWordDup(){
+function lastLetterWordPinoy(){
   var dateobj = new Date();
   var nowTime = dateobj.toISOString();
   console.log(nowTime);
   var data = {
     "laterThen": {"iso":nowTime,"__type":"Date"},
-    "searchText":"2nd last",
+    "searchText":"Pinoy",
     "v":10002,
     "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     "_ClientVersion":"js1.11.1",
@@ -383,20 +383,20 @@ function secondLastLetterWordDup(){
     console.log('second last letter word--**');
    var counter = 0;
     for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'FCjq8Gp3Wa' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
+      if(JSON.parse(body).result[index].objectId == 'htwiJXACVd' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
 
         var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
-        var _wrds = vocab[wrdarr[wrdarr.length-2]]
+        var _wrds = vocab[wrdarr[wrdarr.length-1]]
         var _wrd = _wrds[Math.floor(Math.random() * _wrds.length)];
         var text = englishWords[_wrd];
 
-         sendText(text,'FCjq8Gp3Wa');
+         sendText(text,'htwiJXACVd');
 
       }
 
     }
   }catch(error){
-    console.log('top chats error');
+    console.log('last letter error pinoy');
   }
   });
 
@@ -624,7 +624,6 @@ createVocab();
 
 
 schedule.scheduleJob('*/45 * * * * *', nextFirstLetter);
-schedule.scheduleJob('*/40 * * * * *', secondLastLetterWordDup);
 schedule.scheduleJob('*/35 * * * * *', secondLastLetterWord);
 schedule.scheduleJob('*/30 * * * * *', lastLetterWord4567);
 schedule.scheduleJob('*/20 * * * * *', theWord);
@@ -632,6 +631,7 @@ schedule.scheduleJob('*/15 * * * * *', lastLetterWord);
 schedule.scheduleJob('*/10 * * * * *', lastLetterWordDup);
 schedule.scheduleJob('*/10 * * * * *', lastLetterWordSixPlus);
 schedule.scheduleJob('*/15 * * * * *', lastLetterWordFivePlus);
+schedule.scheduleJob('*/8 * * * * *', lastLetterWordPinoy);
 
 
 
