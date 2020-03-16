@@ -623,14 +623,14 @@ createVocab();
 
 
 
-schedule.scheduleJob('*/2 * * * *', nextFirstLetter);
-schedule.scheduleJob('*/4 * * * *', secondLastLetterWord);
-schedule.scheduleJob('*/4 * * * *', lastLetterWord4567);
-schedule.scheduleJob('*/3 * * * *', lastLetterWord);
-schedule.scheduleJob('*/3 * * * *', lastLetterWordSixPlus);
-schedule.scheduleJob('*/2 * * * *', lastLetterWordFivePlus);
-schedule.scheduleJob('*/2 * * * *', lastLetterWordDup);
-schedule.scheduleJob('*/1 * * * *', thirdToLastLetter);
+schedule.scheduleJob('*/9 * * * *', nextFirstLetter);
+schedule.scheduleJob('*/8 * * * *', secondLastLetterWord);
+schedule.scheduleJob('*/7 * * * *', lastLetterWord4567);
+schedule.scheduleJob('*/6 * * * *', lastLetterWord);
+schedule.scheduleJob('*/5 * * * *', lastLetterWordSixPlus);
+schedule.scheduleJob('*/4 * * * *', lastLetterWordFivePlus);
+schedule.scheduleJob('*/3 * * * *', lastLetterWordDup);
+schedule.scheduleJob('*/2 * * * *', thirdToLastLetter);
 schedule.scheduleJob('*/1 * * * *', lastLetterWordPinoy);
 
 lastLetterWordPinoy()
