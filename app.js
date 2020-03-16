@@ -99,7 +99,7 @@ function lastLetterWord4567(){
     console.log('4567 last letter word--**');
 
     for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'tAkdXCUZpE' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
+      if(JSON.parse(body).result[index].objectId == 'tAkdXCUZpE' && JSON.parse(body).result[index].lastSenderId !='6Q2ytbySTj'){
 
         var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
         var _wrds = vocab[wrdarr[wrdarr.length-1]]
@@ -151,7 +151,7 @@ function lastLetterWord(){
     console.log('last letter word--**');
    var counter = 0;
     for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'eMMUDYAfFf' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
+      if(JSON.parse(body).result[index].objectId == 'eMMUDYAfFf' && JSON.parse(body).result[index].lastSenderId !='6Q2ytbySTj'){
 
         var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
         var _wrds = vocab[wrdarr[wrdarr.length-1]]
@@ -195,7 +195,7 @@ function lastLetterWordSixPlus(){
 
    var counter = 0;
     for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'vdnvBkvSw7' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
+      if(JSON.parse(body).result[index].objectId == 'vdnvBkvSw7' && JSON.parse(body).result[index].lastSenderId !='6Q2ytbySTj'){
 
         var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
         var _wrds = vocab[wrdarr[wrdarr.length-1]]
@@ -247,7 +247,7 @@ function lastLetterWordFivePlus(){
 
    var counter = 0;
     for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'pq0EGbrmOQ' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
+      if(JSON.parse(body).result[index].objectId == 'pq0EGbrmOQ' && JSON.parse(body).result[index].lastSenderId !='6Q2ytbySTj'){
 
         var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
         var _wrds = vocab[wrdarr[wrdarr.length-1]]
@@ -296,7 +296,7 @@ function lastLetterWordDup(){
     console.log('last letter word--**');
    var counter = 0;
     for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'Vris18Jrn5' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
+      if(JSON.parse(body).result[index].objectId == 'Vris18Jrn5' && JSON.parse(body).result[index].lastSenderId !='6Q2ytbySTj'){
 
         var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
         var _wrds = vocab[wrdarr[wrdarr.length-1]]
@@ -339,7 +339,7 @@ function nextFirstLetter(){
     console.log('first next letter word--**');
    var counter = 0;
     for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'gHXWF8bgH9' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
+      if(JSON.parse(body).result[index].objectId == 'gHXWF8bgH9' && JSON.parse(body).result[index].lastSenderId !='6Q2ytbySTj'){
 
         var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
         var _wrds = vocab[nextLetter(wrdarr[0]).toLowerCase()]
@@ -383,7 +383,7 @@ function lastLetterWordPinoy(){
     console.log('last letter word pinoy--**');
    var counter = 0;
     for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'htwiJXACVd' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
+      if(JSON.parse(body).result[index].objectId == 'htwiJXACVd' && JSON.parse(body).result[index].lastSenderId !='6Q2ytbySTj'){
 
         var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
         var _wrds = vocab[wrdarr[wrdarr.length-1]]
@@ -428,7 +428,7 @@ function secondLastLetterWord(){
     console.log('second letter last  word--**');
    var counter = 0;
     for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'HzqlpRUTTT' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
+      if(JSON.parse(body).result[index].objectId == 'HzqlpRUTTT' && JSON.parse(body).result[index].lastSenderId !='6Q2ytbySTj'){
 
         var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
         var _wrds = vocab[wrdarr[wrdarr.length-2]]
@@ -473,7 +473,7 @@ function thirdToLastLetter(){
     console.log('third to last letter word--**');
    var counter = 0;
     for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'lnSk9jEJTF' && JSON.parse(body).result[index].lastSenderId !='YAIwmOBFSm'){
+      if(JSON.parse(body).result[index].objectId == 'lnSk9jEJTF' && JSON.parse(body).result[index].lastSenderId !='6Q2ytbySTj'){
 
         var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
         var _wrds = vocab[wrdarr[wrdarr.length-3]]
