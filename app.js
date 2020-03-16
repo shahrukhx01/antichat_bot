@@ -630,8 +630,8 @@ schedule.scheduleJob('*/17 * * * *', lastLetterWord);
 schedule.scheduleJob('*/13 * * * *', lastLetterWordSixPlus);
 schedule.scheduleJob('*/11 * * * *', lastLetterWordFivePlus);
 schedule.scheduleJob('*/7 * * * *', lastLetterWordDup);
-schedule.scheduleJob('*/3 * * * *', thirdToLastLetter);
-schedule.scheduleJob('*/1 * * * *', lastLetterWordPinoy);
+schedule.scheduleJob('*/5 * * * *', thirdToLastLetter);
+schedule.scheduleJob('*/3 * * * *', lastLetterWordPinoy);
 
 lastLetterWordPinoy()
 
