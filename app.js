@@ -58,10 +58,10 @@ function sendText(text,dialogue){
     'dialogue': dialogue,
     'message': text,
     'receiver': "public",
-    "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion":"js1.11.1",
-    "_InstallationId":"49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken":"r:57ad292f2b97ee498cc08f4c1ab8960b"
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+"_ClientVersion": "js1.11.1",
+"_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
+"_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
   };
 
   request.post({
@@ -84,10 +84,10 @@ function lastLetterWord4567(){
     "laterThen": {"iso":nowTime,"__type":"Date"},
     "searchText":"4-5-6-7",
     "v":10002,
-    "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion":"js1.11.1",
-    "_InstallationId":"49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken":"r:57ad292f2b97ee498cc08f4c1ab8960b"
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
+    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
 };
 
   request.post({
@@ -136,10 +136,10 @@ function lastLetterWord(){
     "laterThen": {"iso":nowTime,"__type":"Date"},
     "searchText":"word",
     "v":10002,
-    "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion":"js1.11.1",
-    "_InstallationId":"49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken":"r:57ad292f2b97ee498cc08f4c1ab8960b"
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
+    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
 };
 
   request.post({
@@ -179,10 +179,10 @@ function lastLetterWordSixPlus(){
     "laterThen": {"iso":nowTime,"__type":"Date"},
     "searchText":"last letter",
     "v":10002,
-    "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion":"js1.11.1",
-    "_InstallationId":"49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken":"r:57ad292f2b97ee498cc08f4c1ab8960b"
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
+    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
 };
 
   request.post({
@@ -231,10 +231,10 @@ function lastLetterWordFivePlus(){
     "laterThen": {"iso":nowTime,"__type":"Date"},
     "searchText":"last letter",
     "v":10002,
-    "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion":"js1.11.1",
-    "_InstallationId":"49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken":"r:57ad292f2b97ee498cc08f4c1ab8960b"
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
+    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
 };
 
   request.post({
@@ -281,10 +281,10 @@ function lastLetterWordDup(){
     "laterThen": {"iso":nowTime,"__type":"Date"},
     "searchText":"word",
     "v":10002,
-    "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion":"js1.11.1",
-    "_InstallationId":"49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken":"r:57ad292f2b97ee498cc08f4c1ab8960b"
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
+    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
 };
 
   request.post({
@@ -324,10 +324,10 @@ function nextFirstLetter(){
     "laterThen": {"iso":nowTime,"__type":"Date"},
     "searchText":"First letter",
     "v":10002,
-    "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion":"js1.11.1",
-    "_InstallationId":"49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken":"r:57ad292f2b97ee498cc08f4c1ab8960b"
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
+    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
 };
 
   request.post({
@@ -368,10 +368,10 @@ function lastLetterWordPinoy(){
     "laterThen": {"iso":nowTime,"__type":"Date"},
     "searchText":"Pinoy",
     "v":10002,
-    "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion":"js1.11.1",
-    "_InstallationId":"49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken":"r:57ad292f2b97ee498cc08f4c1ab8960b"
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
+    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
 };
 
   request.post({
@@ -413,10 +413,10 @@ function secondLastLetterWord(){
     "laterThen": {"iso":nowTime,"__type":"Date"},
     "searchText":"SeCoND LaSt",
     "v":10002,
-    "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion":"js1.11.1",
-    "_InstallationId":"49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken":"r:57ad292f2b97ee498cc08f4c1ab8960b"
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
+    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
 };
 
   request.post({
@@ -458,10 +458,10 @@ function thirdToLastLetter(){
     "laterThen": {"iso":nowTime,"__type":"Date"},
     "searchText":"Third to Last Letter",
     "v":10002,
-    "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion":"js1.11.1",
-    "_InstallationId":"49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken":"r:57ad292f2b97ee498cc08f4c1ab8960b"
+    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    "_ClientVersion": "js1.11.1",
+    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
+    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
 };
 
   request.post({
@@ -504,10 +504,10 @@ var nowTime = dateobj.toISOString();
   "laterThen": {"iso":nowTime,"__type":"Date"},
   "searchText":"",
   "v":10002,
-  "_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-  "_ClientVersion":"js1.11.1",
-  "_InstallationId":"49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-  "_SessionToken":"r:57ad292f2b97ee498cc08f4c1ab8960b"
+  "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+  "_ClientVersion": "js1.11.1",
+  "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
+  "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
 };
 
 request.post({
@@ -623,17 +623,17 @@ createVocab();
 
 
 
-schedule.scheduleJob('*/45 * * * * *', nextFirstLetter);
-schedule.scheduleJob('*/35 * * * * *', secondLastLetterWord);
-schedule.scheduleJob('*/30 * * * * *', lastLetterWord4567);
-schedule.scheduleJob('*/15 * * * * *', lastLetterWord);
-schedule.scheduleJob('*/20 * * * * *', lastLetterWordSixPlus);
-schedule.scheduleJob('*/15 * * * * *', lastLetterWordFivePlus);
-schedule.scheduleJob('*/10 * * * * *', lastLetterWordDup);
-schedule.scheduleJob('*/10 * * * * *', thirdToLastLetter);
-schedule.scheduleJob('*/8 * * * * *', lastLetterWordPinoy);
+schedule.scheduleJob('*/2 * * * *', nextFirstLetter);
+schedule.scheduleJob('*/4 * * * *', secondLastLetterWord);
+schedule.scheduleJob('*/4 * * * *', lastLetterWord4567);
+schedule.scheduleJob('*/3 * * * *', lastLetterWord);
+schedule.scheduleJob('*/3 * * * *', lastLetterWordSixPlus);
+schedule.scheduleJob('*/2 * * * *', lastLetterWordFivePlus);
+schedule.scheduleJob('*/2 * * * *', lastLetterWordDup);
+schedule.scheduleJob('*/1 * * * *', thirdToLastLetter);
+schedule.scheduleJob('*/1 * * * *', lastLetterWordPinoy);
 
-
+lastLetterWordPinoy()
 
 //schedule.scheduleJob('*/30 * * * * *', makeupText);
 //schedule.scheduleJob('*/1 * * * *', getTopChats);
