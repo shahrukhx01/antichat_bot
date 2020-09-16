@@ -42,27 +42,21 @@ app.get('/', function(req, res) {
 
 var groups = [];
 
-function nextLetter(s){
-    return s.replace(/([a-zA-Z])[^a-zA-Z]*$/, function(a){
-        var c= a.charCodeAt(0);
-        switch(c){
-            case 90: return 'A';
-            case 122: return 'a';
-            default: return String.fromCharCode(++c);
-        }
-    });
+function getConfig(text, groupId){
+  var data = {
+    'dialogue': groupId,
+    'message': text,
+    'receiver': "public",
+    '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    '_ClientVersion': "js1.11.1",
+    "_InstallationId": "ad26f28e-a3d9-a0ac-725f-a389edb3a835",
+    "_SessionToken": "r:9a4fb3f4feeb07b6532e175d8d1d098c"
+  };
+  return data;
 }
 
 function sendText(text,dialogue){
-  var data = {//'antiFlood': false ,
-    'dialogue': dialogue,
-    'message': text,
-    'receiver': "public",
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-"_ClientVersion": "js1.11.1",
-"_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-"_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
-  };
+  var data = getConfig(text, dialogue);
 
   request.post({
     headers: {'content-type' : 'application/json'},
@@ -74,425 +68,6 @@ function sendText(text,dialogue){
 
 
 }
-
-
-function lastLetterWord4567(){
-  var dateobj = new Date();
-  var nowTime = dateobj.toISOString();
-  console.log(nowTime);
-  var data = {
-    "laterThen": {"iso":nowTime,"__type":"Date"},
-    "searchText":"4-5-6-7",
-    "v":10002,
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
-};
-
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/functions/getTopChats",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-    try{
-    console.log('4567 last letter word--**');
-
-    for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'tAkdXCUZpE' && JSON.parse(body).result[index].lastSenderId !='wXyduJTxpa'){
-
-        var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
-        var _wrds = vocab[wrdarr[wrdarr.length-1]]
-
-        var lengthToFind = wrdarr.length+1;
-        if(lengthToFind>7) lengthToFind=4
-
-        var filtered = [];
-        for (var _index in _wrds){
-          if(englishWords[_wrds[_index]].length == lengthToFind){
-          filtered.push(englishWords[_wrds[_index]]);
-          }
-        }
-        var text = filtered[Math.floor(Math.random() * filtered.length)];
-        sendText(text,'tAkdXCUZpE');
-
-      }
-
-    }
-  }catch(error){
-    console.log('4567 error');
-    console.log(error)
-  }
-  });
-
-
-}
-
-function lastLetterWord(){
-  var dateobj = new Date();
-  var nowTime = dateobj.toISOString();
-  console.log(nowTime);
-  var data = {
-    "laterThen": {"iso":nowTime,"__type":"Date"},
-    "searchText":"word",
-    "v":10002,
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
-};
-
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/functions/getTopChats",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-    try{
-    console.log('last letter word--**');
-   var counter = 0;
-    for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'eMMUDYAfFf' && JSON.parse(body).result[index].lastSenderId !='wXyduJTxpa'){
-
-        var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
-        var _wrds = vocab[wrdarr[wrdarr.length-1]]
-        var _wrd = _wrds[Math.floor(Math.random() * _wrds.length)];
-        var text = englishWords[_wrd];
-
-         sendText(text,'eMMUDYAfFf');
-
-      }
-
-    }
-  }catch(error){
-    console.log('top chats error');
-  }
-  });
-
-
-}
-
-function lastLetterWordSixPlus(){
-  var dateobj = new Date();
-  var nowTime = dateobj.toISOString();
-  console.log(nowTime);
-  var data = {
-    "laterThen": {"iso":nowTime,"__type":"Date"},
-    "searchText":"last letter",
-    "v":10002,
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
-};
-
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/functions/getTopChats",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-    try{
-    console.log('last letter word 6+--**');
-
-   var counter = 0;
-    for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'vdnvBkvSw7' && JSON.parse(body).result[index].lastSenderId !='wXyduJTxpa'){
-
-        var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
-        var _wrds = vocab[wrdarr[wrdarr.length-1]]
-        var filtered = []
-        for(var ind in _wrds){
-
-          if(englishWords[_wrds[ind]].length >= 6){
-            filtered.push(englishWords[_wrds[ind]])
-          }
-        }
-        var text = filtered[Math.floor(Math.random() * filtered.length)];
-         sendText(text,'vdnvBkvSw7');
-
-      }
-
-    }
-  }catch(error){
-    console.log('top chats error 6+');
-    console.log(error)
-  }
-  });
-
-
-}
-
-
-//FivePlus
-function lastLetterWordFivePlus(){
-  var dateobj = new Date();
-  var nowTime = dateobj.toISOString();
-  console.log(nowTime);
-  var data = {
-    "laterThen": {"iso":nowTime,"__type":"Date"},
-    "searchText":"last letter",
-    "v":10002,
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
-};
-
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/functions/getTopChats",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-    try{
-    console.log('last letter word 6+--**');
-
-   var counter = 0;
-    for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'pq0EGbrmOQ' && JSON.parse(body).result[index].lastSenderId !='wXyduJTxpa'){
-
-        var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
-        var _wrds = vocab[wrdarr[wrdarr.length-1]]
-        var filtered = []
-        for(var ind in _wrds){
-
-          if(englishWords[_wrds[ind]].length >= 6){
-            filtered.push(englishWords[_wrds[ind]])
-          }
-        }
-        var text = filtered[Math.floor(Math.random() * filtered.length)];
-         sendText(text,'pq0EGbrmOQ');
-
-      }
-
-    }
-  }catch(error){
-    console.log('last letter error 5+');
-    console.log(error)
-  }
-  });
-
-
-}
-
-function lastLetterWordDup(){
-  var dateobj = new Date();
-  var nowTime = dateobj.toISOString();
-  console.log(nowTime);
-  var data = {
-    "laterThen": {"iso":nowTime,"__type":"Date"},
-    "searchText":"word",
-    "v":10002,
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
-};
-
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/functions/getTopChats",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-    try{
-    console.log('last letter word--**');
-   var counter = 0;
-    for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'Vris18Jrn5' && JSON.parse(body).result[index].lastSenderId !='wXyduJTxpa'){
-
-        var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
-        var _wrds = vocab[wrdarr[wrdarr.length-1]]
-        var _wrd = _wrds[Math.floor(Math.random() * _wrds.length)];
-        var text = englishWords[_wrd];
-
-         sendText(text,'Vris18Jrn5');
-
-      }
-
-    }
-  }catch(error){
-    console.log('top chats error');
-  }
-  });
-
-
-}
-
-function nextFirstLetter(){
-  var dateobj = new Date();
-  var nowTime = dateobj.toISOString();
-  console.log(nowTime);
-  var data = {
-    "laterThen": {"iso":nowTime,"__type":"Date"},
-    "searchText":"First letter",
-    "v":10002,
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
-};
-
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/functions/getTopChats",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-    try{
-    console.log('first next letter word--**');
-   var counter = 0;
-    for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'gHXWF8bgH9' && JSON.parse(body).result[index].lastSenderId !='wXyduJTxpa'){
-
-        var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
-        var _wrds = vocab[nextLetter(wrdarr[0]).toLowerCase()]
-        var _wrd = _wrds[Math.floor(Math.random() * _wrds.length)];
-        var text = englishWords[_wrd];
-
-         sendText(text,'gHXWF8bgH9');
-
-      }
-
-    }
-  }catch(error){
-    console.log('first next letter word error');
-    console.log(error);
-  }
-  });
-
-
-}
-
-function lastLetterWordPinoy(){
-  var dateobj = new Date();
-  var nowTime = dateobj.toISOString();
-  console.log(nowTime);
-  var data = {
-    "laterThen": {"iso":nowTime,"__type":"Date"},
-    "searchText":"Pinoy",
-    "v":10002,
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
-};
-
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/functions/getTopChats",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-    try{
-    console.log('last letter word pinoy--**');
-   var counter = 0;
-    for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'htwiJXACVd' && JSON.parse(body).result[index].lastSenderId !='wXyduJTxpa'){
-
-        var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
-        var _wrds = vocab[wrdarr[wrdarr.length-1]]
-        var _wrd = _wrds[Math.floor(Math.random() * _wrds.length)];
-        var text = englishWords[_wrd];
-
-         sendText(text,'htwiJXACVd');
-
-      }
-
-    }
-  }catch(error){
-    console.log('last letter error pinoy');
-  }
-  });
-
-
-}
-
-
-
-function secondLastLetterWord(){
-  var dateobj = new Date();
-  var nowTime = dateobj.toISOString();
-  console.log(nowTime);
-  var data = {
-    "laterThen": {"iso":nowTime,"__type":"Date"},
-    "searchText":"SeCoND LaSt",
-    "v":10002,
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
-};
-
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/functions/getTopChats",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-    try{
-    console.log('second letter last  word--**');
-   var counter = 0;
-    for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'HzqlpRUTTT' && JSON.parse(body).result[index].lastSenderId !='wXyduJTxpa'){
-
-        var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
-        var _wrds = vocab[wrdarr[wrdarr.length-2]]
-        var _wrd = _wrds[Math.floor(Math.random() * _wrds.length)];
-        var text = englishWords[_wrd];
-
-         sendText(text,'HzqlpRUTTT');
-
-      }
-
-    }
-  }catch(error){
-    console.log('second letter last');
-  }
-  });
-
-
-}
-
-//the word
-
-function thirdToLastLetter(){
-  var dateobj = new Date();
-  var nowTime = dateobj.toISOString();
-  console.log(nowTime);
-  var data = {
-    "laterThen": {"iso":nowTime,"__type":"Date"},
-    "searchText":"Third to Last Letter",
-    "v":10002,
-    "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    "_ClientVersion": "js1.11.1",
-    "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-    "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
-};
-
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/functions/getTopChats",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-    try{
-    console.log('third to last letter word--**');
-   var counter = 0;
-    for(var index in JSON.parse(body).result){
-      if(JSON.parse(body).result[index].objectId == 'lnSk9jEJTF' && JSON.parse(body).result[index].lastSenderId !='wXyduJTxpa'){
-
-        var wrdarr = JSON.parse(body).result[index].lastmessage.split('')
-        var _wrds = vocab[wrdarr[wrdarr.length-3]]
-        var _wrd = _wrds[Math.floor(Math.random() * _wrds.length)];
-        var text = englishWords[_wrd];
-
-         sendText(text,'lnSk9jEJTF');
-
-      }
-
-    }
-  }catch(error){
-    console.log('third to last letter word error');
-  }
-  });
-
-
-}
-
 
 function getTopChats(){
   var dateobj = new Date();
@@ -506,8 +81,8 @@ var nowTime = dateobj.toISOString();
   "v":10002,
   "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
   "_ClientVersion": "js1.11.1",
-  "_InstallationId": "49b87787-56dd-0d12-46eb-b9e23e84a9bb",
-  "_SessionToken": "r:bdf68e6d0437337540e974cedcecde17"
+  "_InstallationId": "ad26f28e-a3d9-a0ac-725f-a389edb3a835",
+  "_SessionToken": "r:9a4fb3f4feeb07b6532e175d8d1d098c"
 };
 
 request.post({
@@ -544,15 +119,7 @@ function keepAlive(){
 }
 
 function getDailyBonus(){
-  var data = {
-    'dialogue': "wKxPAGANdi",
-    'message': "/bonus",
-    'receiver': "public",
-    '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    '_ClientVersion': "js1.11.1",
-    "_InstallationId": "47b6f990-8775-4d6f-41da-d6e6371a5ba8",
-    "_SessionToken": "r:f94d5b7a2c5c44a17db74d66c0fe4bad"
-  };
+  var data = getConfig(text, groupId);
 
   request.post({
     headers: {'content-type' : 'application/json'},
@@ -573,8 +140,6 @@ function getDailyBonus(){
 
 }
 
-schedule.scheduleJob('0 5 * * *', getDailyBonus);
-
 
 var getText = function(){
   if (Math.round(Math.random()) > 0.5) {
@@ -589,55 +154,31 @@ var getText = function(){
 
 
 
-var diseminateText = function(dialogue){
-  console.log('**** THE TEXT IS: ***')
+var diseminateText = async function(){
+
   let text = getText();
-  console.log(text);
-  if (Math.round(Math.random()) > 0.3) {
-    sendText(text,dialogue);
+  let SLEEP_SECS = (Math.floor(Math.random() * 59) + 1  ) * 1000;
+  await sleep(SLEEP_SECS);
+  let proba = Math.random();
+
+  if (proba >= 0.5) {
+      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
+    sendText(text,'rQapfeid75');
+  }else{
+    console.log(new Date(), ' text sent: '+text,'miss proba: ' ,proba);
   }
 }
 
-var createVocab = function(){
-  for (var index in englishWords ){
-    var key = englishWords[index].split('')[0];
-    if(Object.keys(vocab).indexOf(key) > -1){
-      vocab[key].push(index);
-    }
-    else{
-      vocab[key] = [index];
-    }
-  }
-}
-
-var makeupText = function(){
-  var group = groups[Math.floor(Math.random() * groups.length)];
-  console.log(group);
-  diseminateText(group);
-  //diseminateText('78RPuf7pjD');
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }
 
 
-//getTopChats();
-createVocab();
-
-
-
-schedule.scheduleJob('*/29 * * * *', nextFirstLetter);
-schedule.scheduleJob('*/23 * * * *', secondLastLetterWord);
-schedule.scheduleJob('*/19 * * * *', lastLetterWord4567);
-schedule.scheduleJob('*/17 * * * *', lastLetterWord);
-schedule.scheduleJob('*/13 * * * *', lastLetterWordSixPlus);
-schedule.scheduleJob('*/11 * * * *', lastLetterWordFivePlus);
-schedule.scheduleJob('*/7 * * * *', lastLetterWordDup);
-schedule.scheduleJob('*/5 * * * *', thirdToLastLetter);
-schedule.scheduleJob('*/3 * * * *', lastLetterWordPinoy);
-
-lastLetterWordPinoy()
-
-//schedule.scheduleJob('*/30 * * * * *', makeupText);
-//schedule.scheduleJob('*/1 * * * *', getTopChats);
+schedule.scheduleJob('*/1 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
+schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 //NEWBIES wKxPAGANdi NEWBIES 2 OnC1z8QCsB Khi VCb5Q3h6vQ AS fkoulukUIg
 server.listen(process.env.PORT || 5000, (err) => {
