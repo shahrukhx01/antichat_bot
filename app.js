@@ -209,8 +209,8 @@ var diseminateText = async function(){
 
   if (proba >= 0.25) {
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
-    if (text == 'image') dowloadImage(text,'tcO1iFGUAQ');
-    sendText(text,'tcO1iFGUAQ');
+    if (text == 'image') dowloadImage(text,'USnCk6lngX');
+    sendText(text,'USnCk6lngX');
   }
   else if (proba >= 0.5) {
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
