@@ -161,10 +161,19 @@ var diseminateText = async function(){
   await sleep(SLEEP_SECS);
   let proba = Math.random();
 
-  if (proba >= 0.5) {
+  if (proba >= 0.25) {
+      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
+    sendText(text,'wKxPAGANdi');
+  }
+  else if (proba >= 0.5) {
+      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
+    sendText(text,'OnC1z8QCsB');
+  }
+  else if (proba >= 0.75) {
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
     sendText(text,'rQapfeid75');
-  }else{
+  }
+  else{
     console.log(new Date(), ' text sent: '+text,'miss proba: ' ,proba);
   }
 }
@@ -176,7 +185,7 @@ function sleep(ms) {
 }
 
 
-schedule.scheduleJob('*/4 * * * *', diseminateText);
+schedule.scheduleJob('*/3 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
