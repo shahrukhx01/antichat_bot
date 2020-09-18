@@ -1,4 +1,5 @@
 const path = require('path');
+process.binding('http_parser').HTTPParser = require('http-parser-js').HTTPParser;
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -13,6 +14,10 @@ const randomQuotes = require('random-quotes');
 var oneLinerJoke = require('one-liner-joke');
 var moby = require('moby')
 var synonyms = require("synonyms");
+var randomImageJs = require('random-image-js');
+const imageToBase64 = require('image-to-base64');
+
+
 
 //import wordlist from 'wordlist-english'; // ES Modules
 var wordlist = require('wordlist-english');
@@ -42,11 +47,11 @@ app.get('/', function(req, res) {
 
 var groups = [];
 
-function getConfig(text, groupId){
+function getConfig(text, groupId, receiver){
   var data = {
     'dialogue': groupId,
     'message': text,
-    'receiver': "public",
+    'receiver': receiver,
     '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     '_ClientVersion': "js1.11.1",
     "_InstallationId": "ad26f28e-a3d9-a0ac-725f-a389edb3a835",
@@ -55,8 +60,49 @@ function getConfig(text, groupId){
   return data;
 }
 
+function uploadImage(base64, text, dialogue){
+  var data = {
+    'base64': base64,
+    '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+    '_ClientVersion': "js1.11.1",
+    "_InstallationId": "ad26f28e-a3d9-a0ac-725f-a389edb3a835",
+    "_SessionToken": "r:9a4fb3f4feeb07b6532e175d8d1d098c"
+  };
+
+let data_new = JSON.stringify(data);
+
+  request.post({
+    headers: {'content-type' : 'text/plain', "path": "/files/upload.jpg",  "authority": "mobile-elb.antich.at",
+              "scheme": "https",   "accept": "*/*"},
+    url:     "https://mobile-elb.antich.at/files/upload.jpg",
+    body: data_new
+  }, function(error, response, body){
+    url = JSON.parse(body)['url']
+    spt =  url.split('/')
+    fname = spt[spt.length-1]
+    data_img =   {name: fname,
+      url: url,
+      __type: "File"}
+
+  sendImageText(text, dialogue, data_img)
+  });
+}
+
+
+function sendImageText(text, dialogue, data_img){
+  var data = getConfig(text, dialogue, "group");
+  data['photo']= data_img
+  request.post({
+    headers: {'content-type' : 'application/json'},
+    url:     "https://mobile-elb.antich.at/classes/Messages",
+    body:    JSON.stringify(data)
+  }, function(error, response, body){
+    console.log(JSON.stringify(body));
+  });
+}
+
 function sendText(text,dialogue){
-  var data = getConfig(text, dialogue);
+  var data = getConfig(text, dialogue, "public");
 
   request.post({
     headers: {'content-type' : 'application/json'},
@@ -142,7 +188,7 @@ function getDailyBonus(){
 
 
 var getText = function(){
-  if (Math.round(Math.random()) > 0.5) {
+  if (Math.random() <= 0.7) {
     return randomQuotes['default']().body;
   }
   else {
@@ -163,11 +209,11 @@ var diseminateText = async function(){
 
   if (proba >= 0.25) {
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
-    sendText(text,'wKxPAGANdi');
+    sendText(text,'tcO1iFGUAQ');
   }
   else if (proba >= 0.5) {
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
-    sendText(text,'OnC1z8QCsB');
+    sendText(text,'fkoulukUIg');
   }
   else if (proba >= 0.75) {
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
@@ -182,6 +228,27 @@ function sleep(ms) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
+}
+
+
+function dowloadImage(text, dialogue){
+//use with callback
+randomImageJs.getMemes().then(response => {
+  console.log(response[0]['image']);
+
+imageToBase64(response[0]['image']) // Image URL
+    .then(
+        (response) => {
+          uploadImage(response, text, dialogue)
+            //console.log(response); // "iVBORw0KGgoAAAANSwCAIA..."
+        }
+    )
+    .catch(
+        (error) => {
+            console.log(error); // Logs an error if there was one
+        }
+    )
+});
 }
 
 
