@@ -214,12 +214,12 @@ var diseminateText = async function(){
   }
   else if (proba >= 0.5) {
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
-    if (text == 'image') dowloadImage(text,'tcO1iFGUAQ');
-    sendText(text,'fkoulukUIg');
+    if (text == 'image') dowloadImage(text,'nKsVDsqeYh');
+    sendText(text,'nKsVDsqeYh');
   }
   else if (proba >= 0.75) {
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
-    if (text == 'image') dowloadImage(text,'tcO1iFGUAQ');
+    if (text == 'image') dowloadImage(text,'rQapfeid75');
     sendText(text,'rQapfeid75');
   }
   else{
