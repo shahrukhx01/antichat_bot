@@ -189,7 +189,7 @@ function getDailyBonus(){
 
 var getText = function(){
   if (Math.random() <= 0.7) {
-    return randomQuotes['default']().body;
+    return 'image';
   }
   else {
     return  oneLinerJoke.getRandomJoke().body ;
@@ -209,14 +209,17 @@ var diseminateText = async function(){
 
   if (proba >= 0.25) {
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
+    if (text == 'image') dowloadImage(text,'tcO1iFGUAQ');
     sendText(text,'tcO1iFGUAQ');
   }
   else if (proba >= 0.5) {
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
+    if (text == 'image') dowloadImage(text,'tcO1iFGUAQ');
     sendText(text,'fkoulukUIg');
   }
   else if (proba >= 0.75) {
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
+    if (text == 'image') dowloadImage(text,'tcO1iFGUAQ');
     sendText(text,'rQapfeid75');
   }
   else{
