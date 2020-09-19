@@ -189,7 +189,7 @@ function getDailyBonus(){
 
 var getText = function(){
   if (Math.random() <= 0.7) {
-    return 'image';
+    return '[photo]';
   }
   else {
     return  oneLinerJoke.getRandomJoke().body ;
@@ -208,20 +208,16 @@ var diseminateText = async function(){
   let proba = Math.random();
 
   if (proba >= 0.25) {
-      grp = 'USnCk6lngX'
-      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' USnCk6lngX');
-    if (text == 'image') dowloadImage(text,'USnCk6lngX');
-    else sendText(text,'USnCk6lngX');
+      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
+    sendText(text,'tcO1iFGUAQ');
   }
   else if (proba >= 0.5) {
-      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' nKsVDsqeYh');
-    if (text == 'image') dowloadImage(text,'nKsVDsqeYh');
-    else sendText(text,'nKsVDsqeYh');
+      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
+    sendText(text,'fkoulukUIg');
   }
   else if (proba >= 0.75) {
-      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' rQapfeid75');
-    if (text == 'image') dowloadImage(text,'rQapfeid75');
-    else sendText(text,'rQapfeid75');
+      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
+    sendText(text,'rQapfeid75');
   }
   else{
     console.log(new Date(), ' text sent: '+text,'miss proba: ' ,proba);
