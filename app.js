@@ -208,16 +208,20 @@ var diseminateText = async function(){
   let proba = Math.random();
 
   if (proba >= 0.25) {
-      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
-    sendText(text,'tcO1iFGUAQ');
+      grp = 'USnCk6lngX'
+      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' USnCk6lngX');
+    if (text == '[photo]') dowloadImage(text,'USnCk6lngX');
+    else sendText(text,'USnCk6lngX');
   }
   else if (proba >= 0.5) {
-      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
-    sendText(text,'fkoulukUIg');
+      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' nKsVDsqeYh');
+    if (text == '[photo]') dowloadImage(text,'nKsVDsqeYh');
+    else sendText(text,'nKsVDsqeYh');
   }
   else if (proba >= 0.75) {
-      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba);
-    sendText(text,'rQapfeid75');
+      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' rQapfeid75');
+    if (text == '[photo]') dowloadImage(text,'rQapfeid75');
+    else sendText(text,'rQapfeid75');
   }
   else{
     console.log(new Date(), ' text sent: '+text,'miss proba: ' ,proba);
