@@ -207,7 +207,7 @@ var diseminateText = async function(){
   await sleep(SLEEP_SECS);
   let proba = Math.random();
 
-  if (proba >= 0.25) {
+  if (proba >= 0.75) {
       let grp = 'tcO1iFGUAQ'
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp);
     if (text == '[photo]') dowloadImage(text,grp);
@@ -218,7 +218,7 @@ var diseminateText = async function(){
     if (text == '[photo]') dowloadImage(text,'nKsVDsqeYh');
     else sendText(text,'nKsVDsqeYh');
   }
-  else if (proba >= 0.75) {
+  else if (proba >= 0.25) {
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' rQapfeid75');
     if (text == '[photo]') dowloadImage(text,'rQapfeid75');
     else sendText(text,'rQapfeid75');
