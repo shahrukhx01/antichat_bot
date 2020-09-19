@@ -213,7 +213,7 @@ var diseminateText = async function(){
     if (text == '[photo]') dowloadImage(text,grp);
     else sendText(text, grp);
   }
-  else (proba >= 0.25) {
+  else {
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' rQapfeid75');
     if (text == '[photo]') dowloadImage(text,'rQapfeid75');
     else sendText(text,'rQapfeid75');
