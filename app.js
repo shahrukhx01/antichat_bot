@@ -208,7 +208,7 @@ var diseminateText = async function(){
   let proba = Math.random();
 
   if (proba >= 0.5) {
-      let grp = 'tcO1iFGUAQ'
+      let grp = '917IlKd2IC'
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp);
     if (text == '[photo]') dowloadImage(text,grp);
     else sendText(text, grp);
