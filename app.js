@@ -192,7 +192,7 @@ var getText = function(){
     return '[photo]';
   }
   else {
-    return  oneLinerJoke.getRandomJoke().body ;
+    return  oneLinerJoke.getRandomJoke('exclude_tags': ['dirty', 'racist', 'marriage']).body ;
 
   }
 
