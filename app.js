@@ -24,7 +24,9 @@ var wordlist = require('wordlist-english');
 var userTexts = [];
 var stickers = ["[sticker=a1]", "[sticker=a2]", "[sticker=a3]", "[sticker=a4]", "[sticker=a5]", "[sticker=a6]", "[sticker=a7]", "[sticker=a8]", "[sticker=a9]", "[sticker=a10]", "[sticker=a11]", "[sticker=a12]", "[sticker=a13]", "[sticker=a14]", "[sticker=a15]", "[sticker=a16]", "[sticker=a17]", "[sticker=a18]", "[sticker=a19]", "[sticker=a20]", "[sticker=a21]", "[sticker=a22]", "[sticker=a23]", "[sticker=a24]", "[sticker=a25]", "[sticker=a26]", "[sticker=a27]", "[sticker=a28]"];
 var indexChats = 0;
-var groups = [];
+let rawdata = fs.readFileSync('groups.json');
+let all_groups = JSON.parse(rawdata);
+var groups = all_groups['groups'];
 var vocab = {};
 var englishWords = wordlist['english'];
 app.use(helmet());
@@ -252,7 +254,7 @@ imageToBase64(response[0]['image']) // Image URL
 }
 
 
-schedule.scheduleJob('*/2 * * * *', diseminateText);
+schedule.scheduleJob('*/30 * * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
