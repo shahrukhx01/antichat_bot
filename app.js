@@ -210,7 +210,7 @@ var diseminateText = async function(){
   await sleep(SLEEP_SECS);
   let proba = Math.random();
   let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
-  if (proba >= 0.1 and groups.length>0) {
+  if (proba >= 0.1 && groups.length>0) {
 
       let grp = groups[GRP_INDEX]
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
