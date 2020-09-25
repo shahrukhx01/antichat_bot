@@ -191,7 +191,7 @@ function getDailyBonus(){
 
 
 var getText = function(){
-  if (Math.random() >= 0.5) {
+  if (Math.random() >= 0.9) {
     return '[photo]';
   }
   else {
@@ -212,9 +212,9 @@ var diseminateText = async function(){
   await sleep(SLEEP_SECS);
   let proba = Math.random();
   let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
-  if (proba >= 0.1 && groups.length>0) {
+  if (proba >= 0) {
 
-      let grp = groups[GRP_INDEX]
+      let grp = 'wA4iwpOITN'
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
     if (text == '[photo]') dowloadImage(text,grp);
     else sendText(text, grp);
