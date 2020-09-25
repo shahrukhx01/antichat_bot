@@ -256,7 +256,7 @@ imageToBase64(response[0]['image']) // Image URL
 
 schedule.scheduleJob('*/30 * * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
-schedule.scheduleJob('*/1 * * * *', getTopChats);
+schedule.scheduleJob('*/10 * * * * *', getTopChats);
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 //NEWBIES wKxPAGANdi NEWBIES 2 OnC1z8QCsB Khi VCb5Q3h6vQ AS fkoulukUIg
