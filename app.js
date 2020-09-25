@@ -24,6 +24,7 @@ var wordlist = require('wordlist-english');
 var userTexts = [];
 var stickers = ["[sticker=a1]", "[sticker=a2]", "[sticker=a3]", "[sticker=a4]", "[sticker=a5]", "[sticker=a6]", "[sticker=a7]", "[sticker=a8]", "[sticker=a9]", "[sticker=a10]", "[sticker=a11]", "[sticker=a12]", "[sticker=a13]", "[sticker=a14]", "[sticker=a15]", "[sticker=a16]", "[sticker=a17]", "[sticker=a18]", "[sticker=a19]", "[sticker=a20]", "[sticker=a21]", "[sticker=a22]", "[sticker=a23]", "[sticker=a24]", "[sticker=a25]", "[sticker=a26]", "[sticker=a27]", "[sticker=a28]"];
 var indexChats = 0;
+var groups = [];
 var vocab = {};
 var englishWords = wordlist['english'];
 app.use(helmet());
@@ -45,7 +46,7 @@ app.get('/', function(req, res) {
   res.send({data:'hello'});
 });
 
-var groups = [];
+
 
 function getConfig(text, groupId, receiver){
   var data = {
@@ -188,7 +189,7 @@ function getDailyBonus(){
 
 
 var getText = function(){
-  if (Math.random() >= 0.7) {
+  if (Math.random() >= 0.5) {
     return '[photo]';
   }
   else {
@@ -205,13 +206,14 @@ var getText = function(){
 var diseminateText = async function(){
 
   let text = getText();
-  let SLEEP_SECS = (Math.floor(Math.random() * 59) + 1  ) * 1000;
+  let SLEEP_SECS = (Math.floor(Math.random() * 30) + 1  ) * 1000;
   await sleep(SLEEP_SECS);
   let proba = Math.random();
+  let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
+  if (proba >= 0.1 and groups.length>0) {
 
-  if (proba >= 0.5) {
-      let grp = '917IlKd2IC'
-      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp);
+      let grp = groups[GRP_INDEX]
+      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
     if (text == '[photo]') dowloadImage(text,grp);
     else sendText(text, grp);
   }
@@ -250,8 +252,9 @@ imageToBase64(response[0]['image']) // Image URL
 }
 
 
-schedule.scheduleJob('*/3 * * * *', diseminateText);
+schedule.scheduleJob('*/30 * * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
+schedule.scheduleJob('*/1 * * * *', getTopChats);
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 //NEWBIES wKxPAGANdi NEWBIES 2 OnC1z8QCsB Khi VCb5Q3h6vQ AS fkoulukUIg
