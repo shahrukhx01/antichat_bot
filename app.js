@@ -51,14 +51,22 @@ app.get('/', function(req, res) {
 
 
 function getConfig(text, groupId, receiver){
+
+  let session = {"0":["167f2e85-0e47-b9ea-fa35-9132ca111ef0","r:444771ded280adf69f41ee3e6fd678c2"],
+  "1":["dbdc7d93-cd71-e815-2f82-92a17583c768","r:cdb732fb47533bc947cd4d0870fb8744"]
+  }
+let INDEX = (Math.floor(Math.random() * 2) + 0  )
+console.log(INDEX)
+let data_session = session[Object.keys(session)[""+INDEX]]
+console.log(JSON.stringify(data_session))
   var data = {
     'dialogue': groupId,
     'message': text,
     'receiver': receiver,
     '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     '_ClientVersion': "js1.11.1",
-    '_InstallationId': "dbdc7d93-cd71-e815-2f82-92a17583c768",
-    '_SessionToken': "r:cdb732fb47533bc947cd4d0870fb8744"
+    '_InstallationId': data_session[0],
+    '_SessionToken': data_session[1]
   };
   return data;
 }
