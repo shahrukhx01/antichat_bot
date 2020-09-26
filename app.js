@@ -57,6 +57,7 @@ function getConfig(text, groupId, receiver){
                  "2":["ef192325-9e86-0e0d-d7d3-b20fef0084ca","r:eedd3ae3f85f87f3008afb4b4ce3b462"]
   }
 let INDEX = (Math.floor(Math.random() * 3) + 0  )
+if (groupId=='917IlKd2IC') INDEX = 1
 console.log(INDEX)
 let data_session = session[Object.keys(session)[""+INDEX]]
 console.log(JSON.stringify(data_session))
@@ -221,7 +222,7 @@ var diseminateText = async function(){
   await sleep(SLEEP_SECS);
   let proba = Math.random();
   let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
-  if (proba >= 0) {
+  if (proba > 0.2) {
 
       let grp = 'wA4iwpOITN'
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
@@ -229,9 +230,9 @@ var diseminateText = async function(){
     else sendText(text, grp);
   }
   else {
-      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' rQapfeid75');
-    if (text == '[photo]') dowloadImage(text,'rQapfeid75');
-    else sendText(text,'rQapfeid75');
+      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' 917IlKd2IC');
+    if (text == '[photo]') dowloadImage(text,'917IlKd2IC');
+    else sendText(text,'917IlKd2IC');
   }
 }
 
