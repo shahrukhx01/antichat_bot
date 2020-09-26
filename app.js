@@ -199,7 +199,7 @@ function getDailyBonus(){
 
 
 var getText = function(){
-  if (Math.random() >= 0.9) {
+  if (Math.random() >= 0.4) {
     return '[photo]';
   }
   else {
