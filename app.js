@@ -222,7 +222,7 @@ var diseminateText = async function(){
   await sleep(SLEEP_SECS);
   let proba = Math.random();
   let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
-  if (proba > 0.05) {
+  if (proba > 0) {
 
       let grp = 'wA4iwpOITN'
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
