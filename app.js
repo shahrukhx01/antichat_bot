@@ -53,9 +53,10 @@ app.get('/', function(req, res) {
 function getConfig(text, groupId, receiver){
 
   let session = {"0":["167f2e85-0e47-b9ea-fa35-9132ca111ef0","r:444771ded280adf69f41ee3e6fd678c2"],
-  "1":["dbdc7d93-cd71-e815-2f82-92a17583c768","r:cdb732fb47533bc947cd4d0870fb8744"]
+  "1":["dbdc7d93-cd71-e815-2f82-92a17583c768","r:cdb732fb47533bc947cd4d0870fb8744"],
+                 "2":["ef192325-9e86-0e0d-d7d3-b20fef0084ca","r:eedd3ae3f85f87f3008afb4b4ce3b462"]
   }
-let INDEX = (Math.floor(Math.random() * 2) + 0  )
+let INDEX = (Math.floor(Math.random() * 3) + 0  )
 console.log(INDEX)
 let data_session = session[Object.keys(session)[""+INDEX]]
 console.log(JSON.stringify(data_session))
