@@ -53,11 +53,9 @@ app.get('/', function(req, res) {
 function getConfig(text, groupId, receiver){
 
   let session = {"0":["167f2e85-0e47-b9ea-fa35-9132ca111ef0","r:444771ded280adf69f41ee3e6fd678c2"],
-  "1":["dbdc7d93-cd71-e815-2f82-92a17583c768","r:cdb732fb47533bc947cd4d0870fb8744"],
-                 "2":["ef192325-9e86-0e0d-d7d3-b20fef0084ca","r:eedd3ae3f85f87f3008afb4b4ce3b462"]
+  "1":["dbdc7d93-cd71-e815-2f82-92a17583c768","r:cdb732fb47533bc947cd4d0870fb8744"]
   }
-let INDEX = (Math.floor(Math.random() * 3) + 0  )
-if (groupId=='917IlKd2IC') INDEX = 1
+let INDEX = (Math.floor(Math.random() * 2) + 0  )
 console.log(INDEX)
 let data_session = session[Object.keys(session)[""+INDEX]]
 console.log(JSON.stringify(data_session))
@@ -201,7 +199,7 @@ function getDailyBonus(){
 
 
 var getText = function(){
-  if (Math.random() >= 0.4) {
+  if (Math.random() >= 1) {
     return '[photo]';
   }
   else {
@@ -218,21 +216,22 @@ var getText = function(){
 var diseminateText = async function(){
 
   let text = getText();
-  let SLEEP_SECS = (Math.floor(Math.random() * 5) + 1  ) * 1000;
+  let SLEEP_SECS = (Math.floor(Math.random() * 30) + 1  ) * 1000;
   await sleep(SLEEP_SECS);
   let proba = Math.random();
   let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
-  if (proba > 0.001) {
+  if (proba >= 0) {
 
-      let grp = 'wA4iwpOITN'
+      let grp = '917IlKd2IC'
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
     if (text == '[photo]') dowloadImage(text,grp);
     else sendText(text, grp);
   }
   else {
-      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' 917IlKd2IC');
-    if (text == '[photo]') dowloadImage(text,'917IlKd2IC');
-    else sendText(text,'917IlKd2IC');
+    let grp = '917IlKd2IC'
+      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, grp);
+    if (text == '[photo]') dowloadImage(text,grp);
+    else sendText(text,grp);
   }
 }
 
@@ -264,7 +263,7 @@ imageToBase64(response[0]['image']) // Image URL
 }
 
 
-schedule.scheduleJob('*/5 * * * * *', diseminateText);
+schedule.scheduleJob('*/5 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/10 * * * * *', getTopChats);
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
