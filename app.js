@@ -208,7 +208,7 @@ function uploadImage(base64, text, dialogue){
     await sleep(SLEEP_SECS);
     let proba = Math.random();
     let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
-    if (switch_ < groups.length && switch_<=150){
+    if (switch_ < groups.length){
       let grp = groups[switch_];
       switch_ +=1;
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
