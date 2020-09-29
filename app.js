@@ -9,18 +9,13 @@ const helmet = require('helmet');
 const request = require('request');
 var fs = require('fs');
 var schedule = require('node-schedule');
-var txtgen = require('txtgen');
-const randomQuotes = require('random-quotes');
 var oneLinerJoke = require('one-liner-joke');
 var moby = require('moby')
-var synonyms = require("synonyms");
 var randomImageJs = require('random-image-js');
 const imageToBase64 = require('image-to-base64');
 
 
 
-//import wordlist from 'wordlist-english'; // ES Modules
-var wordlist = require('wordlist-english');
 var userTexts = [];
 var stickers = ["[sticker=a1]", "[sticker=a2]", "[sticker=a3]", "[sticker=a4]", "[sticker=a5]", "[sticker=a6]", "[sticker=a7]", "[sticker=a8]", "[sticker=a9]", "[sticker=a10]", "[sticker=a11]", "[sticker=a12]", "[sticker=a13]", "[sticker=a14]", "[sticker=a15]", "[sticker=a16]", "[sticker=a17]", "[sticker=a18]", "[sticker=a19]", "[sticker=a20]", "[sticker=a21]", "[sticker=a22]", "[sticker=a23]", "[sticker=a24]", "[sticker=a25]", "[sticker=a26]", "[sticker=a27]", "[sticker=a28]"];
 var indexChats = 0;
@@ -28,7 +23,7 @@ let rawdata = fs.readFileSync('groups.json');
 let all_groups = JSON.parse(rawdata);
 var groups = all_groups['groups'];
 var vocab = {};
-var englishWords = wordlist['english'];
+
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -196,7 +191,7 @@ var getText = function(){
   }
   else {
     return  oneLinerJoke.getRandomJoke({
-    'exclude_tags': ['dirty', 'racist', 'marriage']
+    'exclude_tags': ['dirty', 'racist', 'marriage', 'sex']
   }).body ;
 
   }
