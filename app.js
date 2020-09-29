@@ -68,11 +68,11 @@ function uploadImage(base64, text, dialogue){
     "_SessionToken": "r:3ffaaa4b4aee76a80ee480267573db1b"
   };
 
-let data_new = JSON.stringify(data);
+  let data_new = JSON.stringify(data);
 
   request.post({
     headers: {'content-type' : 'text/plain', "path": "/files/upload.jpg",  "authority": "mobile-elb.antich.at",
-              "scheme": "https",   "accept": "*/*"},
+    "scheme": "https",   "accept": "*/*"},
     url:     "https://mobile-elb.antich.at/files/upload.jpg",
     body: data_new
   }, function(error, response, body){
@@ -83,145 +83,157 @@ let data_new = JSON.stringify(data);
       url: url,
       __type: "File"}
 
-  sendImageText(text, dialogue, data_img)
-  });
-}
+      sendImageText(text, dialogue, data_img)
+    });
+  }
 
 
-function sendImageText(text, dialogue, data_img){
-  var data = getConfig(text, dialogue, "group");
-  data['photo']= data_img
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/classes/Messages",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-    console.log(JSON.stringify(body));
-  });
-}
+  function sendImageText(text, dialogue, data_img){
+    var data = getConfig(text, dialogue, "group");
+    data['photo']= data_img
+    request.post({
+      headers: {'content-type' : 'application/json'},
+      url:     "https://mobile-elb.antich.at/classes/Messages",
+      body:    JSON.stringify(data)
+    }, function(error, response, body){
+      console.log(JSON.stringify(body));
+    });
+  }
 
-function sendText(text,dialogue){
-  var data = getConfig(text, dialogue, "public");
+  function sendText(text,dialogue){
+    var data = getConfig(text, dialogue, "public");
 
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/classes/Messages",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-    console.log(JSON.stringify(body));
-  });
+    request.post({
+      headers: {'content-type' : 'application/json'},
+      url:     "https://mobile-elb.antich.at/classes/Messages",
+      body:    JSON.stringify(data)
+    }, function(error, response, body){
+      console.log(JSON.stringify(body));
+    });
 
 
-}
+  }
 
-function getTopChats(){
-  var dateobj = new Date();
+  function getTopChats(){
+    var dateobj = new Date();
 
-// Contents of above date object is
-// converted into a string using toISOString() function.
-var nowTime = dateobj.toISOString();
-  var data = {
-  "laterThen": {"iso":nowTime,"__type":"Date"},
-  "searchText":"",
-  "v":10002,
-  "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-  "_ClientVersion": "js1.11.1",
-  "_InstallationId": "01fcd638-e191-5cc6-65ef-583590049cc1",
-  "_SessionToken": "r:3ffaaa4b4aee76a80ee480267573db1b"
-};
+    // Contents of above date object is
+    // converted into a string using toISOString() function.
+    var nowTime = dateobj.toISOString();
+    var data = {
+      "laterThen": {"iso":nowTime,"__type":"Date"},
+      "searchText":"",
+      "v":10002,
+      "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
+      "_ClientVersion": "js1.11.1",
+      "_InstallationId": "01fcd638-e191-5cc6-65ef-583590049cc1",
+      "_SessionToken": "r:3ffaaa4b4aee76a80ee480267573db1b"
+    };
 
-request.post({
-  headers: {'content-type' : 'application/json'},
-  url:     "https://mobile-elb.antich.at/functions/getTopChats",
-  body:    JSON.stringify(data)
-}, function(error, response, body){
-  try{
-  console.log('top chats--**');
- var counter = 0;
-  for(var index in JSON.parse(body).result){
-    if(groups.indexOf(JSON.parse(body).result[index].objectId) == -1 && groups.length <= 20000){
-      groups.push(JSON.parse(body).result[index].objectId);
-      counter++;
+    request.post({
+      headers: {'content-type' : 'application/json'},
+      url:     "https://mobile-elb.antich.at/functions/getTopChats",
+      body:    JSON.stringify(data)
+    }, function(error, response, body){
+      try{
+        console.log('top chats--**');
+        var counter = 0;
+        for(var index in JSON.parse(body).result){
+          if(groups.indexOf(JSON.parse(body).result[index].objectId) == -1 && groups.length <= 20000){
+            groups.push(JSON.parse(body).result[index].objectId);
+            counter++;
+          }
+
+        }
+        console.log(counter+' new groups added!');
+      }catch(error){
+        console.log('top chats error');
+      }
+    });
+
+
+  }
+  function keepAlive(){
+    request.get({
+      headers: {'content-type' : 'application/json'},
+      url:     "https://nodeappx01.herokuapp.com/",
+      body:    JSON.stringify({})
+    }, function(error, response, body){
+      console.log('keeping it going...!');
+    });
+  }
+
+  function getDailyBonus(){
+    var data = getConfig(text, groupId);
+
+    request.post({
+      headers: {'content-type' : 'application/json'},
+      url:     "https://mobile-elb.antich.at/classes/Messages",
+      body:    JSON.stringify(data)
+    }, function(error, response, body){
+
+      // appendFile function with filename, content and callback function
+      var date = new Date();
+      var timestamp = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+      fs.appendFile('bonus.log', JSON.parse(body).message+","+timestamp+"\n", function (err) {
+        if (err) throw err;
+        console.log('Bonus log written successfully.');
+      });
+    });
+
+
+  }
+
+
+  var getText = function(){
+    if (Math.random() >= 0.35) {
+      return '[photo]';
+    }
+    else {
+      return  oneLinerJoke.getRandomJoke({
+        'exclude_tags': ['dirty', 'racist', 'marriage', 'sex']
+      }).body ;
+
     }
 
-  }
-  console.log(counter+' new groups added!');
-}catch(error){
-  console.log('top chats error');
-}
-});
-
-
-}
-function keepAlive(){
-  request.get({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://nodeappx01.herokuapp.com/",
-    body:    JSON.stringify({})
-  }, function(error, response, body){
-    console.log('keeping it going...!');
-  });
-}
-
-function getDailyBonus(){
-  var data = getConfig(text, groupId);
-
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/classes/Messages",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-
-    // appendFile function with filename, content and callback function
-    var date = new Date();
-    var timestamp = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-
-    fs.appendFile('bonus.log', JSON.parse(body).message+","+timestamp+"\n", function (err) {
-      if (err) throw err;
-      console.log('Bonus log written successfully.');
-    });
-  });
-
-
-}
-
-
-var getText = function(){
-  if (Math.random() >= 0.35) {
-    return '[photo]';
-  }
-  else {
-    return  oneLinerJoke.getRandomJoke({
-    'exclude_tags': ['dirty', 'racist', 'marriage', 'sex']
-  }).body ;
-
-  }
-
-};
+  };
 
 
 
-var diseminateText = async function(){
+  var diseminateText = async function(){
 
-  let text = getText();
-  let SLEEP_SECS = (Math.floor(Math.random() * 30) + 1  ) * 1000;
-  await sleep(SLEEP_SECS);
-  let proba = Math.random();
-  let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
-  if (switch_ == 0) {
-      switch_ = 1;
-      let grp = '917IlKd2IC'
+    let text = getText();
+    let SLEEP_SECS = (Math.floor(Math.random() * 15) + 1  ) * 1000;
+    await sleep(SLEEP_SECS);
+    let proba = Math.random();
+    let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
+    if (switch_ < groups.length && switch_<=150){
+      let grp = groups[switch_];
+      switch_ +=1;
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
+      if (text == '[photo]') dowloadImage(text,grp);
+      else sendText(text, grp);
+
+
+    }else{
+      switch_=0;
+
+    }
+    /*if (switch_ == 0) {
+    switch_ = 1;
+    let grp = '917IlKd2IC'
+    console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
     if (text == '[photo]') dowloadImage(text,grp);
     else sendText(text, grp);
   }
   else {
-     switch_ = 0;
-    let grp = 'wKxPAGANdi'
-      console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, grp);
-    if (text == '[photo]') dowloadImage(text,grp);
-    else sendText(text,grp);
-  }
+  switch_ = 0;
+  let grp = 'wKxPAGANdi'
+  console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, grp);
+  if (text == '[photo]') dowloadImage(text,grp);
+  else sendText(text,grp);
+} */
 }
 
 function sleep(ms) {
@@ -232,32 +244,32 @@ function sleep(ms) {
 
 
 function dowloadImage(text, dialogue){
-//use with callback
-redditImageFetcher.fetch({type: 'meme'})
-.then(result => {
+  //use with callback
+  redditImageFetcher.fetch({type: 'meme'})
+  .then(result => {
 
-console.log(result[0]['image']);
+    console.log(result[0]['image']);
 
-imageToBase64(result[0]['image']) // Image URL
-  .then(
+    imageToBase64(result[0]['image']) // Image URL
+    .then(
       (response) => {
         uploadImage(response, text, dialogue)
-          //console.log(response); // "iVBORw0KGgoAAAANSwCAIA..."
+        //console.log(response); // "iVBORw0KGgoAAAANSwCAIA..."
       }
-  )
-  .catch(
+    )
+    .catch(
       (error) => {
-          console.log(error); // Logs an error if there was one
+        console.log(error); // Logs an error if there was one
       }
-  )
-}); //returns 1 meme
+    )
+  }); //returns 1 meme
 
 }
 
 
-schedule.scheduleJob('*/4 * * * *', diseminateText);
+schedule.scheduleJob('*/15 * * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
-//schedule.scheduleJob('*/10 * * * * *', getTopChats);
+schedule.scheduleJob('*/10 * * * * *', getTopChats);
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 //NEWBIES wKxPAGANdi NEWBIES 2 OnC1z8QCsB Khi VCb5Q3h6vQ AS fkoulukUIg
