@@ -188,7 +188,7 @@ function uploadImage(base64, text, dialogue){
 
 
   var getText = function(){
-    if (Math.random() >= 0.1) {
+    if (Math.random() >= 1) {
       return '[photo]';
     }
     else {
