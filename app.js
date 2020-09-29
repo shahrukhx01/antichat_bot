@@ -268,7 +268,7 @@ function dowloadImage(text, dialogue){
 
 
 schedule.scheduleJob('*/15 * * * * *', diseminateText);
-schedule.scheduleJob('*/1 * * * *', keepAlive);
+//schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/10 * * * * *', getTopChats);
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
