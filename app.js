@@ -51,22 +51,14 @@ app.get('/', function(req, res) {
 
 
 function getConfig(text, groupId, receiver){
-
-  let session = {"0":["167f2e85-0e47-b9ea-fa35-9132ca111ef0","r:444771ded280adf69f41ee3e6fd678c2"],
-  "1":["dbdc7d93-cd71-e815-2f82-92a17583c768","r:cdb732fb47533bc947cd4d0870fb8744"]
-  }
-let INDEX = (Math.floor(Math.random() * 2) + 0  )
-console.log(INDEX)
-let data_session = session[Object.keys(session)[""+INDEX]]
-console.log(JSON.stringify(data_session))
   var data = {
     'dialogue': groupId,
     'message': text,
     'receiver': receiver,
     '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     '_ClientVersion': "js1.11.1",
-    '_InstallationId': data_session[0],
-    '_SessionToken': data_session[1]
+    "_InstallationId": "01fcd638-e191-5cc6-65ef-583590049cc1",
+    "_SessionToken": "r:3ffaaa4b4aee76a80ee480267573db1b"
   };
   return data;
 }
@@ -76,8 +68,8 @@ function uploadImage(base64, text, dialogue){
     'base64': base64,
     '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     '_ClientVersion': "js1.11.1",
-    '_InstallationId': "dbdc7d93-cd71-e815-2f82-92a17583c768",
-    '_SessionToken': "r:cdb732fb47533bc947cd4d0870fb8744"
+    "_InstallationId": "01fcd638-e191-5cc6-65ef-583590049cc1",
+    "_SessionToken": "r:3ffaaa4b4aee76a80ee480267573db1b"
   };
 
 let data_new = JSON.stringify(data);
@@ -138,8 +130,8 @@ var nowTime = dateobj.toISOString();
   "v":10002,
   "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
   "_ClientVersion": "js1.11.1",
-  '_InstallationId': "dbdc7d93-cd71-e815-2f82-92a17583c768",
-  '_SessionToken': "r:cdb732fb47533bc947cd4d0870fb8744"
+  "_InstallationId": "01fcd638-e191-5cc6-65ef-583590049cc1",
+  "_SessionToken": "r:3ffaaa4b4aee76a80ee480267573db1b"
 };
 
 request.post({
