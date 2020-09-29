@@ -188,7 +188,7 @@ function uploadImage(base64, text, dialogue){
 
 
   var getText = function(){
-    if (Math.random() >= 1) {
+    if (Math.random() >= 0) {
       return '[photo]';
     }
     else {
@@ -205,7 +205,7 @@ function uploadImage(base64, text, dialogue){
   var diseminateText = async function(){
 
     let text = getText();
-    let SLEEP_SECS = (Math.floor(Math.random() * 15) + 1  ) * 1000;
+    let SLEEP_SECS = (Math.floor(Math.random() * 10) + 1  ) * 1000;
     await sleep(SLEEP_SECS);
     let proba = Math.random();
     let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
@@ -268,7 +268,7 @@ function dowloadImage(text, dialogue){
 }
 
 
-schedule.scheduleJob('*/15 * * * * *', diseminateText);
+schedule.scheduleJob('*/5 * * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/10 * * * * *', getTopChats);
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
