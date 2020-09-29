@@ -11,8 +11,8 @@ var fs = require('fs');
 var schedule = require('node-schedule');
 var oneLinerJoke = require('one-liner-joke');
 var moby = require('moby')
-var randomImageJs = require('random-image-js');
 const imageToBase64 = require('image-to-base64');
+const redditImageFetcher = require('reddit-image-fetcher');
 
 
 
@@ -186,7 +186,7 @@ function getDailyBonus(){
 
 
 var getText = function(){
-  if (Math.random() >= 1) {
+  if (Math.random() >= 0.35) {
     return '[photo]';
   }
   else {
@@ -203,7 +203,7 @@ var getText = function(){
 var diseminateText = async function(){
 
   let text = getText();
-  let SLEEP_SECS = (Math.floor(Math.random() * 30) + 1  ) * 1000;
+  let SLEEP_SECS = (Math.floor(Math.random() * 60) + 1  ) * 1000;
   await sleep(SLEEP_SECS);
   let proba = Math.random();
   let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
@@ -231,26 +231,29 @@ function sleep(ms) {
 
 function dowloadImage(text, dialogue){
 //use with callback
-randomImageJs.getMemes().then(response => {
-  console.log(response[0]['image']);
+redditImageFetcher.fetch({type: 'meme'})
+.then(result => {
 
-imageToBase64(response[0]['image']) // Image URL
-    .then(
-        (response) => {
-          uploadImage(response, text, dialogue)
-            //console.log(response); // "iVBORw0KGgoAAAANSwCAIA..."
-        }
-    )
-    .catch(
-        (error) => {
-            console.log(error); // Logs an error if there was one
-        }
-    )
-});
+console.log(result[0]['image']);
+
+imageToBase64(result[0]['image']) // Image URL
+  .then(
+      (response) => {
+        uploadImage(response, text, dialogue)
+          //console.log(response); // "iVBORw0KGgoAAAANSwCAIA..."
+      }
+  )
+  .catch(
+      (error) => {
+          console.log(error); // Logs an error if there was one
+      }
+  )
+}); //returns 1 meme
+
 }
 
 
-schedule.scheduleJob('*/5 * * * *', diseminateText);
+schedule.scheduleJob('*/3 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 //schedule.scheduleJob('*/10 * * * * *', getTopChats);
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
