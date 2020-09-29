@@ -207,7 +207,7 @@ var diseminateText = async function(){
   await sleep(SLEEP_SECS);
   let proba = Math.random();
   let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
-  if (proba >= 0) {
+  if (proba >= 0.5) {
 
       let grp = '917IlKd2IC'
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
@@ -215,7 +215,7 @@ var diseminateText = async function(){
     else sendText(text, grp);
   }
   else {
-    let grp = '917IlKd2IC'
+    let grp = 'wKxPAGANdi'
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, grp);
     if (text == '[photo]') dowloadImage(text,grp);
     else sendText(text,grp);
@@ -253,7 +253,7 @@ imageToBase64(result[0]['image']) // Image URL
 }
 
 
-schedule.scheduleJob('*/3 * * * *', diseminateText);
+schedule.scheduleJob('*/5 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 //schedule.scheduleJob('*/10 * * * * *', getTopChats);
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
