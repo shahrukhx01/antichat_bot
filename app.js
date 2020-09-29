@@ -23,7 +23,7 @@ let rawdata = fs.readFileSync('groups.json');
 let all_groups = JSON.parse(rawdata);
 var groups = all_groups['groups'];
 var vocab = {};
-var switch =0;
+var switch_ =0;
 
 app.use(helmet());
 app.use(bodyParser.json());
@@ -208,15 +208,15 @@ var diseminateText = async function(){
   await sleep(SLEEP_SECS);
   let proba = Math.random();
   let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
-  if (switch == 0) {
-      switch = 1;
+  if (switch_ == 0) {
+      switch_ = 1;
       let grp = '917IlKd2IC'
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
     if (text == '[photo]') dowloadImage(text,grp);
     else sendText(text, grp);
   }
   else {
-     switch = 0;
+     switch_ = 0;
     let grp = 'wKxPAGANdi'
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, grp);
     if (text == '[photo]') dowloadImage(text,grp);
