@@ -45,7 +45,9 @@ app.get('/', function(req, res) {
 });
 
 
-
+function get_session(){
+  return ["5ce00c4b-c42a-b76b-7827-d2eef07a6ed7","r:b9a077876ad2048d729b51c5ebb38d57"]
+}
 function getConfig(text, groupId, receiver){
   var data = {
     'dialogue': groupId,
@@ -53,8 +55,8 @@ function getConfig(text, groupId, receiver){
     'receiver': receiver,
     '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     '_ClientVersion': "js1.11.1",
-    "_InstallationId": "01fcd638-e191-5cc6-65ef-583590049cc1",
-    "_SessionToken": "r:3ffaaa4b4aee76a80ee480267573db1b"
+    "_InstallationId": get_session()[0],
+    "_SessionToken": get_session()[1]
   };
   return data;
 }
@@ -64,8 +66,8 @@ function uploadImage(base64, text, dialogue){
     'base64': base64,
     '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
     '_ClientVersion': "js1.11.1",
-    "_InstallationId": "01fcd638-e191-5cc6-65ef-583590049cc1",
-    "_SessionToken": "r:3ffaaa4b4aee76a80ee480267573db1b"
+    "_InstallationId": get_session()[0],
+    "_SessionToken": get_session()[1]
   };
 
   let data_new = JSON.stringify(data);
@@ -125,9 +127,8 @@ function uploadImage(base64, text, dialogue){
       "searchText":"",
       "v":10002,
       "_ApplicationId": "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-      "_ClientVersion": "js1.11.1",
-      "_InstallationId": "01fcd638-e191-5cc6-65ef-583590049cc1",
-      "_SessionToken": "r:3ffaaa4b4aee76a80ee480267573db1b"
+      "_InstallationId": get_session()[0],
+      "_SessionToken": get_session()[1]
     };
 
     request.post({
@@ -208,7 +209,7 @@ function uploadImage(base64, text, dialogue){
     await sleep(SLEEP_SECS);
     let proba = Math.random();
     let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
-    if (switch_ < groups.length){
+    if (switch_ < groups.length ){
       let grp = groups[switch_];
       switch_ +=1;
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
@@ -268,7 +269,7 @@ function dowloadImage(text, dialogue){
 
 
 schedule.scheduleJob('*/15 * * * * *', diseminateText);
-//schedule.scheduleJob('*/1 * * * *', keepAlive);
+schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/10 * * * * *', getTopChats);
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
