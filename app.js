@@ -203,7 +203,7 @@ var getText = function(){
 var diseminateText = async function(){
 
   let text = getText();
-  let SLEEP_SECS = (Math.floor(Math.random() * 60) + 1  ) * 1000;
+  let SLEEP_SECS = (Math.floor(Math.random() * 30) + 1  ) * 1000;
   await sleep(SLEEP_SECS);
   let proba = Math.random();
   let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
@@ -253,7 +253,7 @@ imageToBase64(result[0]['image']) // Image URL
 }
 
 
-schedule.scheduleJob('*/5 * * * *', diseminateText);
+schedule.scheduleJob('*/4 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 //schedule.scheduleJob('*/10 * * * * *', getTopChats);
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
