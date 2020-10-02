@@ -131,7 +131,7 @@ function uploadImage(base64, text, dialogue){
       for (let index in resp){
         let user = resp[index]
         let tempUser = {}
-        if (user.female){
+        if (user.female && user.karma>1000){
           tempUser['otherProfileName'] = user.profileName;
           tempUser['otherObject'] = user.objectId;
           tempUser['dialogueId'] = 'freshDialogue';
