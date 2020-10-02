@@ -19,6 +19,8 @@ const redditImageFetcher = require('reddit-image-fetcher');
 var userTexts = [];
 var stickers = ["[sticker=a1]", "[sticker=a2]", "[sticker=a3]", "[sticker=a4]", "[sticker=a5]", "[sticker=a6]", "[sticker=a7]", "[sticker=a8]", "[sticker=a9]", "[sticker=a10]", "[sticker=a11]", "[sticker=a12]", "[sticker=a13]", "[sticker=a14]", "[sticker=a15]", "[sticker=a16]", "[sticker=a17]", "[sticker=a18]", "[sticker=a19]", "[sticker=a20]", "[sticker=a21]", "[sticker=a22]", "[sticker=a23]", "[sticker=a24]", "[sticker=a25]", "[sticker=a26]", "[sticker=a27]", "[sticker=a28]"];
 var indexChats = 0;
+let users = [];
+let sent = [];
 let rawdata = fs.readFileSync('groups.json');
 let all_groups = JSON.parse(rawdata);
 var groups = all_groups['groups'];
@@ -46,8 +48,7 @@ app.get('/', function(req, res) {
 
 
 function get_session(){
- 
-  return ["2e32df73-4275-76e8-0e99-29e38525b0dd","r:3f8860e1f560d5b6070b68af856807fe"]
+  return ["35b2cd2c-b294-5e34-d096-745584bafc00","r:711d070775c96ea64ad72808102d6960"]
 }
 function getConfig(text, groupId, receiver){
   var data = {
@@ -112,6 +113,59 @@ function uploadImage(base64, text, dialogue){
       body:    JSON.stringify(data)
     }, function(error, response, body){
       console.log(JSON.stringify(body));
+    });
+
+
+  }
+
+  function getActiveUsers(dialogue){
+    var data = getConfig("", dialogue, "public");
+
+    request.post({
+      headers: {'content-type' : 'application/json'},
+      url:     "https://mobile-elb.antich.at/functions/getActiveUsers",
+      body:    JSON.stringify(data)
+    }, function(error, response, body){
+      let resp = JSON.parse(body).result
+
+      for (let index in resp){
+        let user = resp[index]
+        let tempUser = {}
+        if (user.female){
+          tempUser['otherProfileName'] = user.profileName;
+          tempUser['otherObject'] = user.objectId;
+          tempUser['dialogueId'] = 'freshDialogue';
+          tempUser['message'] = getText();
+          if (sent.indexOf(user.objectId) == -1){
+            users.push(tempUser)
+          }
+        }
+
+      }
+      sendPM()
+    });
+
+
+  }
+
+  function sendPM(){
+    var data = getConfig("text", "dialogue", "public");
+    if (users.length==0) return
+    let user = users.pop();
+    console.log(JSON.stringify(user))
+    data.otherProfileName = user.objectId;
+    data.otherObject = user.otherObject;
+    data['dialogueId'] = user.dialogueId;
+    data['otherName'] = "";
+    data['message'] = user.message;
+    sent.push(data['otherObject'])
+    console.log(JSON.stringify(data));
+    request.post({
+      headers: {'content-type' : 'application/json'},
+      url:     "https://mobile-elb.antich.at/functions/sendMessage",
+      body:    JSON.stringify(data)
+    }, function(error, response, body){
+    console.log(JSON.stringify(body));
     });
 
 
@@ -189,7 +243,7 @@ function uploadImage(base64, text, dialogue){
 
 
   var getText = function(){
-    if (Math.random() >= 0.2) {
+    if (Math.random() >= 1) {
       return '[photo]';
     }
     else {
@@ -206,7 +260,7 @@ function uploadImage(base64, text, dialogue){
   var diseminateText = async function(){
 
     let text = getText();
-    let SLEEP_SECS = (Math.floor(Math.random() * 10) + 1  ) * 1000;
+    let SLEEP_SECS = (Math.floor(Math.random() * 30) + 1  ) * 1000;
     await sleep(SLEEP_SECS);
     let proba = Math.random();
     let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
@@ -214,8 +268,8 @@ function uploadImage(base64, text, dialogue){
       let grp = groups[switch_];
       switch_ +=1;
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
-      if (text == '[photo]') dowloadImage(text,grp);
-      else sendText(text, grp);
+      getActiveUsers(grp)
+
 
 
     }else{
@@ -268,11 +322,12 @@ function dowloadImage(text, dialogue){
 
 }
 
+//getActiveUsers("rQapfeid75");
 
-schedule.scheduleJob('*/5 * * * * *', diseminateText);
+schedule.scheduleJob('*/15 * * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/10 * * * * *', getTopChats);
-schedule.scheduleJob('0 5 * * *', getDailyBonus);
+//schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 //NEWBIES wKxPAGANdi NEWBIES 2 OnC1z8QCsB Khi VCb5Q3h6vQ AS fkoulukUIg
 server.listen(process.env.PORT || 5000, (err) => {
