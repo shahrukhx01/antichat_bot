@@ -324,7 +324,7 @@ function dowloadImage(text, dialogue){
 
 //getActiveUsers("rQapfeid75");
 
-schedule.scheduleJob('*/1 * * * *', diseminateText);
+schedule.scheduleJob('*/5 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
 //schedule.scheduleJob('0 5 * * *', getDailyBonus);
