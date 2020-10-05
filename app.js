@@ -104,6 +104,20 @@ function uploadImage(base64, text, dialogue){
     });
   }
 
+
+  function exitPrivateChat(dialogue){
+    var data = getConfig("", dialogue, "group");
+    data['chat']= dialogue
+    request.post({
+      headers: {'content-type' : 'application/json'},
+      url:     "https://mobile-elb.antich.at/functions/exitPrivateChat",
+      body:    JSON.stringify(data)
+    }, function(error, response, body){
+        console.log('pm deleted');
+      console.log(JSON.stringify(body));
+    });
+  }
+
   function sendText(text,dialogue){
     var data = getConfig(text, dialogue, "public");
 
@@ -166,6 +180,9 @@ function uploadImage(base64, text, dialogue){
       body:    JSON.stringify(data)
     }, function(error, response, body){
     console.log(JSON.stringify(body));
+    response_data = JSON.parse(body)
+    console.log('pm created');
+    exitPrivateChat(response_data.result.dialogue)
     });
 
 
