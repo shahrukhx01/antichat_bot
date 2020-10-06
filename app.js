@@ -48,7 +48,7 @@ app.get('/', function(req, res) {
 
 
 function get_session(){
-  return ["35b2cd2c-b294-5e34-d096-745584bafc00","r:711d070775c96ea64ad72808102d6960"]
+  return ["9f59d220-da64-c9c9-bd68-25453ef4e85e","r:186396695821aba4425b8cc11eb3a02b"]
 }
 function getConfig(text, groupId, receiver){
   var data = {
