@@ -165,7 +165,10 @@ function uploadImage(base64, text, dialogue){
   function sendPM(){
     var data = getConfig("text", "dialogue", "public");
     if (users.length==0) return
-    let user = users.pop();
+    let INDEX_ARR = Math.floor(Math.random()*users.length);
+    console.log('index generated '+INDEX_ARR+' with len'+users.length);
+    let user = users[INDEX_ARR]
+    users.splice(INDEX_ARR, 1);
     console.log(JSON.stringify(user))
     data.otherProfileName = user.objectId;
     data.otherObject = user.otherObject;
