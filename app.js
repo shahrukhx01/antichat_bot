@@ -182,7 +182,11 @@ function uploadImage(base64, text, dialogue){
     console.log(JSON.stringify(body));
     response_data = JSON.parse(body)
     console.log('pm created');
+        try{
     exitPrivateChat(response_data.result.dialogue)
+  }catch(error){
+    console.log('karma error');
+  }
     });
 
 
