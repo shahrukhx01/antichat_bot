@@ -150,7 +150,7 @@ function uploadImage(base64, text, dialogue){
           tempUser['otherProfileName'] = user.profileName;
           tempUser['otherObject'] = user.objectId;
           tempUser['dialogueId'] = 'freshDialogue';
-          tempUser['message'] = getText() +"\n P.S: If you play Clash Royale on mobile join my group: /n 'Clash Royale 👑 🤴 ': https://chat.antiland.com/pgN4LN5GSw";
+          tempUser['message'] = getText() +"\n P.S: If you play Clash Royale on mobile join my group: \n 'Clash Royale 👑 🤴 ': https://chat.antiland.com/pgN4LN5GSw";
           if (sent.indexOf(user.objectId) == -1){
             users.push(tempUser)
           }
