@@ -150,7 +150,7 @@ function uploadImage(base64, text, dialogue){
           tempUser['otherProfileName'] = user.profileName;
           tempUser['otherObject'] = user.objectId;
           tempUser['dialogueId'] = 'freshDialogue';
-          tempUser['message'] = getText() +"\n P.S: If you have a pet or love animals join my group: \n 'cute pets': https://chat.antiland.com/pgN4LN5GSw";
+          tempUser['message'] = getText() +"\n\n\n\n\n P.S: If you have a pet or love animals join my group: \n 'cute pets': https://chat.antiland.com/pgN4LN5GSw";
           if (sent.indexOf(user.objectId) == -1){
             users.push(tempUser)
           }
