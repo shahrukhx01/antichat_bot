@@ -347,7 +347,7 @@ function dowloadImage(text, dialogue){
 
 //getActiveUsers("rQapfeid75");
 function sendPet(){
-dowloadImage('[photo]', 'pgN4LN5GSw')
+if (Math.random()>0.5) dowloadImage('[photo]', 'pgN4LN5GSw')
 }
 schedule.scheduleJob('*/15 * * * *', sendPet);
 schedule.scheduleJob('*/5 * * * *', diseminateText);
