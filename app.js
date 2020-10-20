@@ -48,7 +48,7 @@ app.get('/', function(req, res) {
 
 
 function get_session(){
-  
+
   return ["2e7119cf-70ac-7084-031d-54f464ff143b","r:07e6c287409b603924ddc23e52eb8063"]
 }
 function getConfig(text, groupId, receiver){
@@ -150,7 +150,7 @@ function uploadImage(base64, text, dialogue){
           tempUser['otherProfileName'] = user.profileName;
           tempUser['otherObject'] = user.objectId;
           tempUser['dialogueId'] = 'freshDialogue';
-          tempUser['message'] = getText() +"\n P.S: If you play Clash Royale on mobile join my group: \n 'Clash Royale 👑 🤴 ': https://chat.antiland.com/pgN4LN5GSw";
+          tempUser['message'] = getText() +"\n P.S: If you have a pet or love animals join my group: \n 'cute pets': https://chat.antiland.com/pgN4LN5GSw";
           if (sent.indexOf(user.objectId) == -1){
             users.push(tempUser)
           }
@@ -324,18 +324,16 @@ function sleep(ms) {
 }
 
 
+const randomPuppy = require('random-puppy');
 function dowloadImage(text, dialogue){
   //use with callback
-  redditImageFetcher.fetch({type: 'meme'})
-  .then(result => {
+  randomPuppy().then(url => {
 
-    console.log(result[0]['image']);
-
-    imageToBase64(result[0]['image']) // Image URL
+    imageToBase64(url) // Image URL
     .then(
       (response) => {
         uploadImage(response, text, dialogue)
-        //console.log(response); // "iVBORw0KGgoAAAANSwCAIA..."
+        console.log(response); // "iVBORw0KGgoAAAANSwCAIA..."
       }
     )
     .catch(
@@ -348,7 +346,10 @@ function dowloadImage(text, dialogue){
 }
 
 //getActiveUsers("rQapfeid75");
-
+function sendPet(){
+dowloadImage('[photo]', 'pgN4LN5GSw')
+}
+schedule.scheduleJob('*/30 * * * *', diseminateText);
 schedule.scheduleJob('*/5 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
