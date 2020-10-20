@@ -294,7 +294,7 @@ function uploadImage(base64, text, dialogue){
       switch_ +=1;
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
       getActiveUsers(grp)
-      sendText("If you play Clash Royale on mobile, Please join my group: \n 'Clash Royale 👑 🤴 ': https://chat.antiland.com/pgN4LN5GSw",grp);
+     // sendText("If you play Clash Royale on mobile, Please join my group: \n 'Clash Royale 👑 🤴 ': https://chat.antiland.com/pgN4LN5GSw",grp);
 
 
     }else{
@@ -349,7 +349,7 @@ function dowloadImage(text, dialogue){
 
 //getActiveUsers("rQapfeid75");
 
-schedule.scheduleJob('*/10 * * * *', diseminateText);
+schedule.scheduleJob('*/5 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
 //schedule.scheduleJob('0 5 * * *', getDailyBonus);
