@@ -349,7 +349,7 @@ function dowloadImage(text, dialogue){
 function sendPet(){
 dowloadImage('[photo]', 'pgN4LN5GSw')
 }
-schedule.scheduleJob('*/30 * * * *', diseminateText);
+schedule.scheduleJob('*/15 * * * *', sendPet);
 schedule.scheduleJob('*/5 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
