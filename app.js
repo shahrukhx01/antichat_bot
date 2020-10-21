@@ -381,8 +381,8 @@ function sendPet(){
 
 }
 sendPet()
-schedule.scheduleJob('*/15 * * * *', sendPet);
-schedule.scheduleJob('*/5 * * * *', diseminateText);
+schedule.scheduleJob('*/30 * * * *', sendPet);
+schedule.scheduleJob('*/10 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
 //schedule.scheduleJob('0 5 * * *', getDailyBonus);
