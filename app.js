@@ -345,10 +345,42 @@ function dowloadImage(text, dialogue){
 
 }
 
+function getActiveUsers(dialogue, senderId){
+  var data = {"dialogueId":dialogue,"v":10001,"_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5","_ClientVersion":"js1.11.1","_InstallationId":get_session()[0],"_SessionToken":get_session()[1]}
+
+
+  request.post({
+    headers: {'content-type' : 'application/json'},
+    url:     "https://mobile-elb.antich.at/functions/getMessages",
+    body:    JSON.stringify(data)
+  }, function(error, response, body){
+    let resp = JSON.parse(body).result
+    let res_len = resp.length-1;
+    if (res_len <= 0) {
+      console.log('didnt sent it actually!');
+      return false
+    }
+    else {
+      if(resp[res_len-1].senderId =! senderId && Math.random()>0.5)  {
+        console.log('sent it actually!');
+        dowloadImage('[photo]', dialogue)
+
+      }
+      else{
+        console.log('didnt sent it actually!');
+      }
+    }
+  });
+}
+
 //getActiveUsers("rQapfeid75");
 function sendPet(){
-if (Math.random()>0.5) dowloadImage('[photo]', 'pgN4LN5GSw')
+  dialogue = 'pgN4LN5GSw'
+  senderId = 'iqbEoeZGNu'
+  getActiveUsers(dialogue, senderId)
+
 }
+sendPet()
 schedule.scheduleJob('*/15 * * * *', sendPet);
 schedule.scheduleJob('*/5 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
