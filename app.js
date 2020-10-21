@@ -380,7 +380,6 @@ function sendPet(){
   getActiveUsers(dialogue, senderId)
 
 }
-sendPet()
 schedule.scheduleJob('*/30 * * * *', sendPet);
 schedule.scheduleJob('*/10 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
