@@ -334,7 +334,7 @@ function dowloadImage(text, dialogue){
     .then(
       (response) => {
         uploadImage(response, text, dialogue)
-        console.log(response); // "iVBORw0KGgoAAAANSwCAIA..."
+        //console.log(response); // "iVBORw0KGgoAAAANSwCAIA..."
       }
     )
     .catch(
