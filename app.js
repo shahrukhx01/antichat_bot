@@ -101,17 +101,18 @@ function uploadImage(base64, text, dialogue){
       url:     "https://mobile-elb.antich.at/classes/Messages",
       body:    JSON.stringify(data)
     }, function(error, response, body){
+      exitPrivateChat(dialogue, "exitGroupChat")
       console.log(JSON.stringify(body));
     });
   }
 
 
-  function exitPrivateChat(dialogue){
+  function exitPrivateChat(dialogue, type){
     var data = getConfig("", dialogue, "group");
     data['chat']= dialogue
     request.post({
       headers: {'content-type' : 'application/json'},
-      url:     "https://mobile-elb.antich.at/functions/exitPrivateChat",
+      url:     "https://mobile-elb.antich.at/functions/"+type,
       body:    JSON.stringify(data)
     }, function(error, response, body){
         console.log('pm deleted');
@@ -187,7 +188,7 @@ function uploadImage(base64, text, dialogue){
     response_data = JSON.parse(body)
     console.log('pm created');
         try{
-    exitPrivateChat(response_data.result.dialogue)
+    exitPrivateChat(response_data.result.dialogue, "exitPrivateChat")
   }catch(error){
     console.log('karma error');
   }
