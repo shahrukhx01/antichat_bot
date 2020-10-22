@@ -115,7 +115,7 @@ function uploadImage(base64, text, dialogue){
       url:     "https://mobile-elb.antich.at/functions/"+type,
       body:    JSON.stringify(data)
     }, function(error, response, body){
-        console.log('pm deleted');
+      console.log('deleted '+ type);
       console.log(JSON.stringify(body));
     });
   }
