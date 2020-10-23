@@ -296,7 +296,7 @@ function uploadImage(base64, text, dialogue){
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
       getActiveUsers(grp);
      senderId = 'iqbEoeZGNu';
-     getActiveUsers(grp, senderId)
+     getActiveUsersNew(grp, senderId)
      // sendText("If you play Clash Royale on mobile, Please join my group: \n 'Clash Royale 👑 🤴 ': https://chat.antiland.com/pgN4LN5GSw",grp);
 
 
