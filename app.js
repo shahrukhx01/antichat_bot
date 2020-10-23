@@ -294,7 +294,9 @@ function uploadImage(base64, text, dialogue){
       let grp = groups[switch_];
       switch_ +=1;
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
-      getActiveUsers(grp)
+      getActiveUsers(grp);
+     senderId = 'iqbEoeZGNu';
+     getActiveUsers(grp, senderId)
      // sendText("If you play Clash Royale on mobile, Please join my group: \n 'Clash Royale 👑 🤴 ': https://chat.antiland.com/pgN4LN5GSw",grp);
 
 
@@ -346,7 +348,7 @@ function dowloadImage(text, dialogue){
 
 }
 
-function getActiveUsers(dialogue, senderId){
+function getActiveUsersNew(dialogue, senderId){
   var data = {"dialogueId":dialogue,"v":10001,"_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5","_ClientVersion":"js1.11.1","_InstallationId":get_session()[0],"_SessionToken":get_session()[1]}
 
 
@@ -378,7 +380,7 @@ function getActiveUsers(dialogue, senderId){
 function sendPet(){
   dialogue = 'pgN4LN5GSw'
   senderId = 'iqbEoeZGNu'
-  getActiveUsers(dialogue, senderId)
+  getActiveUsersNew(dialogue, senderId)
 
 }
 schedule.scheduleJob('*/30 * * * *', sendPet);
