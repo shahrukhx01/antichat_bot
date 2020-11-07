@@ -26,6 +26,7 @@ let all_groups = JSON.parse(rawdata);
 var groups = all_groups['groups'];
 var vocab = {};
 var switch_ =0;
+senderId="oNmyu21NlW";
 
 app.use(helmet());
 app.use(bodyParser.json());
@@ -48,8 +49,7 @@ app.get('/', function(req, res) {
 
 
 function get_session(){
-
-  return ["2e7119cf-70ac-7084-031d-54f464ff143b","r:07e6c287409b603924ddc23e52eb8063"]
+  return ["e1f2db28-cda4-f45c-c250-df1fb44ab71b","r:a5dbdf2b99e8b2f1efa14e0a0a2aa36d"]
 }
 function getConfig(text, groupId, receiver){
   var data = {
@@ -87,7 +87,7 @@ function uploadImage(base64, text, dialogue){
     data_img =   {name: fname,
       url: url,
       __type: "File"}
-
+      console.log('sending puppy!')
       sendImageText(text, dialogue, data_img)
     });
   }
@@ -101,7 +101,7 @@ function uploadImage(base64, text, dialogue){
       url:     "https://mobile-elb.antich.at/classes/Messages",
       body:    JSON.stringify(data)
     }, function(error, response, body){
-      exitPrivateChat(dialogue, "exitGroupChat")
+      //exitPrivateChat(dialogue, "exitGroupChat")
       console.log(JSON.stringify(body));
     });
   }
@@ -295,7 +295,7 @@ function uploadImage(base64, text, dialogue){
       switch_ +=1;
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
       getActiveUsers(grp);
-     senderId = 'iqbEoeZGNu';
+
      getActiveUsersNew(grp, senderId)
      // sendText("If you play Clash Royale on mobile, Please join my group: \n 'Clash Royale 👑 🤴 ': https://chat.antiland.com/pgN4LN5GSw",grp);
 
@@ -329,6 +329,7 @@ function sleep(ms) {
 
 const randomPuppy = require('random-puppy');
 function dowloadImage(text, dialogue){
+  console.log('start sending puppy')
   //use with callback
   randomPuppy().then(url => {
 
@@ -360,16 +361,18 @@ function getActiveUsersNew(dialogue, senderId){
     let resp = JSON.parse(body).result
     let res_len = resp.length-1;
     if (res_len <= 0) {
-      console.log('didnt sent it actually!');
+      dowloadImage('[photo]', dialogue)
+      console.log('didnt sent it actually! 11');
       return false
     }
     else {
-      if(resp[res_len-1].senderId =! senderId && Math.random()>0.5)  {
+      if(resp[res_len-1].senderId =! senderId)  {
         console.log('sent it actually!');
         dowloadImage('[photo]', dialogue)
 
       }
       else{
+        dowloadImage('[photo]', dialogue)
         console.log('didnt sent it actually!');
       }
     }
@@ -378,16 +381,31 @@ function getActiveUsersNew(dialogue, senderId){
 
 //getActiveUsers("rQapfeid75");
 function sendPet(){
-  dialogue = 'pgN4LN5GSw'
-  senderId = 'iqbEoeZGNu'
-  getActiveUsersNew(dialogue, senderId)
+
+
+  let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
+  if (switch_ < groups.length ){
+    let grp = groups[switch_];
+    switch_ +=1;
+    console.log(new Date(),  ' '+grp+' grps'+groups.length);
+
+
+   getActiveUsersNew(grp, senderId)
+   // sendText("If you play Clash Royale on mobile, Please join my group: \n 'Clash Royale 👑 🤴 ': https://chat.antiland.com/pgN4LN5GSw",grp);
+
+
+  }else{
+    switch_=0;
+
+  }
 
 }
-schedule.scheduleJob('*/30 * * * *', sendPet);
-schedule.scheduleJob('*/1 * * * * *', diseminateText);
+
+schedule.scheduleJob('*/10 * * * *', sendPet);
+//schedule.scheduleJob('*/10 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
-//schedule.scheduleJob('0 5 * * *', getDailyBonus);
+schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 //NEWBIES wKxPAGANdi NEWBIES 2 OnC1z8QCsB Khi VCb5Q3h6vQ AS fkoulukUIg
 server.listen(process.env.PORT || 5000, (err) => {
