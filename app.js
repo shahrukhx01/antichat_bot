@@ -296,7 +296,7 @@ function uploadImage(base64, text, dialogue){
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
       getActiveUsers(grp);
 
-     getActiveUsersNew(grp, senderId)
+     //getActiveUsersNew(grp, senderId)
      // sendText("If you play Clash Royale on mobile, Please join my group: \n 'Clash Royale 👑 🤴 ': https://chat.antiland.com/pgN4LN5GSw",grp);
 
 
@@ -401,8 +401,8 @@ function sendPet(){
 
 }
 
-schedule.scheduleJob('*/1 * * * *', sendPet);
-//schedule.scheduleJob('*/1 * * * *', diseminateText);
+schedule.scheduleJob('*/5 * * * *', sendPet);
+schedule.scheduleJob('*/1 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
