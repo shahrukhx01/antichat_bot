@@ -101,7 +101,7 @@ function uploadImage(base64, text, dialogue){
       url:     "https://mobile-elb.antich.at/classes/Messages",
       body:    JSON.stringify(data)
     }, function(error, response, body){
-      //exitPrivateChat(dialogue, "exitGroupChat")
+      exitPrivateChat(dialogue, "exitGroupChat")
       console.log(JSON.stringify(body));
     });
   }
