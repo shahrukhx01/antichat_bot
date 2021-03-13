@@ -26,7 +26,7 @@ let all_groups = JSON.parse(rawdata);
 var groups = all_groups['groups'];
 var vocab = {};
 var switch_ =0;
-senderId="oNmyu21NlW";
+senderId="dwx0ohgWOe";
 
 app.use(helmet());
 app.use(bodyParser.json());
@@ -49,7 +49,7 @@ app.get('/', function(req, res) {
 
 
 function get_session(){
-  return ["e1f2db28-cda4-f45c-c250-df1fb44ab71b","r:a5dbdf2b99e8b2f1efa14e0a0a2aa36d"]
+  return ["032a7b94-ebc4-bdab-6824-9ac8c2fb3a30","r:41f9beb77ec1d3f4b7ae6f341dc75a43"]
 }
 function getConfig(text, groupId, receiver){
   var data = {
@@ -64,47 +64,6 @@ function getConfig(text, groupId, receiver){
   return data;
 }
 
-function uploadImage(base64, text, dialogue){
-  var data = {
-    'base64': base64,
-    '_ApplicationId': "fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5",
-    '_ClientVersion': "js1.11.1",
-    "_InstallationId": get_session()[0],
-    "_SessionToken": get_session()[1]
-  };
-
-  let data_new = JSON.stringify(data);
-
-  request.post({
-    headers: {'content-type' : 'text/plain', "path": "/files/upload.jpg",  "authority": "mobile-elb.antich.at",
-    "scheme": "https",   "accept": "*/*"},
-    url:     "https://mobile-elb.antich.at/files/upload.jpg",
-    body: data_new
-  }, function(error, response, body){
-    url = JSON.parse(body)['url']
-    spt =  url.split('/')
-    fname = spt[spt.length-1]
-    data_img =   {name: fname,
-      url: url,
-      __type: "File"}
-      console.log('sending puppy!')
-      sendImageText(text, dialogue, data_img)
-    });
-  }
-
-
-  function sendImageText(text, dialogue, data_img){
-    var data = getConfig(text, dialogue, "group");
-    data['photo']= data_img
-    request.post({
-      headers: {'content-type' : 'application/json'},
-      url:     "https://mobile-elb.antich.at/classes/Messages",
-      body:    JSON.stringify(data)
-    }, function(error, response, body){
-      exitPrivateChat(dialogue, "exitGroupChat")
-      console.log(JSON.stringify(body));
-    });
-  }
 
 
   function exitPrivateChat(dialogue, type){
@@ -147,7 +106,7 @@ function uploadImage(base64, text, dialogue){
       for (let index in resp){
         let user = resp[index]
         let tempUser = {}
-        if (user.female && !user.isAdmin && user.karma>1000 && user.age>=30 && user.age<=44){
+        if (user.female && !user.isAdmin  && user.age>=28 && user.age<=44){
           tempUser['otherProfileName'] = user.profileName;
           tempUser['otherObject'] = user.objectId;
           tempUser['dialogueId'] = 'freshDialogue';
@@ -158,6 +117,7 @@ function uploadImage(base64, text, dialogue){
         }
 
       }
+
       sendPM()
     });
 
@@ -178,7 +138,6 @@ function uploadImage(base64, text, dialogue){
     data['otherName'] = "";
     data['message'] = user.message;
     sent.push(data['otherObject'])
-    console.log(JSON.stringify(data));
     request.post({
       headers: {'content-type' : 'application/json'},
       url:     "https://mobile-elb.antich.at/functions/sendMessage",
@@ -212,6 +171,8 @@ function uploadImage(base64, text, dialogue){
       "_SessionToken": get_session()[1]
     };
 
+
+
     request.post({
       headers: {'content-type' : 'application/json'},
       url:     "https://mobile-elb.antich.at/functions/getTopChats",
@@ -220,6 +181,7 @@ function uploadImage(base64, text, dialogue){
       try{
         console.log('top chats--**');
         var counter = 0;
+
         for(var index in JSON.parse(body).result){
           if(groups.indexOf(JSON.parse(body).result[index].objectId) == -1 && groups.length <= 20000){
             groups.push(JSON.parse(body).result[index].objectId);
@@ -229,6 +191,8 @@ function uploadImage(base64, text, dialogue){
         }
         console.log(counter+' new groups added!');
       }catch(error){
+        console.log(error)
+        console.log(JSON.stringify(body))
         console.log('top chats error');
       }
     });
@@ -295,29 +259,10 @@ function uploadImage(base64, text, dialogue){
       switch_ +=1;
       console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
       getActiveUsers(grp);
-
-     //getActiveUsersNew(grp, senderId)
-     // sendText("If you play Clash Royale on mobile, Please join my group: \n 'Clash Royale 👑 🤴 ': https://chat.antiland.com/pgN4LN5GSw",grp);
-
-
     }else{
       switch_=0;
 
     }
-    /*if (switch_ == 0) {
-    switch_ = 1;
-    let grp = '917IlKd2IC'
-    console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, ' '+grp+' grps'+groups.length);
-    if (text == '[photo]') dowloadImage(text,grp);
-    else sendText(text, grp);
-  }
-  else {
-  switch_ = 0;
-  let grp = 'wKxPAGANdi'
-  console.log(new Date(), ' text sent: '+text,'hit proba: ' ,proba, grp);
-  if (text == '[photo]') dowloadImage(text,grp);
-  else sendText(text,grp);
-} */
 }
 
 function sleep(ms) {
@@ -326,83 +271,7 @@ function sleep(ms) {
   });
 }
 
-
-const randomPuppy = require('random-puppy');
-function dowloadImage(text, dialogue){
-  console.log('start sending puppy')
-  //use with callback
-  randomPuppy().then(url => {
-
-    imageToBase64(url) // Image URL
-    .then(
-      (response) => {
-        uploadImage(response, text, dialogue)
-        //console.log(response); // "iVBORw0KGgoAAAANSwCAIA..."
-      }
-    )
-    .catch(
-      (error) => {
-        console.log(error); // Logs an error if there was one
-      }
-    )
-  }); //returns 1 meme
-
-}
-
-function getActiveUsersNew(dialogue, senderId){
-  var data = {"dialogueId":dialogue,"v":10001,"_ApplicationId":"fUEmHsDqbr9v73s4JBx0CwANjDJjoMcDFlrGqgY5","_ClientVersion":"js1.11.1","_InstallationId":get_session()[0],"_SessionToken":get_session()[1]}
-
-
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     "https://mobile-elb.antich.at/functions/getMessages",
-    body:    JSON.stringify(data)
-  }, function(error, response, body){
-    let resp = JSON.parse(body).result
-    let res_len = resp.length-1;
-    if (res_len <= 0) {
-      dowloadImage('[photo]', dialogue)
-      console.log('didnt sent it actually! 11');
-      return false
-    }
-    else {
-      if(resp[res_len-1].senderId =! senderId)  {
-        console.log('sent it actually!');
-        dowloadImage('[photo]', dialogue)
-
-      }
-      else{
-        dowloadImage('[photo]', dialogue)
-        console.log('didnt sent it actually!');
-      }
-    }
-  });
-}
-
-//getActiveUsers("rQapfeid75");
-function sendPet(){
-
-
-  let GRP_INDEX = (Math.floor(Math.random() * groups.length-1) + 0  ) ;
-  if (switch_ < groups.length ){
-    let grp = groups[switch_];
-    switch_ +=1;
-    console.log(new Date(),  ' '+grp+' grps'+groups.length);
-
-
-   getActiveUsersNew(grp, senderId)
-   // sendText("If you play Clash Royale on mobile, Please join my group: \n 'Clash Royale 👑 🤴 ': https://chat.antiland.com/pgN4LN5GSw",grp);
-
-
-  }else{
-    switch_=0;
-
-  }
-
-}
-
-schedule.scheduleJob('*/15 * * * *', sendPet);
-schedule.scheduleJob('*/15 * * * *', diseminateText);
+schedule.scheduleJob('*/5 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
