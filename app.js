@@ -317,10 +317,10 @@ function sleep(ms) {
 
 
 
-schedule.scheduleJob('*/20 * * * * *', diseminateText);
-//schedule.scheduleJob('*/1 * * * *', keepAlive);
-//schedule.scheduleJob('*/1 * * * *', getTopChats);
-//schedule.scheduleJob('0 5 * * *', getDailyBonus);
+schedule.scheduleJob('*/5 * * * *', diseminateText);
+schedule.scheduleJob('*/1 * * * *', keepAlive);
+schedule.scheduleJob('*/1 * * * *', getTopChats);
+schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 //NEWBIES wKxPAGANdi NEWBIES 2 OnC1z8QCsB Khi VCb5Q3h6vQ AS fkoulukUIg
 server.listen(process.env.PORT || 5000, (err) => {
