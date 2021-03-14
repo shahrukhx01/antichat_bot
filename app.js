@@ -11,8 +11,12 @@ var fs = require('fs');
 var schedule = require('node-schedule');
 var oneLinerJoke = require('one-liner-joke');
 var moby = require('moby')
-const imageToBase64 = require('image-to-base64');
-const redditImageFetcher = require('reddit-image-fetcher');
+var MongoClient = require('mongodb').MongoClient;
+
+const mongo_username = process.env.MONGO_LINKEDIN_USERNAME ;
+const mongo_password = process.env.MONGO_LINKEDIN_PASSWORD ;
+const database = 'anti_agent';
+const uri = "mongodb+srv://"+mongo_username+":"+mongo_password+"@cluster0.lhdpw.mongodb.net/"+database+"?retryWrites=true&w=majority"
 
 
 
@@ -117,26 +121,66 @@ function getConfig(text, groupId, receiver){
         }
 
       }
-
-      sendPM()
+      validateUser();
+      //sendPM()
     });
 
 
   }
+  function searchUserMongo(data, collection){
+  var db = MongoClient.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
+  MongoClient.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true}, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db(database);
+    dbo.collection(collection).count({"_id" : data.__id}, function(err, result) {
+     if (err) throw err;
+     console.log('user data count '+result)
+      db.close();
+    if(result > 0){
+      console.log('user already been sent pm...')
+      return
+    }else{
+      insertUserMongo(data, collection)
+    }
+      });
 
-  function sendPM(){
+  });
+
+  }
+
+  function insertUserMongo(data, collection){
+    MongoClient.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true}, function(err, db) {
+      if (err) throw err;
+      var dbo = db.db(database);
+      dbo.collection(collection).insertOne({"_id" : data.__id}, function(err, result) {
+       if (err) throw err;
+       console.log('data inserted in '+ collection)
+       db.close();
+       sendPM(data)
+        });
+
+    });
+  }
+
+  function validateUser(){
     var data = getConfig("text", "dialogue", "public");
     if (users.length==0) return
     let INDEX_ARR = Math.floor(Math.random()*users.length);
     console.log('index generated '+INDEX_ARR+' with len'+users.length);
     let user = users[INDEX_ARR]
     users.splice(INDEX_ARR, 1);
+    console.log('user info....')
     console.log(JSON.stringify(user))
     data.otherProfileName = user.objectId;
     data.otherObject = user.otherObject;
     data['dialogueId'] = user.dialogueId;
     data['otherName'] = "";
     data['message'] = user.message;
+    data['__id'] = user.otherObject;
+    searchUserMongo(data, 'users')
+  }
+
+  function sendPM(data){
     sent.push(data['otherObject'])
     request.post({
       headers: {'content-type' : 'application/json'},
@@ -271,10 +315,12 @@ function sleep(ms) {
   });
 }
 
-schedule.scheduleJob('*/5 * * * *', diseminateText);
-schedule.scheduleJob('*/1 * * * *', keepAlive);
-schedule.scheduleJob('*/1 * * * *', getTopChats);
-schedule.scheduleJob('0 5 * * *', getDailyBonus);
+
+
+schedule.scheduleJob('*/20 * * * * *', diseminateText);
+//schedule.scheduleJob('*/1 * * * *', keepAlive);
+//schedule.scheduleJob('*/1 * * * *', getTopChats);
+//schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 //NEWBIES wKxPAGANdi NEWBIES 2 OnC1z8QCsB Khi VCb5Q3h6vQ AS fkoulukUIg
 server.listen(process.env.PORT || 5000, (err) => {
