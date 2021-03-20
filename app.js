@@ -317,7 +317,7 @@ function sleep(ms) {
 
 
 
-schedule.scheduleJob('*/1 * * * *', diseminateText);
+schedule.scheduleJob('*/15 * * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
