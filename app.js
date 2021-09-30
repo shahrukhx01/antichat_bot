@@ -13,8 +13,8 @@ var oneLinerJoke = require('one-liner-joke');
 var moby = require('moby')
 var MongoClient = require('mongodb').MongoClient;
 
-const mongo_username = process.env.MONGO_LINKEDIN_USERNAME ;
-const mongo_password = process.env.MONGO_LINKEDIN_PASSWORD ;
+const mongo_username = process.env.MONGO_USERNAME ;
+const mongo_password = process.env.MONGO_PASSWORD ;
 const database = 'anti_agent';
 const uri = "mongodb+srv://"+mongo_username+":"+mongo_password+"@cluster0.lhdpw.mongodb.net/"+database+"?retryWrites=true&w=majority"
 
@@ -53,7 +53,7 @@ app.get('/', function(req, res) {
 
 
 function get_session(){
-  return ["032a7b94-ebc4-bdab-6824-9ac8c2fb3a30","r:41f9beb77ec1d3f4b7ae6f341dc75a43"]
+  return ["e032a9f2-a0d4-d5dd-dbcf-5db9ab56f46c","r:a6054f63e3f757b7c4d6a0dbb176c6ef"]
 }
 function getConfig(text, groupId, receiver){
   var data = {
@@ -110,7 +110,7 @@ function getConfig(text, groupId, receiver){
       for (let index in resp){
         let user = resp[index]
         let tempUser = {}
-        if (user.female && !user.isAdmin  && user.age>=28 && user.age<=44){
+        if (user.female && !user.isAdmin  && user.age>=30 && user.age<=44){
           tempUser['otherProfileName'] = user.profileName;
           tempUser['otherObject'] = user.objectId;
           tempUser['dialogueId'] = 'freshDialogue';
@@ -320,6 +320,7 @@ function sleep(ms) {
 schedule.scheduleJob('*/15 * * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
+
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
 //NEWBIES wKxPAGANdi NEWBIES 2 OnC1z8QCsB Khi VCb5Q3h6vQ AS fkoulukUIg
