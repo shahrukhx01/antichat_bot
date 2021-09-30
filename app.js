@@ -191,7 +191,8 @@ function getConfig(text, groupId, receiver){
     response_data = JSON.parse(body)
     console.log('pm created');
         try{
-    exitPrivateChat(response_data.result.dialogue, "exitPrivateChat")
+          console.log('dont exit the chat')
+    //exitPrivateChat(response_data.result.dialogue, "exitPrivateChat")
   }catch(error){
     console.log('karma error');
   }
