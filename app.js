@@ -156,7 +156,8 @@ function getConfig(text, groupId, receiver){
        if (err) throw err;
        console.log('data inserted in '+ collection)
        db.close();
-       sendPM(data)
+      sendRandomPM(data);
+       //sendPM(data)
         });
 
     });
@@ -200,6 +201,26 @@ function getConfig(text, groupId, receiver){
 
 
   }
+
+function sendRandomPM(data){
+    var data = getConfig("text", "dialogue", "public");
+    sent.push(data['otherObject'])
+    request.post({
+      headers: {'content-type' : 'application/json'},
+      url:     "https://mobile-elb.antich.at/functions/startRandomChat",
+      body:    JSON.stringify(data)
+    }, function(error, response, body){
+    console.log(JSON.stringify(body));
+    response_data = JSON.parse(body)
+    console.log('pm created');
+        try{
+    exitPrivateChat(response_data.result.dialogue, "exitPrivateChat")
+  }catch(error){
+    console.log('karma error');
+  }
+    });
+
+}
 
   function getTopChats(){
     var dateobj = new Date();
@@ -318,9 +339,9 @@ function sleep(ms) {
 
 
 
-schedule.scheduleJob('*/5 * * * *', diseminateText);
-schedule.scheduleJob('*/1 * * * *', keepAlive);
-schedule.scheduleJob('*/1 * * * *', getTopChats);
+schedule.scheduleJob('*/5 * * * *', sendRandomPM);
+//schedule.scheduleJob('*/1 * * * *', keepAlive);
+//schedule.scheduleJob('*/1 * * * *', getTopChats);
 
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
