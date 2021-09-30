@@ -53,7 +53,7 @@ app.get('/', function(req, res) {
 
 
 function get_session(){
-  return ["e032a9f2-a0d4-d5dd-dbcf-5db9ab56f46c","r:a6054f63e3f757b7c4d6a0dbb176c6ef"]
+  return ["525d78c0-8dda-9fc0-dfb1-3a9ee1f7ba8b","r:2686742c9405ead6882e4ad322c66353"]
 }
 function getConfig(text, groupId, receiver){
   var data = {
@@ -318,7 +318,7 @@ function sleep(ms) {
 
 
 
-schedule.scheduleJob('*/5 * * * *', diseminateText);
+schedule.scheduleJob('*/1 * * * *', diseminateText);
 schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
 
