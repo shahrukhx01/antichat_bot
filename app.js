@@ -340,7 +340,7 @@ function sleep(ms) {
 
 
 //schedule.scheduleJob('*/5 * * * *', sendRandomPM);
-schedule.scheduleJob('*/10 * * * *', diseminateText);
+schedule.scheduleJob('*/5 * * * *', diseminateText);
 diseminateText
 //schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
