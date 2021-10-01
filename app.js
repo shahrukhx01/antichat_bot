@@ -156,8 +156,8 @@ function getConfig(text, groupId, receiver){
        if (err) throw err;
        console.log('data inserted in '+ collection)
        db.close();
-      sendRandomPM(data);
-       //sendPM(data)
+      //sendRandomPM(data);
+       sendPM(data)
         });
 
     });
@@ -340,7 +340,7 @@ function sleep(ms) {
 
 
 //schedule.scheduleJob('*/5 * * * *', sendRandomPM);
-schedule.scheduleJob('*/5 * * * *', diseminateText);
+schedule.scheduleJob('*/15 * * * *', diseminateText);
 diseminateText
 //schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
