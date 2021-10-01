@@ -192,8 +192,8 @@ function getConfig(text, groupId, receiver){
     response_data = JSON.parse(body)
     console.log('pm created');
         try{
-          console.log('dont exit the chat')
-    //exitPrivateChat(response_data.result.dialogue, "exitPrivateChat")
+    //      console.log('dont exit the chat')
+    exitPrivateChat(response_data.result.dialogue, "exitPrivateChat")
   }catch(error){
     console.log('karma error');
   }
@@ -339,9 +339,11 @@ function sleep(ms) {
 
 
 
-schedule.scheduleJob('*/5 * * * *', sendRandomPM);
+//schedule.scheduleJob('*/5 * * * *', sendRandomPM);
+schedule.scheduleJob('*/5 * * * *', diseminateText);
+diseminateText
 //schedule.scheduleJob('*/1 * * * *', keepAlive);
-//schedule.scheduleJob('*/1 * * * *', getTopChats);
+schedule.scheduleJob('*/1 * * * *', getTopChats);
 
 schedule.scheduleJob('0 5 * * *', getDailyBonus);
 
