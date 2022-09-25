@@ -16,7 +16,7 @@ var MongoClient = require('mongodb').MongoClient;
 const mongo_username = process.env.MONGO_USERNAME ;
 const mongo_password = process.env.MONGO_PASSWORD ;
 const database = 'anti_agent';
-const uri = "mongodb+srv://"+mongo_username+":"+mongo_password+"@cluster0.lhdpw.mongodb.net/"+database+"?retryWrites=true&w=majority"
+const uri = "mongodb+srv://"+mongo_username+":"+mongo_password+"@cluster0.dopto.mongodb.net/"+database+"?retryWrites=true&w=majority"
 
 
 
@@ -53,7 +53,7 @@ app.get('/', function(req, res) {
 
 
 function get_session(){
-  return ["525d78c0-8dda-9fc0-dfb1-3a9ee1f7ba8b","r:2686742c9405ead6882e4ad322c66353"]
+  return ["87c8f291-c8e8-dfb6-d79a-65d82dc11eba","r:a1c641e66bc2744c97302141fa9efd00"]
 }
 function getConfig(text, groupId, receiver){
   var data = {
