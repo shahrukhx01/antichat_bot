@@ -16,7 +16,7 @@ var MongoClient = require('mongodb').MongoClient;
 const mongo_username = process.env.MONGO_USERNAME ;
 const mongo_password = process.env.MONGO_PASSWORD ;
 const database = 'anti_agent';
-const uri = "mongodb+srv://"+mongo_username+":"+mongo_password+"@cluster0.dopto.mongodb.net/"+database+"?retryWrites=true&w=majority"
+const uri = "mongodb+srv://"+mongo_username+":"+mongo_password+"@cluster0.lhdpw.mongodb.net/"+database+"?retryWrites=true&w=majority"
 
 
 
@@ -340,7 +340,7 @@ function sleep(ms) {
 
 
 //schedule.scheduleJob('*/5 * * * *', sendRandomPM);
-schedule.scheduleJob('*/10 * * * *', diseminateText);
+schedule.scheduleJob('*/15 * * * * *', diseminateText);
 diseminateText
 //schedule.scheduleJob('*/1 * * * *', keepAlive);
 schedule.scheduleJob('*/1 * * * *', getTopChats);
